@@ -1,0 +1,5 @@
+module org.maui.calendar
+plugin MauiCalendarLib
+classname MauiCalendarPlugin
+
+typeinfo plugins.qmltypes
