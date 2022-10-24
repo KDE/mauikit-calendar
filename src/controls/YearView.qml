@@ -20,14 +20,6 @@ QQC2.Pane
     property date selectedDate: currentDate
     readonly property date currentDate: new Date()
 
-    Timer
-    {
-        interval: 5000;
-        running: true
-        repeat: true
-        onTriggered: currentDate = new Date()
-    }
-
     signal monthClicked(var date)
 
     property date startDate
@@ -69,11 +61,35 @@ QQC2.Pane
 
             sourceComponent: Kalendar.Month
             {
+//                 Maui.Theme.colorSet: Maui.Theme.Button
+//                 Maui.Theme.inherit: false
+//                 
+                id: _monthDelegate
                 year: control.year
                 month: modelData+1
                 compact: control.isTiny
                 onDateClicked: control.selectedDate = date
-                onMonthClicked: control.monthClicked(date)
+                header: Maui.LabelDelegate
+                {
+                    width: parent.width
+                    isSection: true
+                    color: Maui.Theme.textColor
+                    label: _monthDelegate.title
+                }
+                
+                background: Rectangle
+                {
+                    color:  _monthDelegate.month === control.currentDate.getUTCMonth()+1 ? Maui.Theme.alternateBackgroundColor : (_monthDelegate.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) 
+                    radius: Maui.Style.radiusV
+                    
+                    MouseArea
+                    {
+                        id: _mouseArea
+                        hoverEnabled: true
+                        anchors.fill: parent
+                        onClicked: control.monthClicked(new Date(_monthDelegate.year, _monthDelegate.month))
+                    }
+                }
             }
         }
 

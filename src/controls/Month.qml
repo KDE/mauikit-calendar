@@ -14,9 +14,6 @@ QQC2.Page
     signal dateClicked(var date)
     signal dateRightClicked(var date)
 
-    signal monthClicked(var date)
-    signal monthRightClicked(var date)
-
     property bool compact : false
 
     property alias model : _monthModel
@@ -25,36 +22,14 @@ QQC2.Page
 
     title : _monthModel.monthName(control.month)
 
-
     padding: control.compact ? Maui.Style.space.small : Maui.Style.space.medium
 
     Kalendar.MonthModel
     {
         id: _monthModel
     }
-
-    header: Maui.LabelDelegate
-    {
-        id: _titleLabel
-        width: parent.width
-        isSection: true
-        color: Maui.Theme.textColor
-        label: control.title
-    }
-
-    background: Rectangle
-    {
-        color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
-        radius: Maui.Style.radiusV
-
-        MouseArea
-        {
-            id: _mouseArea
-            hoverEnabled: true
-            anchors.fill: parent
-            onClicked: control.monthClicked(new Date(control.year, control.month))
-        }
-    }
+    
+    background: null
 
     GridLayout
     {
