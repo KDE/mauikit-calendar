@@ -8,7 +8,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.15 as QQC2
 
 import org.mauikit.controls 1.3 as Maui
-import org.maui.calendar 1.0 as Kalendar
+import org.mauikit.calendar 1.0 as Kalendar
 
 import "dateutils.js" as DateUtils
 

@@ -15,6 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(QT_MIN_VERSION "5.15.2")
 set(KF5_MIN_VERSION "5.92.0")
+set(KF5_VERSION "5.70.0")
 
 set(AKONADI_VERSION "5.20.1")
 set(AKONADI_CONTACT_VERSION "5.20.0")
@@ -26,19 +27,21 @@ set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.calendar)
 
 project(Calendar LANGUAGES CXX VERSION 1.5.5)
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF5_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
+include(GenerateExportHeader)
+include(GNUInstallDirs)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(ECMInstallIcons)
-include(ECMAddAppIcon)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-include(KDEClangFormat)
-include(ECMSetupVersion)
-include(ECMSourceVersionControl)
+include(KDECompilerSettings)
 include(FeatureSummary)
-
+include(ECMPoQmTools)
+include(ECMSetupVersion)
+include(ECMGenerateQmlTypes)
+include(CMakePackageConfigHelpers)
+#include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
+include(KDEPackageAppTemplates)
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/MauiKitCalendar")
 

@@ -8,7 +8,7 @@ import org.kde.kirigami 2.14 as Kirigami
 
 import "dateutils.js" as DateUtils
 import "labelutils.js" as LabelUtils
-import org.maui.calendar 1.0
+import org.mauikit.calendar 1.0
 //import org.kde.kalendar.contact 1.0
 
 QtObject {

@@ -7,7 +7,7 @@ import QtQuick.Controls 2.15 as QQC2
 import org.kde.kirigami 2.14 as Kirigami
 import QtGraphicalEffects 1.12
 
-import org.maui.calendar 1.0 as Kalendar
+import org.mauikit.calendar 1.0 as Kalendar
 import "dateutils.js" as DateUtils
 import "labelutils.js" as LabelUtils
 
