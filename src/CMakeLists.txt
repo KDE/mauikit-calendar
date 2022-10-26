@@ -49,11 +49,11 @@ add_library(
 
     generate_export_header(MauiKitCalendar BASE_NAME Calendar)
     
-# set_target_properties(MauiKitCalendar PROPERTIES
-#     VERSION ${Calendar_VERSION_STRING}
-#     SOVERSION ${Calendar_SOVERSION}
-#     EXPORT_NAME Calendar
-#     )    
+set_target_properties(MauiKitCalendar PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${Calendar_SOVERSION}
+    EXPORT_NAME Calendar
+    )    
     
 target_include_directories(MauiKitCalendar
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar>")

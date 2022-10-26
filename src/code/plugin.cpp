@@ -8,7 +8,8 @@
 #include "timezonelistmodel.h"
 #include "monthmodel.h"
 
-
+#include "calendarmanager.h"
+#include "incidencewrapper.h"
 //#include <KCalendarCore/MemoryCalendar>
 //#include <KCalendarCore/VCalFormat>
 
@@ -16,7 +17,7 @@
 void MauiCalendarPlugin::registerTypes(const char *uri)
 {
     //C++ STUFF
-    //    qmlRegisterType<IncidenceWrapper>(uri, 1, 0, "IncidenceWrapper");
+       qmlRegisterType<IncidenceWrapper>(uri, 1, 0, "IncidenceWrapper");
     //        qmlRegisterType<AttendeesModel>(uri, 1, 0, "AttendeesModel");
     qmlRegisterType<MultiDayIncidenceModel>(uri, 1, 0, "MultiDayIncidenceModel");
     qmlRegisterType<IncidenceOccurrenceModel>(uri, 1, 0, "IncidenceOccurrenceModel");
@@ -29,6 +30,7 @@ void MauiCalendarPlugin::registerTypes(const char *uri)
 
 
     //QML STUFF
+        qmlRegisterSingletonInstance(uri, 1, 0, "CalendarManager", CalendarManager::instance());
     qmlRegisterSingletonType(resolveFileUrl(QStringLiteral("KalendarUiUtils.qml")), uri, 1, 0, "KalendarUiUtils");
 
     qmlRegisterType(resolveFileUrl(QStringLiteral("DayLabelsBar.qml")), uri, 1, 0, "DayLabelsBar");

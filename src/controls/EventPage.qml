@@ -12,23 +12,30 @@ implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 padding: 0
 background: null
 
+Cal.IncidenceWrapper
+{
+    id: incidenceWrapper
+}
+
 contentItem: ColumnLayout
 {
     id: _layout
  spacing: Maui.Style.space.huge
+ 
 Maui.SettingsSection
 {
     title: i18n("Info")
 
     Maui.SettingTemplate
     {
-        label1.text: i18n("Description")
+        label1.text: i18n("Description222")
 
         TextField
         {
             width: parent.parent.width
             height: 80
-            placeholderText: i18n("Event description ...")
+                    placeholderText: i18n(`Add a title for your ${incidenceWrapper.incidenceTypeStr.toLowerCase()}`)
+                    onTextChanged: incidenceWrapper.summary = text
         }
     }
 
