@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2021 Claudio Cambra <claudio.cambra@gmail.com>
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
-#include "kalendar_debug.h"
 #include <KLocalizedString>
 #include <QBitArray>
 #include <QJSValue>
@@ -12,18 +11,18 @@ IncidenceWrapper::IncidenceWrapper(QObject *parent)
     , Akonadi::ItemMonitor()
 {
     // Change incidence pointer in remindersmodel if changed here
-    connect(this, &IncidenceWrapper::incidencePtrChanged, &m_remindersModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
-        m_remindersModel.setIncidencePtr(incidencePtr);
-    });
-    connect(this, &IncidenceWrapper::incidencePtrChanged, &m_attendeesModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
-        m_attendeesModel.setIncidencePtr(incidencePtr);
-    });
-    connect(this, &IncidenceWrapper::incidencePtrChanged, &m_recurrenceExceptionsModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
-        m_recurrenceExceptionsModel.setIncidencePtr(incidencePtr);
-    });
-    connect(this, &IncidenceWrapper::incidencePtrChanged, &m_attachmentsModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
-        m_attachmentsModel.setIncidencePtr(incidencePtr);
-    });
+    // connect(this, &IncidenceWrapper::incidencePtrChanged, &m_remindersModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
+    //     m_remindersModel.setIncidencePtr(incidencePtr);
+    // });
+    // connect(this, &IncidenceWrapper::incidencePtrChanged, &m_attendeesModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
+    //     m_attendeesModel.setIncidencePtr(incidencePtr);
+    // });
+    // connect(this, &IncidenceWrapper::incidencePtrChanged, &m_recurrenceExceptionsModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
+    //     m_recurrenceExceptionsModel.setIncidencePtr(incidencePtr);
+    // });
+    // connect(this, &IncidenceWrapper::incidencePtrChanged, &m_attachmentsModel, [=](KCalendarCore::Incidence::Ptr incidencePtr) {
+    //     m_attachmentsModel.setIncidencePtr(incidencePtr);
+    // });
 
     // While generally we know of the relationship an incidence has regarding its parent,
     // from the POV of an incidence, we have no idea of its relationship to its children.
@@ -80,10 +79,10 @@ void IncidenceWrapper::notifyDataChanged()
     Q_EMIT priorityChanged();
     Q_EMIT remindersModelChanged();
     Q_EMIT organizerChanged();
-    Q_EMIT attendeesModelChanged();
+    // Q_EMIT attendeesModelChanged();
     Q_EMIT recurrenceDataChanged();
-    Q_EMIT recurrenceExceptionsModelChanged();
-    Q_EMIT attachmentsModelChanged();
+    // Q_EMIT recurrenceExceptionsModelChanged();
+    // Q_EMIT attachmentsModelChanged();
     Q_EMIT todoCompletedChanged();
     Q_EMIT todoCompletionDtChanged();
     Q_EMIT todoPercentCompleteChanged();
@@ -103,7 +102,7 @@ void IncidenceWrapper::setIncidenceItem(const Akonadi::Item &incidenceItem)
         Q_EMIT incidenceItemChanged();
         Q_EMIT collectionIdChanged();
     } else {
-        qCWarning(KALENDAR_LOG) << "This is not an incidence item.";
+        qWarning() << "This is not an incidence item.";
     }
 }
 
@@ -351,7 +350,7 @@ void IncidenceWrapper::setIncidenceEnd(const QDateTime &incidenceEnd, bool respe
         KCalendarCore::Todo::Ptr todo = m_incidence.staticCast<KCalendarCore::Todo>();
         todo->setDtDue(end);
     } else {
-        qCWarning(KALENDAR_LOG) << "Unknown incidence type";
+        qWarning() << "Unknown incidence type";
     }
     Q_EMIT incidenceEndChanged();
     Q_EMIT incidenceEndDateDisplayChanged();
@@ -611,30 +610,30 @@ QVariantMap IncidenceWrapper::organizer()
                        {QStringLiteral("fullName"), organizerPerson.fullName()}};
 }
 
-KCalendarCore::Attendee::List IncidenceWrapper::attendees() const
-{
-    return m_incidence->attendees();
-}
-
-RemindersModel *IncidenceWrapper::remindersModel()
-{
-    return &m_remindersModel;
-}
-
-AttendeesModel *IncidenceWrapper::attendeesModel()
-{
-    return &m_attendeesModel;
-}
-
-RecurrenceExceptionsModel *IncidenceWrapper::recurrenceExceptionsModel()
-{
-    return &m_recurrenceExceptionsModel;
-}
-
-AttachmentsModel *IncidenceWrapper::attachmentsModel()
-{
-    return &m_attachmentsModel;
-}
+// KCalendarCore::Attendee::List IncidenceWrapper::attendees() const
+// {
+//     return m_incidence->attendees();
+// }
+// 
+// RemindersModel *IncidenceWrapper::remindersModel()
+// {
+//     return &m_remindersModel;
+// }
+// 
+// AttendeesModel *IncidenceWrapper::attendeesModel()
+// {
+//     return &m_attendeesModel;
+// }
+// 
+// RecurrenceExceptionsModel *IncidenceWrapper::recurrenceExceptionsModel()
+// {
+//     return &m_recurrenceExceptionsModel;
+// }
+// 
+// AttachmentsModel *IncidenceWrapper::attachmentsModel()
+// {
+//     return &m_attachmentsModel;
+// }
 
 bool IncidenceWrapper::todoCompleted()
 {
@@ -824,7 +823,7 @@ void IncidenceWrapper::setRegularRecurrence(IncidenceWrapper::RecurrenceInterval
         Q_EMIT recurrenceDataChanged();
         return;
     default:
-        qCWarning(KALENDAR_LOG) << "Unknown interval for recurrence" << interval;
+        qWarning() << "Unknown interval for recurrence" << interval;
         return;
     }
 }
@@ -851,7 +850,7 @@ void IncidenceWrapper::clearRecurrences()
 void IncidenceWrapper::itemChanged(const Akonadi::Item &item)
 {
     if (item.hasPayload<KCalendarCore::Incidence::Ptr>()) {
-        qCDebug(KALENDAR_LOG) << item.payload<KCalendarCore::Incidence::Ptr>()->summary() << item.parentCollection().id();
+        qDebug() << item.payload<KCalendarCore::Incidence::Ptr>()->summary() << item.parentCollection().id();
         setIncidenceItem(item);
     }
 }

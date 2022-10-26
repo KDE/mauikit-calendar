@@ -4,10 +4,10 @@
 #pragma once
 
 #include "calendarmanager.h"
-#include "models/attachmentsmodel.h"
-#include "models/attendeesmodel.h"
-#include "models/recurrenceexceptionsmodel.h"
-#include "models/remindersmodel.h"
+// #include "models/attachmentsmodel.h"
+// #include "models/attendeesmodel.h"
+// #include "models/recurrenceexceptionsmodel.h"
+// #include "models/remindersmodel.h"
 
 #include <Akonadi/CollectionIdentificationAttribute>
 #include <Akonadi/Item>
@@ -68,14 +68,14 @@ class IncidenceWrapper : public QObject, public Akonadi::ItemMonitor
 
     Q_PROPERTY(KCalendarCore::Recurrence *recurrence READ recurrence NOTIFY incidencePtrChanged)
     Q_PROPERTY(QVariantMap recurrenceData READ recurrenceData NOTIFY recurrenceDataChanged)
-    Q_PROPERTY(RecurrenceExceptionsModel *recurrenceExceptionsModel READ recurrenceExceptionsModel NOTIFY recurrenceExceptionsModelChanged)
+    // Q_PROPERTY(RecurrenceExceptionsModel *recurrenceExceptionsModel READ recurrenceExceptionsModel NOTIFY recurrenceExceptionsModelChanged)
 
-    Q_PROPERTY(AttendeesModel *attendeesModel READ attendeesModel NOTIFY attendeesModelChanged)
+    // Q_PROPERTY(AttendeesModel *attendeesModel READ attendeesModel NOTIFY attendeesModelChanged)
     Q_PROPERTY(QVariantMap organizer READ organizer NOTIFY organizerChanged)
-    Q_PROPERTY(KCalendarCore::Attendee::List attendees READ attendees NOTIFY attendeesChanged)
+    // Q_PROPERTY(KCalendarCore::Attendee::List attendees READ attendees NOTIFY attendeesChanged)
 
-    Q_PROPERTY(RemindersModel *remindersModel READ remindersModel NOTIFY remindersModelChanged)
-    Q_PROPERTY(AttachmentsModel *attachmentsModel READ attachmentsModel NOTIFY attachmentsModelChanged)
+    // Q_PROPERTY(RemindersModel *remindersModel READ remindersModel NOTIFY remindersModelChanged)
+    // Q_PROPERTY(AttachmentsModel *attachmentsModel READ attachmentsModel NOTIFY attachmentsModelChanged)
 
     Q_PROPERTY(bool todoCompleted READ todoCompleted WRITE setTodoCompleted NOTIFY todoCompletedChanged)
     Q_PROPERTY(QDateTime todoCompletionDt READ todoCompletionDt NOTIFY todoCompletionDtChanged)
@@ -167,12 +167,12 @@ public:
     Q_INVOKABLE void setRecurrenceDataItem(const QString &key, const QVariant &value);
 
     QVariantMap organizer();
-    KCalendarCore::Attendee::List attendees() const;
+    // KCalendarCore::Attendee::List attendees() const;
 
-    RemindersModel *remindersModel();
-    AttendeesModel *attendeesModel();
-    RecurrenceExceptionsModel *recurrenceExceptionsModel();
-    AttachmentsModel *attachmentsModel();
+    // RemindersModel *remindersModel();
+    // AttendeesModel *attendeesModel();
+    // RecurrenceExceptionsModel *recurrenceExceptionsModel();
+    // AttachmentsModel *attachmentsModel();
 
     bool todoCompleted();
     void setTodoCompleted(bool completed);
@@ -223,9 +223,9 @@ Q_SIGNALS:
     void remindersModelChanged();
     void recurrenceDataChanged();
     void organizerChanged();
-    void attendeesModelChanged();
-    void recurrenceExceptionsModelChanged();
-    void attachmentsModelChanged();
+    // void attendeesModelChanged();
+    // void recurrenceExceptionsModelChanged();
+    // void attachmentsModelChanged();
 
     void todoCompletedChanged();
     void todoCompletionDtChanged();
@@ -245,10 +245,10 @@ private:
     KCalendarCore::Incidence::Ptr m_incidence;
     KCalendarCore::Incidence::Ptr m_originalIncidence;
     qint64 m_collectionId = -1; // For when we want to edit, this is temporary
-    RemindersModel m_remindersModel;
-    AttendeesModel m_attendeesModel;
-    RecurrenceExceptionsModel m_recurrenceExceptionsModel;
-    AttachmentsModel m_attachmentsModel;
+    // RemindersModel m_remindersModel;
+    // AttendeesModel m_attendeesModel;
+    // RecurrenceExceptionsModel m_recurrenceExceptionsModel;
+    // AttachmentsModel m_attachmentsModel;
 
     KFormat m_format;
     Ptr m_parentIncidence;

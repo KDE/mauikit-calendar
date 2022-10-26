@@ -1,3 +1,4 @@
+
 <RCC>
     <qresource prefix="/maui/calendar">
         <file alias="DayGridView.qml">DayGridView.qml</file>
@@ -9,7 +10,12 @@
         <file>labelutils.js</file>
         <file alias="YearView.qml">YearView.qml</file>
         <file alias="EventPage.qml">EventPage.qml</file>
-        <file alias="Month.qml">Month.qml</file>
+        <file alias="MonthsGrid.qml">MonthsGrid.qml</file>
+        <file alias="YearsGrid.qml">YearsGrid.qml</file>
+        <file alias="DaysGrid.qml">DaysGrid.qml</file>
+        <file alias="DatePicker.qml">DatePicker.qml</file>
+        <file alias="TimePicker.qml">TimePicker.qml</file>
         <file alias="DateComboBox.qml">DateComboBox.qml</file>
+        <file alias="TimeComboBox.qml">TimeComboBox.qml</file>
     </qresource>
 </RCC>

@@ -27,7 +27,7 @@ set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.calendar)
 
 project(Calendar LANGUAGES CXX VERSION 1.5.5)
 
-find_package(ECM ${KF5_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(GenerateExportHeader)
@@ -77,7 +77,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
     COMPONENT Devel)
 
     
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Qml)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Qml QuickControls2 Svg)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n CoreAddons Config)
 
 find_package(Qt5QuickCompiler)

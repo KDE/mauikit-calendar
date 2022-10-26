@@ -4,6 +4,7 @@
 
 #ecm_create_qm_loader(filebrowsing_QM_LOADER libfilebrowsingplugin_qt)
 
+add_subdirectory(code/lib)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/code
@@ -12,10 +13,13 @@ include_directories(
 
 
 set(lib_SRCS
+
     code/plugin.cpp
-#    code/calendarmanager.cpp
-#    code/incidencewrapper.cpp
+   code/calendarmanager.cpp
+   code/incidencewrapper.cpp
 #    code/agentconfiguration.cpp
+
+code/models/todosortfilterproxymodel.cpp
 
     code/models/infinitecalendarviewmodel.cpp
     code/models/hourlyincidencemodel.cpp
@@ -45,11 +49,11 @@ add_library(
 
     generate_export_header(MauiKitCalendar BASE_NAME Calendar)
     
-set_target_properties(MauiKitCalendar PROPERTIES
-    VERSION ${Calendar_VERSION_STRING}
-    SOVERSION ${Calendar_SOVERSION}
-    EXPORT_NAME Calendar
-    )    
+# set_target_properties(MauiKitCalendar PROPERTIES
+#     VERSION ${Calendar_VERSION_STRING}
+#     SOVERSION ${Calendar_SOVERSION}
+#     EXPORT_NAME Calendar
+#     )    
     
 target_include_directories(MauiKitCalendar
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar>")
@@ -60,8 +64,9 @@ target_include_directories(MauiKitCalendar
 target_link_libraries(
 MauiKitCalendar
     PRIVATE
+    
     MauiKit
-
+kalendar_lib
     Qt5::Core
     Qt5::Quick
     Qt5::Qml

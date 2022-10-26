@@ -33,12 +33,24 @@ void MauiCalendarPlugin::registerTypes(const char *uri)
 
     qmlRegisterType(resolveFileUrl(QStringLiteral("DayLabelsBar.qml")), uri, 1, 0, "DayLabelsBar");
     qmlRegisterType(resolveFileUrl(QStringLiteral("MonthView.qml")), uri, 1, 0, "MonthView");
-    qmlRegisterType(resolveFileUrl(QStringLiteral("Month.qml")), uri, 1, 0, "Month");
     qmlRegisterType(resolveFileUrl(QStringLiteral("YearView.qml")), uri, 1, 0, "YearView");
+
     qmlRegisterType(resolveFileUrl(QStringLiteral("EventPage.qml")), uri, 1, 0, "EventPage");
+
     qmlRegisterType(resolveFileUrl(QStringLiteral("DayGridView.qml")), uri, 1, 0, "DayGridView");
     qmlRegisterType(resolveFileUrl(QStringLiteral("HourlyView.qml")), uri, 1, 0, "HourlyView");
+    
     qmlRegisterType(resolveFileUrl(QStringLiteral("DateComboBox.qml")), uri, 1, 0, "DateComboBox");
-
+    qmlRegisterType(resolveFileUrl(QStringLiteral("TimeComboBox.qml")), uri, 1, 0, "TimeComboBox");
+    
+    qmlRegisterType(resolveFileUrl(QStringLiteral("TimePicker.qml")), uri, 1, 0, "TimePicker");
+    qmlRegisterType(resolveFileUrl(QStringLiteral("DatePicker.qml")), uri, 1, 0, "DatePicker");
+    
+    qmlRegisterType(resolveFileUrl(QStringLiteral("MonthsGrid.qml")), uri, 1, 0, "MonthsGrid");
+    qmlRegisterType(resolveFileUrl(QStringLiteral("DaysGrid.qml")), uri, 1, 0, "DaysGrid");
+    qmlRegisterType(resolveFileUrl(QStringLiteral("YearsGrid.qml")), uri, 1, 0, "YearsGrid");
+    
+    
+    
 
 }

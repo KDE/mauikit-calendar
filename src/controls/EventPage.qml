@@ -71,7 +71,7 @@ Maui.SettingsSection
 width: parent.width
            }
 
-           Cal.DateComboBox
+           Cal.TimeComboBox
            {
 width: parent.width
            }

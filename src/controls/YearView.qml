@@ -59,7 +59,7 @@ QQC2.Pane
             width: GridView.view.cellWidth - (control.isTiny ? 0 : Maui.Style.space.small)
             height: GridView.view.cellHeight - (control.isTiny ? 0 : Maui.Style.space.small)
 
-            sourceComponent: Kalendar.Month
+            sourceComponent: Kalendar.DaysGrid
             {
 //                 Maui.Theme.colorSet: Maui.Theme.Button
 //                 Maui.Theme.inherit: false
