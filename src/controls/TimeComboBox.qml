@@ -10,23 +10,33 @@ ComboBox
     id:  control
     enabled: true
 
-    readonly property alias startTime : _picker.startTime
 
     property alias selectedHour : _picker.selectedHour
     property alias selectedMinute: _picker.selectedMinute
-
+property alias timeZoneOffset : _picker.timeZoneOffset
+    property alias selectedTime : _picker.selectedTime 
+    
     displayText: _picker.selectedTime
+    
+    
     
     font.bold: true
     font.weight: Font.Bold
     font.family: "Monospace"
     
     icon.source: "clock"
+    
+    signal timePicked(var time)
 
     popupContent: Kalendar.TimePicker
 {
         id: _picker
-        onAccepted: control.popup.close()
+        onAccepted:
+        {
+            control.timePicked(time)
+            control.accepted()
+             control.popup.close()
+        }
     }
 
 }

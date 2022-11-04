@@ -10,9 +10,10 @@
 
 #include "calendarmanager.h"
 #include "incidencewrapper.h"
+#include "filter.h"
 //#include <KCalendarCore/MemoryCalendar>
 //#include <KCalendarCore/VCalFormat>
-
+#include <Akonadi/AgentFilterProxyModel>
 
 void MauiCalendarPlugin::registerTypes(const char *uri)
 {
@@ -28,9 +29,28 @@ void MauiCalendarPlugin::registerTypes(const char *uri)
     qmlRegisterType<MonthModel>(uri, 1, 0, "MonthModel");
     qmlRegisterType<InfiniteCalendarViewModel>(uri, 1, 0, "InfiniteCalendarViewModel");
 
-
+    
+    qRegisterMetaType<Akonadi::ETMCalendar::Ptr>();
+    qRegisterMetaType<QAbstractProxyModel *>("QAbstractProxyModel*");
+    qRegisterMetaType<Akonadi::AgentFilterProxyModel *>();
+    qRegisterMetaType<Akonadi::CollectionFilterProxyModel *>();
+    
+    
+    qmlRegisterSingletonType<CalendarManager>(uri, 1, 0, "CalendarManager", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(scriptEngine)
+        auto cal = CalendarManager::instance();
+        engine->setObjectOwnership(cal, QQmlEngine::CppOwnership);
+        return cal;
+    });
+    
+    qmlRegisterSingletonType<Filter>(uri, 1, 0, "Filter", [](QQmlEngine *engine, QJSEngine *scriptEngine) {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+        return new Filter;
+    });
+    
+    
     //QML STUFF
-        qmlRegisterSingletonInstance(uri, 1, 0, "CalendarManager", CalendarManager::instance());
     qmlRegisterSingletonType(resolveFileUrl(QStringLiteral("KalendarUiUtils.qml")), uri, 1, 0, "KalendarUiUtils");
 
     qmlRegisterType(resolveFileUrl(QStringLiteral("DayLabelsBar.qml")), uri, 1, 0, "DayLabelsBar");

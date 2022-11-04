@@ -11,8 +11,6 @@ ComboBox
     id:  control
     enabled: true
 
-    property alias startDate : _picker.startDate
-
     property alias selectedMonth : _picker.selectedMonth
     property alias selectedYear: _picker.selectedYear
     property alias selectedDay : _picker.selectedDay
@@ -26,6 +24,8 @@ ComboBox
     font.family: "Monospace"    
     icon.source: "view-calendar"
     
+    signal datePicked(var date)
+    
     popupContent: Kalendar.DatePicker
     {
         id: _picker
@@ -34,6 +34,7 @@ ComboBox
         
         onAccepted:
         {
+            control.datePicked(date)
             control.accepted()
             control.popup.close()
         }

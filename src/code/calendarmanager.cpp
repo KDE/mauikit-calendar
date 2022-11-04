@@ -199,6 +199,8 @@ CalendarManager::CalendarManager(QObject *parent)
         qApp->exit(-1);
         return;
     }
+    
+    qDebug() << "STARTING THE CALENDAR MANAGER";
 
     auto colorProxy = new ColorProxyModel(this);
     colorProxy->setObjectName(QStringLiteral("Show calendar colors"));
@@ -528,8 +530,11 @@ void CalendarManager::addIncidence(IncidenceWrapper *incidenceWrapper)
 
     switch (incidenceWrapper->incidencePtr()->type()) {
     case (KCalendarCore::IncidenceBase::TypeEvent): {
+        
         KCalendarCore::Event::Ptr event = incidenceWrapper->incidencePtr().staticCast<KCalendarCore::Event>();
-        m_changer->createIncidence(event, collection);
+        auto res = m_changer->createIncidence(event, collection);
+        qDebug() << "TRYING TO ADD AN EVENT" << incidenceWrapper->summary() << incidenceWrapper->collectionId() << res << event->description();
+        
         break;
     }
     case (KCalendarCore::IncidenceBase::TypeTodo): {

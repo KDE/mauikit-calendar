@@ -42,6 +42,13 @@ Page
                 {
                     control.monthSelected(index)
                 }
+                
+                background: Rectangle
+                {
+                    visible: checked
+                    color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                    radius: Maui.Style.radiusV
+                }
             }
         }
     }

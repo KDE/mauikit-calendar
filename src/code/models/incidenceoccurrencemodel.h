@@ -8,12 +8,7 @@
 #pragma once
 
 #include <QObject>
-#include <akonadi-calendar_version.h>
-#if AKONADICALENDAR_VERSION > QT_VERSION_CHECK(5, 19, 41)
 #include <Akonadi/ETMCalendar>
-#else
-#include <Akonadi/Calendar/ETMCalendar>
-#endif
 
 #include <KConfigWatcher>
 #include <KFormat>
@@ -24,6 +19,7 @@
 #include <QSharedPointer>
 #include <QTimer>
 
+class Filter;
 namespace KCalendarCore
 {
 class Incidence;
@@ -45,8 +41,10 @@ class IncidenceOccurrenceModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY(QDate start READ start WRITE setStart NOTIFY startChanged)
     Q_PROPERTY(int length READ length WRITE setLength NOTIFY lengthChanged)
-    Q_PROPERTY(QVariantMap filter READ filter WRITE setFilter NOTIFY filterChanged)
+    Q_PROPERTY(Filter *filter READ filter WRITE setFilter NOTIFY filterChanged)
     Q_PROPERTY(Akonadi::ETMCalendar::Ptr calendar READ calendar WRITE setCalendar NOTIFY calendarChanged)
+    Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
+    Q_PROPERTY(int resetThrottleInterval READ resetThrottleInterval WRITE setResetThrottleInterval NOTIFY resetThrottleIntervalChanged)
 
 public:
     enum Roles {
@@ -74,31 +72,25 @@ public:
         IncidenceOccurrence,
         LastRole
     };
-    Q_ENUM(Roles);
+    Q_ENUM(Roles)
     explicit IncidenceOccurrenceModel(QObject *parent = nullptr);
     ~IncidenceOccurrenceModel() override = default;
 
     int rowCount(const QModelIndex &parent = {}) const override;
-
     QVariant data(const QModelIndex &index, int role) const override;
-
-    void updateQuery();
+    QHash<int, QByteArray> roleNames() const override;
+    
     Akonadi::ETMCalendar::Ptr calendar() const;
-    void setCalendar(Akonadi::ETMCalendar::Ptr calendar);
-
-    void setStart(const QDate &start);
     QDate start() const;
-    void setLength(int length);
     int length() const;
-    QVariantMap filter() const;
-    void setFilter(const QVariantMap &filter);
-
-    void load();
+    Filter *filter() const;
+    bool loading() const;
+    int resetThrottleInterval() const;
 
     struct Occurrence {
         QDateTime start;
         QDateTime end;
-        QSharedPointer<KCalendarCore::Incidence> incidence;
+        KCalendarCore::Incidence::Ptr incidence;
         QColor color;
         qint64 collectionId;
         bool allDay;
@@ -109,10 +101,31 @@ Q_SIGNALS:
     void lengthChanged();
     void filterChanged();
     void calendarChanged();
+    void loadingChanged();
+    void resetThrottleIntervalChanged();
+
+public Q_SLOTS:
+    void setStart(const QDate &start);
+    void setLength(int length);
+    void setFilter(Filter *filter);
+    void setCalendar(Akonadi::ETMCalendar::Ptr calendar);
+    void setResetThrottleInterval(const int resetThrottleInterval);
+
+private Q_SLOTS:
+    void loadColors();
+    void scheduleReset();
+    void resetFromSource();
+
+    void slotSourceDataChanged(const QModelIndex &upperLeft, const QModelIndex &bottomRight);
+    void slotSourceRowsInserted(const QModelIndex &parent, const int first, const int last);
+
+    void setLoading(const bool loading);
 
 private:
-    void refreshView();
-    void updateFromSource();
+    static std::pair<QDateTime, QDateTime> incidenceOccurrenceStartEnd(const QDateTime &ocStart, const KCalendarCore::Incidence::Ptr &incidence);
+    static uint incidenceOccurrenceHash(const QDateTime &ocStart, const QDateTime &ocEnd, const QString &incidenceUid);
+    bool incidencePassesFilter(const KCalendarCore::Incidence::Ptr &incidence);
+
     QColor getColor(const KCalendarCore::Incidence::Ptr &incidence);
     qint64 getCollectionId(const KCalendarCore::Incidence::Ptr &incidence);
 
@@ -122,16 +135,20 @@ private:
     int mLength{0};
     Akonadi::ETMCalendar::Ptr m_coreCalendar;
 
-    QTimer mRefreshTimer;
+    QTimer m_resetThrottlingTimer;
+    int m_resetThrottleInterval = 100;
 
-    QList<Occurrence> m_incidences;
+    bool m_loading = false;
+    QVector<Occurrence> m_incidences; // We need incidences to be in a preditable order for the model
+    QHash<uint, QPersistentModelIndex> m_occurrenceIndexHash;
     QHash<QString, QColor> m_colors;
     KConfigWatcher::Ptr m_colorWatcher;
-    QVariantMap mFilter;
+    Filter *mFilter = nullptr;
     KFormat m_format;
 };
 
 Q_DECLARE_METATYPE(IncidenceOccurrenceModel::Occurrence)
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 Q_DECLARE_METATYPE(KCalendarCore::Incidence::Ptr)
 #endif

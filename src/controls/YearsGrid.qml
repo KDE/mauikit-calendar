@@ -49,7 +49,14 @@ Page
                         
                         checkable: true
                         checked: year === control.selectedYear
-                        onClicked: control.yearSelected(year)                        
+                        onClicked: control.yearSelected(year) 
+                        
+                        background: Rectangle
+                        {
+                            visible: checked
+                            color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                            radius: Maui.Style.radiusV
+                        }
                     }
                 }
             }

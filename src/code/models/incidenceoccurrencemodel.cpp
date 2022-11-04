@@ -7,8 +7,8 @@
 
 #include "incidenceoccurrencemodel.h"
 
+#include "../filter.h"
 #include <Akonadi/EntityTreeModel>
-#include <KCalendarCore/MemoryCalendar>
 #include <KCalendarCore/OccurrenceIterator>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -19,26 +19,27 @@ IncidenceOccurrenceModel::IncidenceOccurrenceModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_coreCalendar(nullptr)
 {
-    mRefreshTimer.setSingleShot(true);
-    QObject::connect(&mRefreshTimer, &QTimer::timeout, this, &IncidenceOccurrenceModel::updateFromSource);
+    m_resetThrottlingTimer.setSingleShot(true);
+    QObject::connect(&m_resetThrottlingTimer, &QTimer::timeout, this, &IncidenceOccurrenceModel::resetFromSource);
 
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
     KConfigGroup rColorsConfig(config, "Resources Colors");
     m_colorWatcher = KConfigWatcher::create(config);
 
     // This is quite slow; would be nice to find a quicker way
-    QObject::connect(m_colorWatcher.data(), &KConfigWatcher::configChanged, this, &IncidenceOccurrenceModel::updateFromSource);
-
-    load();
+    connect(m_colorWatcher.data(), &KConfigWatcher::configChanged, this, &IncidenceOccurrenceModel::resetFromSource);
 }
 
 void IncidenceOccurrenceModel::setStart(const QDate &start)
 {
-    if (start != mStart) {
-        mStart = start;
-        updateQuery();
-        Q_EMIT startChanged();
+    if(start == mStart) {
+        return;
     }
+
+    mStart = start;
+    Q_EMIT startChanged();
+
+    mEnd = mStart.addDays(mLength);
 }
 
 QDate IncidenceOccurrenceModel::start() const
@@ -52,8 +53,10 @@ void IncidenceOccurrenceModel::setLength(int length)
         return;
     }
     mLength = length;
-    updateQuery();
     Q_EMIT lengthChanged();
+
+    mEnd = mStart.addDays(mLength);
+    scheduleReset();
 }
 
 int IncidenceOccurrenceModel::length() const
@@ -61,101 +64,233 @@ int IncidenceOccurrenceModel::length() const
     return mLength;
 }
 
-QVariantMap IncidenceOccurrenceModel::filter() const
+Filter *IncidenceOccurrenceModel::filter() const
 {
     return mFilter;
 }
 
-void IncidenceOccurrenceModel::setFilter(const QVariantMap &filter)
+void IncidenceOccurrenceModel::setFilter(Filter *filter)
 {
     mFilter = filter;
-    updateQuery();
     Q_EMIT filterChanged();
+
+    scheduleReset();
 }
 
-void IncidenceOccurrenceModel::updateQuery()
+bool IncidenceOccurrenceModel::loading() const
+{
+    return m_loading;
+}
+
+void IncidenceOccurrenceModel::setLoading(const bool loading)
+{
+    if(loading == m_loading) {
+        return;
+    }
+
+    m_loading = loading;
+    Q_EMIT loadingChanged();
+}
+
+int IncidenceOccurrenceModel::resetThrottleInterval() const
+{
+    return m_resetThrottleInterval;
+}
+
+void IncidenceOccurrenceModel::setResetThrottleInterval(const int resetThrottleInterval)
+{
+    if(resetThrottleInterval == m_resetThrottleInterval) {
+        return;
+    }
+
+    m_resetThrottleInterval = resetThrottleInterval;
+    Q_EMIT resetThrottleIntervalChanged();
+}
+
+void IncidenceOccurrenceModel::scheduleReset()
+{
+    if (!m_resetThrottlingTimer.isActive()) {
+        // Instant update, but then only refresh every interval at most.
+        m_resetThrottlingTimer.start(m_resetThrottleInterval);
+    }
+}
+
+void IncidenceOccurrenceModel::resetFromSource()
 {
     if (!m_coreCalendar) {
+        qWarning() << "Not resetting IOC from source as no core calendar set.";
         return;
     }
 
-    if (!mLength || !mStart.isValid()) {
-        refreshView();
+    setLoading(true);
+
+    if (m_resetThrottlingTimer.isActive() || m_coreCalendar->isLoading()) {
+        // If calendar is still loading then just schedule a refresh later
+        // If refresh timer already active this won't restart it
+        scheduleReset();
         return;
     }
-    mEnd = mStart.addDays(mLength);
 
-    QObject::connect(m_coreCalendar->model(), &QAbstractItemModel::dataChanged, this, &IncidenceOccurrenceModel::refreshView);
-    QObject::connect(m_coreCalendar->model(), &QAbstractItemModel::rowsInserted, this, &IncidenceOccurrenceModel::refreshView);
-    QObject::connect(m_coreCalendar->model(), &QAbstractItemModel::rowsRemoved, this, &IncidenceOccurrenceModel::refreshView);
-    QObject::connect(m_coreCalendar->model(), &QAbstractItemModel::modelReset, this, &IncidenceOccurrenceModel::refreshView);
-    QObject::connect(m_coreCalendar.get(), &Akonadi::ETMCalendar::collectionsRemoved, this, &IncidenceOccurrenceModel::refreshView);
+    loadColors();
 
-    refreshView();
-}
-
-void IncidenceOccurrenceModel::refreshView()
-{
-    if (!mRefreshTimer.isActive()) {
-        // Instant update, but then only refresh every 100ms max.
-        mRefreshTimer.start(100);
-    }
-}
-
-void IncidenceOccurrenceModel::updateFromSource()
-{
     beginResetModel();
 
     m_incidences.clear();
-    load();
+    m_occurrenceIndexHash.clear();
 
-    if (m_coreCalendar) {
-        KCalendarCore::OccurrenceIterator occurrenceIterator{*m_coreCalendar, QDateTime{mStart, {0, 0, 0}}, QDateTime{mEnd, {12, 59, 59}}};
+    KCalendarCore::OccurrenceIterator occurrenceIterator(*m_coreCalendar, QDateTime(mStart, {0, 0, 0}), QDateTime(mEnd, {12, 59, 59}));
 
-        while (occurrenceIterator.hasNext()) {
-            occurrenceIterator.next();
-            const auto incidence = occurrenceIterator.incidence();
+    while (occurrenceIterator.hasNext()) {
+        occurrenceIterator.next();
+        const auto incidence = occurrenceIterator.incidence();
 
-            if (mFilter.contains(QLatin1String("tags")) && mFilter[QLatin1String("tags")].toStringList().length() > 0) {
-                bool match = false;
-                QStringList tags = mFilter[QLatin1String("tags")].toStringList();
-                for (const auto &tag : tags) {
-                    if (incidence->categories().contains(tag)) {
-                        match = true;
-                        break;
-                    }
-                }
-
-                if (!match) {
-                    continue;
-                }
-            }
-
-            auto start = occurrenceIterator.occurrenceStartDate();
-            auto end = incidence->endDateForStart(start);
-
-            if (incidence->type() == KCalendarCore::Incidence::IncidenceType::TypeTodo) {
-                KCalendarCore::Todo::Ptr todo = incidence.staticCast<KCalendarCore::Todo>();
-
-                if (!start.isValid()) { // Todos are very likely not to have a set start date
-                    start = todo->dtDue();
-                }
-            }
-
-            if (start.date() < mEnd && end.date() >= mStart) {
-                m_incidences.append(Occurrence{
-                    start,
-                    end,
-                    incidence,
-                    getColor(incidence),
-                    getCollectionId(incidence),
-                    incidence->allDay(),
-                });
-            }
+        if(!incidencePassesFilter(incidence)) {
+            continue;
         }
+
+        const auto occurrenceStartEnd = incidenceOccurrenceStartEnd(occurrenceIterator.occurrenceStartDate(), incidence);
+        const auto start = occurrenceStartEnd.first;
+        const auto end = occurrenceStartEnd.second;
+        const auto occurrenceHashKey = incidenceOccurrenceHash(start, end, incidence->uid());
+        const Occurrence occurrence{
+            start,
+            end,
+            incidence,
+            getColor(incidence),
+            getCollectionId(incidence),
+            incidence->allDay(),
+        };
+
+        const auto indexRow = m_incidences.count();
+        m_incidences.append(occurrence);
+
+        const auto occurrenceIndex = index(indexRow);
+        const QPersistentModelIndex persistentIndex(occurrenceIndex);
+
+        m_occurrenceIndexHash.insert(occurrenceHashKey, persistentIndex);
     }
 
     endResetModel();
+
+    setLoading(false);
+}
+
+void IncidenceOccurrenceModel::slotSourceDataChanged(const QModelIndex &upperLeft, const QModelIndex &bottomRight)
+{
+    if (!m_coreCalendar || !upperLeft.isValid() || !bottomRight.isValid() || m_resetThrottlingTimer.isActive()) {
+        return;
+    }
+
+    setLoading(true);
+
+    const auto startRow = upperLeft.row();
+    const auto endRow = bottomRight.row();
+
+    for (int i = startRow; i <= endRow; ++i) {
+        const auto sourceModelIndex = m_coreCalendar->model()->index(i, 0, upperLeft.parent());
+        const auto incidenceItem = sourceModelIndex.data(Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+
+        if(!incidenceItem.isValid() || !incidenceItem.hasPayload<KCalendarCore::Incidence::Ptr>()) {
+            continue;
+        }
+
+        const auto incidence = incidenceItem.payload<KCalendarCore::Incidence::Ptr>();
+        KCalendarCore::OccurrenceIterator occurrenceIterator{*m_coreCalendar, incidence, QDateTime{mStart, {0, 0, 0}}, QDateTime{mEnd, {12, 59, 59}}};
+
+        while (occurrenceIterator.hasNext()) {
+            occurrenceIterator.next();
+
+            const auto occurrenceStartEnd = incidenceOccurrenceStartEnd(occurrenceIterator.occurrenceStartDate(), incidence);
+            const auto start = occurrenceStartEnd.first;
+            const auto end = occurrenceStartEnd.second;
+            const auto occurrenceHashKey = incidenceOccurrenceHash(start, end, incidence->uid());
+
+            if(!m_occurrenceIndexHash.contains(occurrenceHashKey)) {
+                continue;
+            }
+
+            const Occurrence occurrence{
+                start,
+                end,
+                incidence,
+                getColor(incidence),
+                getCollectionId(incidence),
+                incidence->allDay(),
+            };
+
+            const auto existingOccurrenceIndex = m_occurrenceIndexHash.value(occurrenceHashKey);
+            const auto existingOccurrenceRow = existingOccurrenceIndex.row();
+
+            m_incidences.replace(existingOccurrenceRow, occurrence);
+            Q_EMIT dataChanged(existingOccurrenceIndex, existingOccurrenceIndex);
+        }
+    }
+
+    setLoading(false);
+}
+
+void IncidenceOccurrenceModel::slotSourceRowsInserted(const QModelIndex &parent, const int first, const int last)
+{
+    if (!m_coreCalendar || m_resetThrottlingTimer.isActive()) {
+        return;
+    } else if (m_coreCalendar->isLoading()) {
+        m_resetThrottlingTimer.start(m_resetThrottleInterval);
+        return;
+    }
+
+    setLoading(true);
+
+    for (int i = first; i <= last; ++i) {
+        const auto sourceModelIndex = m_coreCalendar->model()->index(i, 0, parent);
+        const auto incidenceItem = sourceModelIndex.data(Akonadi::EntityTreeModel::ItemRole).value<Akonadi::Item>();
+
+        if(!incidenceItem.isValid() || !incidenceItem.hasPayload<KCalendarCore::Incidence::Ptr>()) {
+            continue;
+        }
+
+        const auto incidence = incidenceItem.payload<KCalendarCore::Incidence::Ptr>();
+
+        if(!incidencePassesFilter(incidence)) {
+            continue;
+        }
+
+        KCalendarCore::OccurrenceIterator occurrenceIterator{*m_coreCalendar, incidence, QDateTime{mStart, {0, 0, 0}}, QDateTime{mEnd, {12, 59, 59}}};
+
+        while (occurrenceIterator.hasNext()) {
+            occurrenceIterator.next();
+
+            const auto occurrenceStartEnd = incidenceOccurrenceStartEnd(occurrenceIterator.occurrenceStartDate(), incidence);
+            const auto start = occurrenceStartEnd.first;
+            const auto end = occurrenceStartEnd.second;
+            const auto occurrenceHashKey = incidenceOccurrenceHash(start, end, incidence->uid());
+
+            if(m_occurrenceIndexHash.contains(occurrenceHashKey)) {
+                continue;
+            }
+
+            const Occurrence occurrence{
+                start,
+                end,
+                incidence,
+                getColor(incidence),
+                getCollectionId(incidence),
+                incidence->allDay(),
+            };
+
+            const auto indexRow = m_incidences.count();
+
+            beginInsertRows({}, indexRow, indexRow);
+            m_incidences.append(occurrence);
+            endInsertRows();
+
+            const auto occurrenceIndex = index(indexRow);
+            const QPersistentModelIndex persistentIndex(occurrenceIndex);
+
+            m_occurrenceIndexHash.insert(occurrenceHashKey, persistentIndex);
+        }
+    }
+
+    setLoading(false);
 }
 
 int IncidenceOccurrenceModel::rowCount(const QModelIndex &parent) const
@@ -205,24 +340,29 @@ QVariant IncidenceOccurrenceModel::data(const QModelIndex &idx, int role) const
     if (!hasIndex(idx.row(), idx.column())) {
         return {};
     }
-    auto incidence = m_incidences.at(idx.row());
-    auto icalIncidence = incidence.incidence;
-    const KCalendarCore::Duration duration(incidence.start, incidence.end);
+
+    const auto occurrence = m_incidences.at(idx.row());
+    const auto incidence = occurrence.incidence;
 
     switch (role) {
     case Summary:
-        return icalIncidence->summary();
+        return incidence->summary();
     case Description:
-        return icalIncidence->description();
+        return incidence->description();
     case Location:
-        return icalIncidence->location();
+        return incidence->location();
     case StartTime:
-        return incidence.start;
+        return occurrence.start;
     case EndTime:
-        return incidence.end;
+        return occurrence.end;
     case Duration:
+    {
+        const KCalendarCore::Duration duration(occurrence.start, occurrence.end);
         return QVariant::fromValue(duration);
+    }
     case DurationString: {
+        const KCalendarCore::Duration duration(occurrence.start, occurrence.end);
+
         if (duration.asSeconds() == 0) {
             return QString();
         }
@@ -230,51 +370,53 @@ QVariant IncidenceOccurrenceModel::data(const QModelIndex &idx, int role) const
         return m_format.formatSpelloutDuration(duration.asSeconds() * 1000);
     }
     case Recurs:
-        return icalIncidence->recurs();
+        return incidence->recurs();
     case HasReminders:
-        return icalIncidence->alarms().length() > 0;
+        return incidence->alarms().length() > 0;
     case Priority:
-        return icalIncidence->priority();
+        return incidence->priority();
     case Color:
-        return incidence.color;
+        return occurrence.color;
     case CollectionId:
-        return incidence.collectionId;
+        return occurrence.collectionId;
     case AllDay:
-        return incidence.allDay;
+        return occurrence.allDay;
     case TodoCompleted: {
-        if (icalIncidence->type() != KCalendarCore::IncidenceBase::TypeTodo) {
+        if (incidence->type() != KCalendarCore::IncidenceBase::TypeTodo) {
             return false;
         }
 
-        auto todo = icalIncidence.staticCast<KCalendarCore::Todo>();
+        auto todo = incidence.staticCast<KCalendarCore::Todo>();
         return todo->isCompleted();
     }
     case IsOverdue: {
-        if (icalIncidence->type() != KCalendarCore::IncidenceBase::TypeTodo) {
+        if (incidence->type() != KCalendarCore::IncidenceBase::TypeTodo) {
             return false;
         }
 
-        auto todo = icalIncidence.staticCast<KCalendarCore::Todo>();
+        auto todo = incidence.staticCast<KCalendarCore::Todo>();
         return todo->isOverdue();
     }
     case IsReadOnly: {
-        const auto collection = m_coreCalendar->collection(incidence.collectionId);
+        const auto collection = m_coreCalendar->collection(occurrence.collectionId);
         return collection.rights().testFlag(Akonadi::Collection::ReadOnly);
     }
     case IncidenceId:
-        return icalIncidence->uid();
+        return incidence->uid();
     case IncidenceType:
-        return icalIncidence->type();
+        return incidence->type();
     case IncidenceTypeStr:
-        return icalIncidence->type() == KCalendarCore::Incidence::TypeTodo ? i18n("Task") : i18n(icalIncidence->typeStr().constData());
+        return incidence->type() == KCalendarCore::Incidence::TypeTodo ? i18n("Task") : i18n(incidence->typeStr().constData());
     case IncidenceTypeIcon:
-        return icalIncidence->iconName();
+        return incidence->iconName();
     case IncidencePtr:
-        return QVariant::fromValue(icalIncidence);
-    case IncidenceOccurrence:
         return QVariant::fromValue(incidence);
+    case IncidenceOccurrence:
+        return QVariant::fromValue(occurrence);
     default:
-        qWarning() << "Unknown role for incidence:" << QMetaEnum::fromType<Roles>().valueToKey(role);
+        qWarning(
+            
+        ) << "Unknown role for occurrence:" << QMetaEnum::fromType<Roles>().valueToKey(role);
         return {};
     }
 }
@@ -285,8 +427,16 @@ void IncidenceOccurrenceModel::setCalendar(Akonadi::ETMCalendar::Ptr calendar)
         return;
     }
     m_coreCalendar = calendar;
-    updateQuery();
+
+    connect(m_coreCalendar->model(), &QAbstractItemModel::dataChanged, this, &IncidenceOccurrenceModel::slotSourceDataChanged);
+    connect(m_coreCalendar->model(), &QAbstractItemModel::rowsInserted, this, &IncidenceOccurrenceModel::slotSourceRowsInserted);
+    connect(m_coreCalendar->model(), &QAbstractItemModel::rowsRemoved, this, &IncidenceOccurrenceModel::scheduleReset);
+    connect(m_coreCalendar->model(), &QAbstractItemModel::modelReset, this, &IncidenceOccurrenceModel::scheduleReset);
+    connect(m_coreCalendar.get(), &Akonadi::ETMCalendar::collectionsRemoved, this, &IncidenceOccurrenceModel::scheduleReset);
+
     Q_EMIT calendarChanged();
+
+    scheduleReset();
 }
 
 Akonadi::ETMCalendar::Ptr IncidenceOccurrenceModel::calendar() const
@@ -294,7 +444,7 @@ Akonadi::ETMCalendar::Ptr IncidenceOccurrenceModel::calendar() const
     return m_coreCalendar;
 }
 
-void IncidenceOccurrenceModel::load()
+void IncidenceOccurrenceModel::loadColors()
 {
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
     KConfigGroup rColorsConfig(config, "Resources Colors");
@@ -304,4 +454,53 @@ void IncidenceOccurrenceModel::load()
         QColor color = rColorsConfig.readEntry(key, QColor("blue"));
         m_colors[key] = color;
     }
+}
+
+std::pair<QDateTime, QDateTime> IncidenceOccurrenceModel::incidenceOccurrenceStartEnd(const QDateTime &ocStart, const KCalendarCore::Incidence::Ptr &incidence)
+{
+    auto start = ocStart;
+    const auto end = incidence->endDateForStart(start);
+
+    if (incidence->type() == KCalendarCore::Incidence::IncidenceType::TypeTodo) {
+        KCalendarCore::Todo::Ptr todo = incidence.staticCast<KCalendarCore::Todo>();
+
+        if (!start.isValid()) { // Todos are very likely not to have a set start date
+            start = todo->dtDue();
+        }
+    }
+
+    return {start, end};
+}
+
+uint IncidenceOccurrenceModel::incidenceOccurrenceHash(const QDateTime &ocStart, const QDateTime &ocEnd, const QString &incidenceUid)
+{
+    return qHash(QString::number(ocStart.toSecsSinceEpoch()) +
+                 QString::number(ocEnd.toSecsSinceEpoch()) +
+                 incidenceUid);
+}
+
+bool IncidenceOccurrenceModel::incidencePassesFilter(const KCalendarCore::Incidence::Ptr &incidence)
+{
+    if(!mFilter || mFilter->tags().empty()) {
+        return true;
+    }
+
+    auto match = false;
+    const auto tags = mFilter->tags();
+    for (const auto &tag : tags) {
+        if (incidence->categories().contains(tag)) {
+            match = true;
+            break;
+        }
+    }
+
+    return match;
+}
+
+QHash<int, QByteArray> IncidenceOccurrenceModel::roleNames() const
+{
+    return {
+        {IncidenceOccurrenceModel::Summary, "summary"},
+        {IncidenceOccurrenceModel::StartTime, "startTime"},
+    };
 }

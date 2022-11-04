@@ -17,6 +17,7 @@ set(lib_SRCS
     code/plugin.cpp
    code/calendarmanager.cpp
    code/incidencewrapper.cpp
+   code/filter.cpp
 #    code/agentconfiguration.cpp
 
 code/models/todosortfilterproxymodel.cpp

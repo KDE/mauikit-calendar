@@ -10,14 +10,14 @@ Page
 {
     id:  control
     
-    readonly property string startTime : "12:00" + format
+    readonly property date startTime : new Date()
     
-    property int selectedMinute: 0
-    property int selectedHour: 12
+    property int selectedMinute: selectedTime.getMinutes()
+    property int selectedHour: selectedTime.getHours()
+    property int timeZoneOffset : 0
+    property date selectedTime : startTime
     
-    property string selectedTime : startTime
-    
-    property string format: "AM"
+    property string format: control.selectedHour < 12 ? "AM" : "PM"
     
     signal accepted(var time)
     
@@ -60,7 +60,7 @@ Page
                 text: i18n("Done")
                 onClicked:
                 {
-                    control.updateSelectedTime(minutesTumbler.currentIndex, hoursTumbler.currentIndex-1, control.format)
+                    control.updateSelectedTime(minutesTumbler.currentIndex, hoursTumbler.currentIndex, control.format)
                      control.accepted(control.selectedTime)
                 }
             }
@@ -69,31 +69,8 @@ Page
     
     contentItem: Item
     {
-        function formatText(count, modelData) {
-            var data = count === 12 ? modelData + 1 : modelData;
-            return data.toString().length < 2 ? "0" + data : data;
-        }
         
-        
-        Component 
-        {
-            id: delegateComponent
-            
-            Button 
-            {
-                text: formatText(Tumbler.tumbler.count, modelData)
-                opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
-               
-                onClicked: 
-                {
-                    Tumbler.tumbler.currentIndex = modelData
-                    control.updateSelectedTime(minutesTumbler.currentIndex, hoursTumbler.currentIndex)
-                }
-            }
-        }
-        
-       
-            Row
+                    Row
             {
                 id: row
                 height: parent.height
@@ -105,9 +82,31 @@ Page
                 {
                     id: hoursTumbler
                     spacing: Maui.Style.space.medium
+
                     model: 12
-                    currentIndex: control.selectedHour - 1
-                    delegate: delegateComponent
+                    currentIndex: formatUTCHour(control.selectedHour)                                      
+                    
+                    delegate:  Button 
+                    {
+                        font.bold: checked
+                        
+                        checked : index === Tumbler.tumbler.currentIndex
+                        text: formatText(Tumbler.tumbler.count, modelData)
+                        opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                        
+                        onClicked: 
+                        {
+                            Tumbler.tumbler.currentIndex = modelData
+                            control.updateSelectedTime(minutesTumbler.currentIndex, hoursTumbler.currentIndex)
+                        }
+                        
+                        background: Rectangle
+                        {
+                            visible: checked
+                            color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                            radius: Maui.Style.radiusV
+                        }
+                    }
                     
                 }
                 
@@ -116,28 +115,96 @@ Page
                     id: minutesTumbler
                     model: 60
                     spacing: Maui.Style.space.medium
-                    
+                                        
                     currentIndex: control.selectedMinute
-                    delegate: delegateComponent
                     
+                    Label
+                    {
+                        text: minutesTumbler.currentIndex
+                        color: "yellow"
+                    }
+                    
+                    delegate:  Button 
+                    {
+                        font.bold: checked
+                        checked : index === Tumbler.tumbler.currentIndex
+                        text: formatText(Tumbler.tumbler.count, modelData)
+                        opacity: 1.0 - Math.abs(Tumbler.displacement) / (Tumbler.tumbler.visibleItemCount / 2)
+                        
+                        onClicked: 
+                        {
+                            Tumbler.tumbler.currentIndex = modelData
+                            control.updateSelectedTime(minutesTumbler.currentIndex, hoursTumbler.currentIndex)
+                        }
+                        
+                        background: Rectangle
+                        {
+                            visible: checked
+                            color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                            radius: Maui.Style.radiusV
+                        }
+                    }                    
                 }
-            }
-        
+            } 
+            
+            // Label
+            // {
+            //     text: hoursTumbler.currentIndex + " / " + control.selectedTime.getUTCHours()
+            //     color: "yellow"
+            // }
     }
     
-    function formatText(count, modelData)
+    
+    function formatUTCHour(hour : int)
+    {
+        if(hour > 12)
+        {
+            return hour - 12;
+        }
+        
+        return hour
+    }
+    
+    function formatHourToUTC(hour, format)
+    {
+        if(format == "AM")
+        {
+            if(hour >= 11)
+            {
+                return 0;
+            }
+            
+            return hour + 1
+        }
+        
+        
+        if(hour >= 11)
+        {
+            return 23
+        }
+        
+        return 12 + hour +1;
+    }
+    
+    function formatText(count : int, modelData : int)
     {
         var data = count === 12 ? modelData + 1 : modelData;
         return data.toString().length < 2 ? "0" + data : data;
     }
     
-    function updateSelectedTime(minute, hour, format)
+    function updateSelectedTime(minute, hour, format = control.format)
     {
         control.selectedMinute = minute
-        control.selectedHour = hour
+        control.selectedHour = formatHourToUTC(hour, format)        
         
-        control.selectedTime= formatText(12, hour)+":"+formatText(60, minute) + control.format
-    }
-    
+        var newdate = new Date()
+        
+        newdate.setHours(control.selectedHour)
+       newdate.setMinutes(control.selectedMinute) 
+       
+       control.selectedTime = newdate
+       
+        console.log("UPDATING TIMEW", control.selectedTime.getHours(), control.selectedTime.getMinutes(), hour, minute, format, control.selectedTime.toLocaleTimeString())
+    }   
     
 }

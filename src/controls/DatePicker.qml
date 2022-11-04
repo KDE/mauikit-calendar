@@ -12,9 +12,9 @@ Page
 
     readonly property date startDate : new Date()
 
-    property int selectedMonth : startDate.getUTCMonth()
-    property int selectedYear: startDate.getUTCFullYear()
-    property int selectedDay : startDate.getDate()
+    property int selectedMonth : selectedDate.getUTCMonth()
+    property int selectedYear: selectedDate.getUTCFullYear()
+    property int selectedDay : selectedDate.getDate()
 
     property date selectedDate : startDate
     

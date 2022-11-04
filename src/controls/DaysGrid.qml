@@ -42,9 +42,8 @@ QQC2.Page
         columnSpacing: control.compact ? 0 : Maui.Style.space.small
         rowSpacing:  control.compact ? 0 : Maui.Style.space.small
 
-
-
-        QQC2.ButtonGroup {
+        QQC2.ButtonGroup 
+        {
             buttons: _daysGrid.children
         }
 
