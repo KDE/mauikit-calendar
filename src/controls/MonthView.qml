@@ -5,14 +5,14 @@
 
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.15 as QQC2
+import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.3 as Maui
 import org.mauikit.calendar 1.0 as Kalendar
 
 import "dateutils.js" as DateUtils
 
-QQC2.Pane
+Pane
 {
     id: control
 
@@ -41,6 +41,10 @@ QQC2.Pane
     property date selectedDate : currentDate
 
     property bool dragDropEnabled: true
+    
+    signal dateClicked(var date)
+    signal dateRightClicked(var date)
+    signal dateDoubleClicked(var date)
 
     background: Rectangle
     {
@@ -51,10 +55,7 @@ QQC2.Pane
     {
         id: _monthViewModel
         scale: Kalendar.InfiniteCalendarViewModel.MonthScale
-        //        calendar: CalendarManager.calendar
-        //        filter: root.filter
     }
-
 
     function setToDate(date, isInitialMonth = true)
     {
@@ -167,17 +168,30 @@ QQC2.Pane
                 startDate: viewLoader.startDate
                 currentDate: control.currentDate
                 month: viewLoader.month
+                
+                
 
-                onDateClicked: control.selectedDate = date
+                onDateClicked: 
+                {
+                    
+                    control.selectedDate = date
+                    control.dateClicked(control.selectedDate)
+                }
+                
+                onDateDoubleClicked:
+                {
+                    control.selectedDate = date
+                    control.dateDoubleClicked(control.selectedDate)
+                }
 
-                dayHeaderDelegate: QQC2.Control
+                dayHeaderDelegate: ItemDelegate
                 {
                     leftPadding: Maui.Style.units.smallSpacing
                     rightPadding: Maui.Style.units.smallSpacing
 
-                    contentItem: Maui.LabelDelegate
+                    contentItem: Label
                     {
-                        label:
+                        text:
                         {
                             let longText = day.toLocaleString(Qt.locale(), "dddd");
                             let midText = day.toLocaleString(Qt.locale(), "ddd");
@@ -188,12 +202,15 @@ QQC2.Pane
                         }
 
 
-                        labelTxt.horizontalAlignment: Text.AlignRight
-                        labelTxt.font.bold: true
-                        labelTxt.font.weight: Font.Bold
-                        labelTxt.font.pointSize: Maui.Style.fontSizes.big
-
-                    }
+                        horizontalAlignment: Text.AlignRight
+                        font.bold: true
+                        font.weight: Font.Bold
+                        font.pointSize: Maui.Style.fontSizes.big
+                        
+                        
+                    }                   
+                    
+                    
                 }
 
                 weekHeaderDelegate: Maui.LabelDelegate

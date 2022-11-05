@@ -23,11 +23,13 @@ QQC2.Pane
     property int daysPerRow: 7
     property double weekHeaderWidth: root.showWeekNumbers ? Maui.Style.units.gridUnit * 1.5 : 0
     property date currentDate
-    // Getting the components once makes this faster when we need them repeatedly
+
     property int currentDay: currentDate ? currentDate.getDate() : null
     property int currentMonth: currentDate ? currentDate.getMonth() : null
     property int currentYear: currentDate ? currentDate.getFullYear() : null
-    property date startDate
+   
+   property date startDate
+    
     property bool paintGrid: true
     property bool showDayIndicator: true
 
@@ -60,8 +62,10 @@ QQC2.Pane
     padding: Maui.Style.space.medium
     spacing: Maui.Style.space.small
     background: null
+    
     signal dateClicked(var date)
-
+    signal dateDoubleClicked(var date)
+    
     contentItem: Loader
     {
         id: backgroundLoader
@@ -143,7 +147,7 @@ QQC2.Pane
                                         visible: root.showDayIndicator
                                         padding: Maui.Style.space.small
                                         onClicked: root.dateClicked(gridItem.date)
-
+onDoubleClicked: root.dateDoubleClicked(gridItem.date)
 
                                         property date gridSquareDate: date
                                         property date date: DateUtils.addDaysToDate(dayDelegate.startDate, modelData)
@@ -161,11 +165,16 @@ QQC2.Pane
                                             radius: Maui.Style.radiusV
                                         }
 
-                                        contentItem: RowLayout
+                                        contentItem: ColumnLayout
+                                        {
+                                            spacing: Maui.Style.space.medium
+                                            RowLayout
                                         {
                                             id: dayNumberLayout
+                                            Layout.fillWidth: true
                                             visible: root.showDayIndicator
 
+                                            
                                             QQC2.Label
                                             {
                                                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
@@ -195,6 +204,52 @@ QQC2.Pane
                                                 font.pointSize: root.isWide ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.small
 
                                             }
+                                        }
+                                        
+                                        
+                                        Flow
+                                        {
+                                            width: parent.width
+                                            Layout.alignment: Qt.AlignBottom
+                                            Layout.fillWidth: true
+                                            Layout.fillHeight: true
+                                            spacing: Maui.Style.space.tiny
+                                            clip: true
+                                         
+                                            Repeater 
+                                            {
+                                                    model: Kalendar.IncidenceOccurrenceModel
+                                                    {
+                                                        start: gridItem.date
+                                                        length: 0
+                                                        calendar: Kalendar.CalendarManager.calendar
+                                                        filter: Kalendar.Filter
+                                                    }
+                                                
+                                                
+                                                
+                                                
+                                                delegate: Rectangle
+                                                {
+                                                    radius: height
+                                                    height: 10
+                                                    width: height
+                                                    color: randomColor(150)
+                                                    
+                                                    function randomColor(brightness){
+                                                        function randomChannel(brightness){
+                                                            var r = 255-brightness;
+                                                            var n = 0|((Math.random() * r) + brightness);
+                                                            var s = n.toString(16);
+                                                            return (s.length==1) ? '0'+s : s;
+                                                        }
+                                                        return '#' + randomChannel(brightness) + randomChannel(brightness) + randomChannel(brightness);
+                                                    }
+                                                    
+                                                }
+                                            }
+                                        }
+                                        
                                         }
 
                                     }
