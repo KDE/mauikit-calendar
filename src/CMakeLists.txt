@@ -2,8 +2,6 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-#ecm_create_qm_loader(filebrowsing_QM_LOADER libfilebrowsingplugin_qt)
-
 add_subdirectory(code/lib)
 
 include_directories(
@@ -45,6 +43,8 @@ add_library(
     ${model_SRCS}
     ${lib_QML_QRC}
     )
+    
+    ecm_create_qm_loader(MauiKitCalendar MauiKitCalendarPlugin)
 
     add_library(MauiKit::Calendar ALIAS MauiKitCalendar)
 
@@ -73,7 +73,6 @@ kalendar_lib
     Qt5::Qml
 
     KF5::CoreAddons
-    KF5::I18n
     KF5::ConfigCore
 
     KF5::CalendarCore
