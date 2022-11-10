@@ -78,7 +78,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
 
     
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Qml QuickControls2 Svg)
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons Config)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n CoreAddons Config)
 
 find_package(Qt5QuickCompiler)
 set_package_properties(Qt5QuickCompiler PROPERTIES
@@ -95,9 +95,9 @@ find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
 
 add_subdirectory(src)
 
-
-    ecm_install_po_files_as_qm(poqm)
-
+    add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
+    ki18n_install(po)
+    
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 

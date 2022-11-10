@@ -44,8 +44,6 @@ add_library(
     ${lib_QML_QRC}
     )
     
-    ecm_create_qm_loader(MauiKitCalendar MauiKitCalendarPlugin)
-
     add_library(MauiKit::Calendar ALIAS MauiKitCalendar)
 
     generate_export_header(MauiKitCalendar BASE_NAME Calendar)
@@ -72,6 +70,7 @@ kalendar_lib
     Qt5::Quick
     Qt5::Qml
 
+    KF5::I18n
     KF5::CoreAddons
     KF5::ConfigCore
 
