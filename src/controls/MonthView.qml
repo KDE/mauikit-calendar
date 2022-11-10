@@ -202,7 +202,7 @@ Pane
                         }
 
 
-                        horizontalAlignment: Text.AlignRight
+                        horizontalAlignment: Text.AlignLeft
                         font.bold: true
                         font.weight: Font.Bold
                         font.pointSize: Maui.Style.fontSizes.big
