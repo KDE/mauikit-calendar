@@ -93,11 +93,12 @@ find_package(KF5AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
 find_package(KF5CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
 
-add_subdirectory(src)
 
     add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
     ki18n_install(po)
     
+    add_subdirectory(src)
+
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
