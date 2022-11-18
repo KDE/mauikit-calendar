@@ -1,0 +1,166 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit-calendar package.
+#
+# Emir SARI <emir_sari@icloud.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit-calendar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"PO-Revision-Date: 2022-11-17 18:41+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 22.08.3\n"
+
+#: src/code/calendarmanager.cpp:632
+#, kde-format
+msgid "Move occurrence(s)"
+msgstr "Oluşları taşı"
+
+#: src/code/calendarmanager.cpp:637
+#, kde-format
+msgid ""
+"Unable to add the exception item to the calendar. No change will be done."
+msgstr "İstisna ögesi, takvime eklenemiyor. Bir değişiklik yapılmayacak."
+
+#: src/code/calendarmanager.cpp:677
+#, kde-format
+msgid "Delete task and its sub-tasks"
+msgstr "Görevi ve tüm alt görevlerini sil"
+
+#: src/code/calendarmanager.cpp:680
+#, kde-format
+msgid "Delete task and make sub-tasks independent"
+msgstr "Görevi sil ve alt görevlerini bağımsız yap"
+
+#: src/code/calendarmanager.cpp:843
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of Calendar %1"
+msgstr "Takvim %1 Özellikleri"
+
+#: src/code/incidencewrapper.cpp:138
+#: src/code/models/incidenceoccurrencemodel.cpp:410
+#: src/code/models/todosortfilterproxymodel.cpp:142
+#, kde-format
+msgid "Task"
+msgstr "Görev"
+
+#: src/code/lib/colorproxymodel.cpp:110
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Offline)"
+msgstr "%1 (Çevrimdışı)"
+
+#: src/code/lib/colorproxymodel.cpp:113
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Default)"
+msgstr "%1 (Öntanımlı)"
+
+#: src/code/models/todosortfilterproxymodel.cpp:158
+#, kde-format
+msgctxt "List separator"
+msgid ", "
+msgstr ", "
+
+#: src/code/models/todosortfilterproxymodel.cpp:177
+#, kde-format
+msgid "Overdue"
+msgstr "Süresi Bitmiş"
+
+#: src/code/models/todosortfilterproxymodel.cpp:177
+#, kde-format
+msgid "No set date"
+msgstr "Ayarlı tarih yok"
+
+#: src/controls/DatePicker.qml:87 src/controls/TimePicker.qml:60
+#, kde-format
+msgid "Done"
+msgstr "Bitti"
+
+#: src/controls/DayGridView.qml:181
+#, kde-format
+msgid "Today"
+msgstr "Bugün"
+
+#: src/controls/EventPage.qml:46
+#, kde-format
+msgid "Info"
+msgstr "Bilgi"
+
+#: src/controls/EventPage.qml:50
+#, kde-format
+msgid "Description"
+msgstr "Açıklama"
+
+#: src/controls/EventPage.qml:66
+#, kde-format
+msgid "Calendar"
+msgstr "Takvim"
+
+#: src/controls/EventPage.qml:108
+#, kde-format
+msgid "Time"
+msgstr "Zaman"
+
+#: src/controls/EventPage.qml:112
+#, kde-format
+msgid "All day"
+msgstr "Tüm gün"
+
+#: src/controls/EventPage.qml:131
+#, kde-format
+msgid "Start"
+msgstr "Başlangıç"
+
+#: src/controls/EventPage.qml:173
+#, kde-format
+msgid "End"
+msgstr "Bitiş"
+
+#: src/controls/EventPage.qml:212
+#, kde-format
+msgid "TimeZone"
+msgstr "Zaman Dilimi"
+
+#: src/controls/HourlyView.qml:99
+#, kde-format
+msgid "Previous Week"
+msgstr "Önceki Hafta"
+
+#: src/controls/HourlyView.qml:106
+#, kde-format
+msgid "Next Week"
+msgstr "Sonraki Hafta"
+
+#: src/controls/HourlyView.qml:113
+#, kde-format
+msgid "Now"
+msgstr "Şimdi"
+
+#: src/controls/HourlyView.qml:371
+#, kde-format
+msgctxt "@action:button"
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: src/controls/HourlyView.qml:384
+#, kde-format
+msgid "All day or Multi day"
+msgstr "Tüm gün veya çoklu gün"
+
+#: src/controls/TimePicker.qml:42
+#, kde-format
+msgid "AM"
+msgstr "ÖÖ"
+
+#: src/controls/TimePicker.qml:49
+#, kde-format
+msgid "PM"
+msgstr "ÖS"
