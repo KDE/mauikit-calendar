@@ -25,7 +25,7 @@ set(EVENTVIEW_LIB_VERSION "5.19.0")
 
 set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.calendar)
 
-project(Calendar LANGUAGES CXX VERSION 1.5.5)
+project(Calendar LANGUAGES CXX VERSION 1.0.0)
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
@@ -51,7 +51,7 @@ configure_package_config_file(
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
     PATH_VARS KF5_INCLUDE_INSTALL_DIR CMAKE_INSTALL_PREFIX
     )
-    
+
     install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfigVersion.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfig.cmake"
@@ -63,7 +63,7 @@ install(EXPORT MauiKitCalendarTargets
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     FILE MauiKitCalendarTargets.cmake
     NAMESPACE MauiKit::)
-    
+
     ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX Calendar
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
@@ -71,12 +71,12 @@ install(EXPORT MauiKitCalendarTargets
     SOVERSION ${PROJECT_VERSION_MAJOR}
     )
 
-    
+
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar
     COMPONENT Devel)
 
-    
+
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Qml QuickControls2 Svg)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n CoreAddons Config)
 
@@ -96,7 +96,7 @@ find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
 
     add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
     ki18n_install(po)
-    
+
     add_subdirectory(src)
 
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
