@@ -199,7 +199,7 @@ CalendarManager::CalendarManager(QObject *parent)
         qApp->exit(-1);
         return;
     }
-    
+
     qDebug() << "STARTING THE CALENDAR MANAGER";
 
     auto colorProxy = new ColorProxyModel(this);
@@ -374,7 +374,7 @@ void CalendarManager::refreshEnabledTodoCollections()
 
 bool CalendarManager::loading() const
 {
-    return !m_calendar->isLoaded();
+    return !m_calendar->isLoading();
 }
 
 void CalendarManager::setCollectionSelectionProxyModel(KCheckableProxyModel *m)
@@ -530,11 +530,11 @@ void CalendarManager::addIncidence(IncidenceWrapper *incidenceWrapper)
 
     switch (incidenceWrapper->incidencePtr()->type()) {
     case (KCalendarCore::IncidenceBase::TypeEvent): {
-        
+
         KCalendarCore::Event::Ptr event = incidenceWrapper->incidencePtr().staticCast<KCalendarCore::Event>();
         auto res = m_changer->createIncidence(event, collection);
         qDebug() << "TRYING TO ADD AN EVENT" << incidenceWrapper->summary() << incidenceWrapper->collectionId() << res << event->description();
-        
+
         break;
     }
     case (KCalendarCore::IncidenceBase::TypeTodo): {
