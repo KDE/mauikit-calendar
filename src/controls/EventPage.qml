@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 import org.mauikit.controls 1.3 as Maui
 import org.mauikit.calendar 1.0 as Cal
-import org.kde.akonadi 1.0 as Akonadi
+
 Pane
 {
 id: control
@@ -72,7 +72,7 @@ Maui.SettingsSection
             textRole: "display"
             valueRole: "collectionColor"
             
-            model: Akonadi.CollectionComboBoxModel 
+            model: Cal.CollectionComboBoxModel 
             {
                 id: collectionComboBoxModel
                 onCurrentIndexChanged: calendarCombo.currentIndex = currentIndex
@@ -81,18 +81,18 @@ Maui.SettingsSection
                 
                 mimeTypeFilter: if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeEvent) 
                 {
-                    return [Akonadi.MimeTypes.calendar]
+                    return [Cal.MimeTypes.calendar]
                 } else if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeTodo) {
-                    return [Akonadi.MimeTypes.todo]
+                    return [Cal.MimeTypes.todo]
                 }
-                accessRightsFilter: Akonadi.Collection.CanCreateItem
+                accessRightsFilter: Cal.Collection.CanCreateItem
                 
                 
             }
             
             currentIndex: 0
             onCurrentIndexChanged: if (currentIndex !== -1) {
-                const collection = model.data(model.index(currentIndex, 0), Akonadi.Collection.CollectionRole);
+                const collection = model.data(model.index(currentIndex, 0), Cal.Collection.CollectionRole);
                 if (collection) {
                     incidenceWrapper.setCollection(collection)
                 }

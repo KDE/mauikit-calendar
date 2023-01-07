@@ -13,7 +13,14 @@
 #include "filter.h"
 //#include <KCalendarCore/MemoryCalendar>
 //#include <KCalendarCore/VCalFormat>
+#include <akonadi_version.h>
+#include <Akonadi/Collection>
 #include <Akonadi/AgentFilterProxyModel>
+
+#include "collection.h"
+#include "collectioncomboboxmodel.h"
+#include "mimetypes.h"
+
 
 void MauiCalendarPlugin::registerTypes(const char *uri)
 {
@@ -71,6 +78,19 @@ void MauiCalendarPlugin::registerTypes(const char *uri)
     qmlRegisterType(resolveFileUrl(QStringLiteral("MonthsGrid.qml")), uri, 1, 0, "MonthsGrid");
     qmlRegisterType(resolveFileUrl(QStringLiteral("DaysGrid.qml")), uri, 1, 0, "DaysGrid");
     qmlRegisterType(resolveFileUrl(QStringLiteral("YearsGrid.qml")), uri, 1, 0, "YearsGrid");
+    
+    
+    
+    //Taken from Kalendar Akonadi plugin
+    qmlRegisterSingletonType<Akonadi::Quick::MimeTypes>(uri, 1, 0, "MimeTypes", [](QQmlEngine *engine, QJSEngine *scriptEngine) {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+        return new Akonadi::Quick::MimeTypes;
+    });
+    
+    qmlRegisterType<Akonadi::Quick::CollectionComboBoxModel>(uri, 1, 0, "CollectionComboBoxModel");
+    // qmlRegisterType<Akonadi::Quick::CollectionPickerModel>(uri, 1, 0, "CollectionPickerModel");    
+    qmlRegisterUncreatableType<Akonadi::Quick::Collection>(uri, 1, 0, "Collection", QStringLiteral("It's just an enum"));
     
     
     

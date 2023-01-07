@@ -17,15 +17,16 @@ set(lib_SRCS
    code/incidencewrapper.cpp
    code/filter.cpp
 #    code/agentconfiguration.cpp
-
 code/models/todosortfilterproxymodel.cpp
-
     code/models/infinitecalendarviewmodel.cpp
     code/models/hourlyincidencemodel.cpp
     code/models/multidayincidencemodel.cpp
     code/models/incidenceoccurrencemodel.cpp
     code/models/monthmodel.cpp
     code/models/timezonelistmodel.cpp
+    code/collection.cpp
+    code/collectioncomboboxmodel.cpp
+    code/mimetypes.cpp
 #    assets/assets.qrc
     )
 
