@@ -41,11 +41,11 @@ contentItem: ColumnLayout
     id: _layout
  spacing: Maui.Style.space.huge
  
-Maui.SettingsSection
+Maui.SectionGroup
 {
     title: i18n("Info")
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("Description")
 
@@ -61,7 +61,7 @@ Maui.SettingsSection
         }
     }
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("Calendar")
         
@@ -103,11 +103,11 @@ Maui.SettingsSection
 }
 
 
-Maui.SettingsSection
+Maui.SectionGroup
 {
     title: i18n("Time")
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("All day")
         enabled: !isNaN(incidenceWrapper.incidenceStart.getTime()) || !isNaN(incidenceWrapper.incidenceEnd.getTime())
@@ -126,7 +126,7 @@ Maui.SettingsSection
         }
     }
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("Start")
 
@@ -168,7 +168,7 @@ onTimePicked:
        }
     }
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("End")
 
@@ -207,7 +207,7 @@ onTimePicked:
         }
     }
 
-    Maui.SettingTemplate
+    Maui.SectionItem
     {
         label1.text: i18n("TimeZone")
 
