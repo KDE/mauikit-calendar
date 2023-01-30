@@ -35,7 +35,7 @@ QQC2.Pane
 
     readonly property string title: control.year
 
-   contentItem: Maui.GridView
+   contentItem: Maui.GridBrowser
     {
         id: _gridView
 
