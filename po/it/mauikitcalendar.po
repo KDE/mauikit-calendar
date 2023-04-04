@@ -1,71 +1,69 @@
-# German translations for mauikit-calendar package.
-# Copyright (C) 2022 This file is copyright:
+# Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit-calendar package.
-# Frederik Schwarzer <schwarzer@kde.org>, 2023.
+# Vincenzo Reale <smart2128vr@gmail.com>, 2023.
 #
-# Automatically generated, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-17 00:44+0000\n"
-"PO-Revision-Date: 2023-03-12 16:36+0100\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
-"Language-Team: German <kde-i18n-de@kde.org>\n"
-"Language: de\n"
+"PO-Revision-Date: 2023-03-29 15:44+0200\n"
+"Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.07.70\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/code/calendarmanager.cpp:632
 #, kde-format
 msgid "Move occurrence(s)"
-msgstr "Vorkommen verschieben"
+msgstr "Sposta le occorrenze"
 
 #: src/code/calendarmanager.cpp:637
 #, kde-format
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
 msgstr ""
-"Es ist nicht möglich, diese Ausnahme in den Kalender aufzunehmen. Es werden "
-"keine Änderungen durchgeführt."
+"Impossibile aggiungere l'eccezione al calendario. Non è stato apportato "
+"alcun cambiamento."
 
 #: src/code/calendarmanager.cpp:677
 #, kde-format
 msgid "Delete task and its sub-tasks"
-msgstr "Aufgaben und dessen Unteraufgaben löschen"
+msgstr "Elimina attività e le sue sottoattività"
 
 #: src/code/calendarmanager.cpp:680
 #, kde-format
 msgid "Delete task and make sub-tasks independent"
-msgstr "Aufgabe löschen und Unteraufgaben verselbständigen"
+msgstr "Elimina le attività e rendi indipendenti le sottoattività"
 
 #: src/code/calendarmanager.cpp:843
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of Calendar %1"
-msgstr "Eigenschaften des Kalenders „%1“"
+msgstr "Proprietà del calendario %1"
 
 #: src/code/incidencewrapper.cpp:138
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:142
 #, kde-format
 msgid "Task"
-msgstr "Aufgabe"
+msgstr "Attività"
 
 #: src/code/lib/colorproxymodel.cpp:110
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Offline)"
-msgstr "%1 (Offline)"
+msgstr "%1 (Non in linea)"
 
 #: src/code/lib/colorproxymodel.cpp:113
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Default)"
-msgstr "%1 (Standard)"
+msgstr "%1 (Predefinito)"
 
 #: src/code/models/todosortfilterproxymodel.cpp:158
 #, kde-format
@@ -76,88 +74,88 @@ msgstr ", "
 #: src/code/models/todosortfilterproxymodel.cpp:177
 #, kde-format
 msgid "Overdue"
-msgstr "Überfällig"
+msgstr "Scaduta"
 
 #: src/code/models/todosortfilterproxymodel.cpp:177
 #, kde-format
 msgid "No set date"
-msgstr "Kein Fälligkeitsdatum"
+msgstr "Nessun data impostata"
 
 #: src/controls/DatePicker.qml:87 src/controls/TimePicker.qml:60
 #, kde-format
 msgid "Done"
-msgstr "Fertig"
+msgstr "Completato"
 
 #: src/controls/DayGridView.qml:181
 #, kde-format
 msgid "Today"
-msgstr "Heute"
+msgstr "Oggi"
 
 #: src/controls/EventPage.qml:46
 #, kde-format
 msgid "Info"
-msgstr "Information"
+msgstr "Informazioni"
 
 #: src/controls/EventPage.qml:50
 #, kde-format
 msgid "Description"
-msgstr "Beschreibung"
+msgstr "Descrizione"
 
 #: src/controls/EventPage.qml:66
 #, kde-format
 msgid "Calendar"
-msgstr "Kalender"
+msgstr "Calendario"
 
 #: src/controls/EventPage.qml:108
 #, kde-format
 msgid "Time"
-msgstr "Zeit"
+msgstr "Orario"
 
 #: src/controls/EventPage.qml:112
 #, kde-format
 msgid "All day"
-msgstr "Ganzer Tag"
+msgstr "Tutto il giorno"
 
 #: src/controls/EventPage.qml:131
 #, kde-format
 msgid "Start"
-msgstr "Start"
+msgstr "Inizio"
 
 #: src/controls/EventPage.qml:173
 #, kde-format
 msgid "End"
-msgstr "Ende"
+msgstr "Fine"
 
 #: src/controls/EventPage.qml:212
 #, kde-format
 msgid "TimeZone"
-msgstr "Zeitzone"
+msgstr "Fuso orario"
 
 #: src/controls/HourlyView.qml:99
 #, kde-format
 msgid "Previous Week"
-msgstr "Vorherige Woche"
+msgstr "Settimana precedente"
 
 #: src/controls/HourlyView.qml:106
 #, kde-format
 msgid "Next Week"
-msgstr "Nächste Woche"
+msgstr "Settimana successiva"
 
 #: src/controls/HourlyView.qml:113
 #, kde-format
 msgid "Now"
-msgstr "Jetzt"
+msgstr "Adesso"
 
 #: src/controls/HourlyView.qml:371
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset"
-msgstr "Zurücksetzen"
+msgstr "Ripristina"
 
 #: src/controls/HourlyView.qml:384
 #, kde-format
 msgid "All day or Multi day"
-msgstr "Ganz- oder mehrtägig"
+msgstr "Tutto il giorno o più giorni"
 
 #: src/controls/TimePicker.qml:42
 #, kde-format
