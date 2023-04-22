@@ -78,7 +78,7 @@ kalendar_lib
     KF5::CalendarCore
     KF5::AkonadiCore
     KF5::AkonadiCalendar
-    KF5::AkonadiContact
+    KF5::AkonadiContactCore
     KF5::AkonadiAgentBase
     KF5::AkonadiXml
     KF5::CalendarSupport

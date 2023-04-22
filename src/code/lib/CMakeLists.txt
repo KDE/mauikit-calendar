@@ -23,7 +23,7 @@ target_link_libraries(kalendar_lib PUBLIC
     KF5::CalendarCore
     KF5::AkonadiCore
     KF5::AkonadiCalendar
-    KF5::AkonadiContact
+    KF5::AkonadiContactCore
     KF5::AkonadiAgentBase
     KF5::AkonadiXml
     KF5::ConfigWidgets
