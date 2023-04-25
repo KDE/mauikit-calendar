@@ -89,7 +89,7 @@ set_package_properties(Qt5QuickCompiler PROPERTIES
 find_package(MauiKit)
 
 find_package(KF5Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
-find_package(KF5AkonadiContactCore ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
+find_package(KF5AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
 find_package(KF5CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
 find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
 
