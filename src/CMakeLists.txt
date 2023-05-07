@@ -17,7 +17,7 @@ set(lib_SRCS
    code/incidencewrapper.cpp
    code/filter.cpp
 #    code/agentconfiguration.cpp
-code/models/todosortfilterproxymodel.cpp
+# code/models/todosortfilterproxymodel.cpp
     code/models/infinitecalendarviewmodel.cpp
     code/models/hourlyincidencemodel.cpp
     code/models/multidayincidencemodel.cpp
@@ -75,13 +75,20 @@ kalendar_lib
     KF5::CoreAddons
     KF5::ConfigCore
 
-    KF5::CalendarCore
-    KF5::AkonadiCore
-    KF5::AkonadiCalendar
-    KF5::AkonadiContact
-    KF5::AkonadiAgentBase
-    KF5::AkonadiXml
-    KF5::CalendarSupport
+    # KF5::CalendarCore
+    # KF5::AkonadiCore
+    # KF5::AkonadiCalendar
+    # KF5::AkonadiContact
+    # KF5::AkonadiAgentBase
+    # KF5::AkonadiXml
+    # KF5::CalendarSupport
+    # KF5::Contacts
+    
+    
+ KF5::CalendarCore 
+    KPim5::AkonadiCore
+    KPim5::AkonadiCalendar
+    KPim5::AkonadiContact
     KF5::Contacts
     )
 

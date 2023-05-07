@@ -21,13 +21,12 @@ target_link_libraries(kalendar_lib PUBLIC
     KF5::I18n
     KF5::CoreAddons
     KF5::CalendarCore
-    KF5::AkonadiCore
-    KF5::AkonadiCalendar
-    KF5::AkonadiContact
-    KF5::AkonadiAgentBase
-    KF5::AkonadiXml
+  
+    KPim5::AkonadiCore
+    KPim5::AkonadiCalendar
+    KPim5::AkonadiContact
     KF5::ConfigWidgets
     KF5::Contacts
     KF5::ItemModels
-    KF5::EventViews
+    KPim5::CalendarUtils
 )

@@ -60,24 +60,28 @@ Page
             {
                 id: _dateGroup
                 autoExclusive: true
-                currentIndex: _stackView.currentIndex
                 
             Action
             {
                 text: control.selectedDay
-                // onTriggered: _swipeView.currentIndex = 0
+                checked: _swipeView.currentIndex = 0
+                onTriggered: _stackView.currentIndex = 0
             }
             
             Action
             {
                 text: Qt.locale().standaloneMonthName(control.selectedMonth) 
-                // onTriggered: _swipeView.currentIndex = 1
+                checked: _swipeView.currentIndex = 1
+                onTriggered: _stackView.currentIndex = 0
+                
             }
             
             Action
             {
                 text: control.selectedYear
-                // onTriggered: _swipeView.currentIndex = 2
+                checked: _swipeView.currentIndex = 2
+                onTriggered: _stackView.currentIndex = 0
+                
             }
             }
             Item {Layout.fillWidth: true}
@@ -94,7 +98,7 @@ Page
     {
         id: _swipeView
         background: null
-        currentIndex: _dateGroup.currentIndex 
+
         Kalendar.DaysGrid
         {
             id: _daysPane

@@ -22,6 +22,9 @@ set(AKONADI_CONTACT_VERSION "5.20.0")
 
 set(CALENDARSUPPORT_LIB_VERSION "5.19")
 set(EVENTVIEW_LIB_VERSION "5.19.0")
+set(CALENDARUTILS_LIB_VERSION "5.23.0")
+
+set(AKONADICALENDAR_LIB_VERSION "5.23.0")
 
 set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.calendar)
 
@@ -88,11 +91,17 @@ set_package_properties(Qt5QuickCompiler PROPERTIES
 
 find_package(MauiKit)
 
-find_package(KF5Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
-find_package(KF5AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
-find_package(KF5CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
-find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
+# find_package(KF5Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
+# find_package(KF5AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
+# find_package(KF5CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
+# find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
 
+
+find_package(KPim5Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim5AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
+find_package(KPim5AkonadiContact ${AKONADICONTACT_LIB_VERSION} REQUIRED)
+find_package(KPim5AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
+find_package(KPim5CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
 
     add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
     ki18n_install(po)
