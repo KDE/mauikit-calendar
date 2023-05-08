@@ -20,43 +20,15 @@ Page
     
     signal accepted(var date)
     
-    header: ToolBar
+    padding: 0
+    
+    header: Maui.ToolBar
     {
         width: parent.width
-        background: null
         
-        contentItem: RowLayout
-        {
-            spacing: 0
-            
-//             Maui.ToolActions
-//             {
-//                 autoExclusive: false
-//                 
-//             Action
-//             {
-//                 icon.name: "go-previous"
-//                 onTriggered: 
-//                 {
-//                     control.updateSelectedDate(control.selectedDay, Math.max(control.selectedMonth-1, 0), control.selectedYear)
-//                     _swipeView.currentIndex = 0
-//                 }
-//             }
-            
-            // Action
-            // {
-            //     icon.name: "go-next"
-            //     onTriggered: 
-            //     {
-            //         control.updateSelectedDate(control.selectedDay, Math.min(control.selectedMonth+1, 11), control.selectedYear)
-            //         _swipeView.currentIndex = 0
-            //     }
-            // }
-            // }
-            
-            // Item {Layout.fillWidth: true}
-            
-            Maui.ToolActions
+        background: null
+       
+            leftContent:Maui.ToolActions
             {
                 id: _dateGroup
                 autoExclusive: true
@@ -64,40 +36,40 @@ Page
             Action
             {
                 text: control.selectedDay
-                checked: _swipeView.currentIndex = 0
-                onTriggered: _stackView.currentIndex = 0
+                checked: _swipeView.currentIndex === 0
+                onTriggered: _swipeView.currentIndex = 0
             }
             
             Action
             {
                 text: Qt.locale().standaloneMonthName(control.selectedMonth) 
-                checked: _swipeView.currentIndex = 1
-                onTriggered: _stackView.currentIndex = 0
+                checked: _swipeView.currentIndex === 1
+                onTriggered: _swipeView.currentIndex = 1
                 
             }
             
             Action
             {
                 text: control.selectedYear
-                checked: _swipeView.currentIndex = 2
-                onTriggered: _stackView.currentIndex = 0
+                checked: _swipeView.currentIndex === 2
+                onTriggered: _swipeView.currentIndex = 2
                 
             }
             }
-            Item {Layout.fillWidth: true}
             
-           Button
+           rightContent: Button
            {
                text: i18n("Done")
                onClicked: control.accepted(control.selectedDate)
         }
-        }
+        
     }    
     
     contentItem: SwipeView
     {
         id: _swipeView
         background: null
+        clip: true
 
         Kalendar.DaysGrid
         {
@@ -109,8 +81,7 @@ Page
             {
                 control.updateSelectedDate(date.getDate(), control.selectedMonth, control.selectedYear)               
             }            
-        }
-        
+        }        
         
         Kalendar.MonthsGrid
         {

@@ -10,7 +10,7 @@ Page
 {
     id:  control
     background: null
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
     
     property int from : 1999
     property int to : 2100
@@ -54,7 +54,7 @@ Page
                         background: Rectangle
                         {
                             visible: checked
-                            color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                            color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.hoverColor : "transparent"
                             radius: Maui.Style.radiusV
                         }
                     }

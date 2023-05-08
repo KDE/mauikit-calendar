@@ -10,7 +10,7 @@ Page
 {
     id:  control
     background: null
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
     
     property int selectedMonth
     
@@ -28,8 +28,7 @@ Page
         
         Repeater
         {
-            model: 12
-            
+            model: 12            
             
             delegate: Button
             {
@@ -37,7 +36,8 @@ Page
                 text: Qt.locale().standaloneMonthName(index)
                 
                 checkable: true
-                checked: control.selectedMonth === index                
+                checked: control.selectedMonth === index     
+                
                 onClicked: 
                 {
                     control.monthSelected(index)
@@ -46,7 +46,7 @@ Page
                 background: Rectangle
                 {
                     visible: checked
-                    color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                    color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.hoverColor : "transparent"
                     radius: Maui.Style.radiusV
                 }
             }

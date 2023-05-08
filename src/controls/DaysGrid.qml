@@ -22,7 +22,7 @@ QQC2.Page
 
     title : _monthModel.monthName(control.month)
 
-    padding: control.compact ? Maui.Style.space.small : Maui.Style.space.medium
+    padding: control.compact ? Maui.Style.space.small : Maui.Style.defaultPadding    
 
     Kalendar.MonthModel
     {
@@ -79,7 +79,7 @@ QQC2.Page
                 background: Rectangle
                 {
                     visible: sameMonth
-                    color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.focusColor : "transparent"
+                    color: checked ? Maui.Theme.highlightColor : hovered ? Maui.Theme.hoverColor : "transparent"
                     radius: Maui.Style.radiusV
                 }
             }

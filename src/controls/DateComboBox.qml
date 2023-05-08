@@ -38,6 +38,5 @@ ComboBox
             control.accepted()
             control.popup.close()
         }
-    }   
-    
+    }  
 }

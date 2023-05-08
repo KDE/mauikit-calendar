@@ -8,7 +8,9 @@ import org.mauikit.calendar 1.0 as Cal
 Pane
 {
 id: control
+
 implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+
 padding: 0
 background: null
 
@@ -85,9 +87,7 @@ Maui.SectionGroup
                 } else if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeTodo) {
                     return [Cal.MimeTypes.todo]
                 }
-                accessRightsFilter: Cal.Collection.CanCreateItem
-                
-                
+                accessRightsFilter: Cal.Collection.CanCreateItem    
             }
             
             currentIndex: 0
