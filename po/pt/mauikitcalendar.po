@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"POT-Creation-Date: 2023-05-08 00:45+0000\n"
 "PO-Revision-Date: 2022-11-18 09:28+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-POFile-SpellExtra: AM PM\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/code/calendarmanager.cpp:632
+#: src/code/calendarmanager.cpp:615
 #, kde-format
 msgid "Move occurrence(s)"
 msgstr "Mover as ocorrências"
 
-#: src/code/calendarmanager.cpp:637
+#: src/code/calendarmanager.cpp:620
 #, kde-format
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
@@ -26,66 +26,80 @@ msgstr ""
 "Não é possível adicionar o item de excepção ao calendário. Não será feita "
 "nenhuma alteração."
 
-#: src/code/calendarmanager.cpp:677
+#: src/code/calendarmanager.cpp:660
 #, kde-format
 msgid "Delete task and its sub-tasks"
 msgstr "Apagar a tarefa e as suas sub-tarefas"
 
-#: src/code/calendarmanager.cpp:680
+#: src/code/calendarmanager.cpp:663
 #, kde-format
 msgid "Delete task and make sub-tasks independent"
 msgstr "Apagar a tarefa, deixando as sub-tarefas independentes"
 
-#: src/code/calendarmanager.cpp:843
+#: src/code/calendarmanager.cpp:824
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of Calendar %1"
 msgstr "Propriedades do Calendário %1"
 
-#: src/code/incidencewrapper.cpp:138
+#: src/code/incidencewrapper.cpp:135
 #: src/code/models/incidenceoccurrencemodel.cpp:410
-#: src/code/models/todosortfilterproxymodel.cpp:142
+#: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
 msgid "Task"
 msgstr "Tarefa"
 
-#: src/code/lib/colorproxymodel.cpp:110
+#: src/code/lib/colorproxymodel.cpp:82
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Offline)"
 msgstr "%1 (Desligado)"
 
-#: src/code/lib/colorproxymodel.cpp:113
+#: src/code/lib/colorproxymodel.cpp:85
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Default)"
 msgstr "%1 (Predefinição)"
 
-#: src/code/models/todosortfilterproxymodel.cpp:158
+#: src/code/models/todosortfilterproxymodel.cpp:146
 #, kde-format
 msgctxt "List separator"
 msgid ", "
 msgstr ", "
 
-#: src/code/models/todosortfilterproxymodel.cpp:177
-#, kde-format
-msgid "Overdue"
-msgstr "Atrasada"
-
-#: src/code/models/todosortfilterproxymodel.cpp:177
+#: src/code/models/todosortfilterproxymodel.cpp:164
 #, kde-format
 msgid "No set date"
 msgstr "Sem data definida"
 
-#: src/controls/DatePicker.qml:87 src/controls/TimePicker.qml:60
+#: src/code/models/todosortfilterproxymodel.cpp:168
 #, kde-format
-msgid "Done"
-msgstr "Concluído"
+msgid "Overdue"
+msgstr "Atrasada"
 
+#: src/code/models/todosortfilterproxymodel.cpp:174
 #: src/controls/DayGridView.qml:181
 #, kde-format
 msgid "Today"
 msgstr "Hoje"
+
+#: src/code/models/todosortfilterproxymodel.cpp:197
+#, kde-format
+msgctxt "Please retain space"
+msgid " at %1"
+msgstr ""
+
+#: src/code/models/todosortfilterproxymodel.cpp:198
+#, fuzzy, kde-format
+#| msgid "Overdue"
+msgctxt "Please retain parenthesis and space"
+msgid " (overdue)"
+msgstr "Atrasada"
+
+#: src/controls/DatePicker.qml:91 src/controls/TimePicker.qml:60
+#, kde-format
+msgid "Done"
+msgstr "Concluído"
 
 #: src/controls/EventPage.qml:46
 #, kde-format

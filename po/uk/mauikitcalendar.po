@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"POT-Creation-Date: 2023-05-08 00:45+0000\n"
 "PO-Revision-Date: 2022-11-17 04:28+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -18,77 +18,91 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.12.0\n"
 
-#: src/code/calendarmanager.cpp:632
+#: src/code/calendarmanager.cpp:615
 #, kde-format
 msgid "Move occurrence(s)"
 msgstr "Пересунути випадки"
 
-#: src/code/calendarmanager.cpp:637
+#: src/code/calendarmanager.cpp:620
 #, kde-format
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
 msgstr "Не вдалося додати виняток у календар. Залишиться без змін."
 
-#: src/code/calendarmanager.cpp:677
+#: src/code/calendarmanager.cpp:660
 #, kde-format
 msgid "Delete task and its sub-tasks"
 msgstr "Вилучити запис завдання і його підзавдання"
 
-#: src/code/calendarmanager.cpp:680
+#: src/code/calendarmanager.cpp:663
 #, kde-format
 msgid "Delete task and make sub-tasks independent"
 msgstr "Вилучити запис завдання і зробити підзавдання незалежними"
 
-#: src/code/calendarmanager.cpp:843
+#: src/code/calendarmanager.cpp:824
 #, kde-format
 msgctxt "@title:window"
 msgid "Properties of Calendar %1"
 msgstr "Властивості календаря %1"
 
-#: src/code/incidencewrapper.cpp:138
+#: src/code/incidencewrapper.cpp:135
 #: src/code/models/incidenceoccurrencemodel.cpp:410
-#: src/code/models/todosortfilterproxymodel.cpp:142
+#: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
 msgid "Task"
 msgstr "Завдання"
 
-#: src/code/lib/colorproxymodel.cpp:110
+#: src/code/lib/colorproxymodel.cpp:82
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Offline)"
 msgstr "%1 (автономний)"
 
-#: src/code/lib/colorproxymodel.cpp:113
+#: src/code/lib/colorproxymodel.cpp:85
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Default)"
 msgstr "%1 (типовий)"
 
-#: src/code/models/todosortfilterproxymodel.cpp:158
+#: src/code/models/todosortfilterproxymodel.cpp:146
 #, kde-format
 msgctxt "List separator"
 msgid ", "
 msgstr ", "
 
-#: src/code/models/todosortfilterproxymodel.cpp:177
-#, kde-format
-msgid "Overdue"
-msgstr "Термін збіг"
-
-#: src/code/models/todosortfilterproxymodel.cpp:177
+#: src/code/models/todosortfilterproxymodel.cpp:164
 #, kde-format
 msgid "No set date"
 msgstr "Без встановленої дати"
 
-#: src/controls/DatePicker.qml:87 src/controls/TimePicker.qml:60
+#: src/code/models/todosortfilterproxymodel.cpp:168
 #, kde-format
-msgid "Done"
-msgstr "Виконано"
+msgid "Overdue"
+msgstr "Термін збіг"
 
+#: src/code/models/todosortfilterproxymodel.cpp:174
 #: src/controls/DayGridView.qml:181
 #, kde-format
 msgid "Today"
 msgstr "Сьогодні"
+
+#: src/code/models/todosortfilterproxymodel.cpp:197
+#, kde-format
+msgctxt "Please retain space"
+msgid " at %1"
+msgstr ""
+
+#: src/code/models/todosortfilterproxymodel.cpp:198
+#, fuzzy, kde-format
+#| msgid "Overdue"
+msgctxt "Please retain parenthesis and space"
+msgid " (overdue)"
+msgstr "Термін збіг"
+
+#: src/controls/DatePicker.qml:91 src/controls/TimePicker.qml:60
+#, kde-format
+msgid "Done"
+msgstr "Виконано"
 
 #: src/controls/EventPage.qml:46
 #, kde-format
