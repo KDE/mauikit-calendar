@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-08 00:45+0000\n"
+"POT-Creation-Date: 2023-05-09 00:46+0000\n"
 "PO-Revision-Date: 2023-03-29 15:44+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -100,22 +100,22 @@ msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
 msgstr "Scaduta"
 
-#: src/controls/DatePicker.qml:91 src/controls/TimePicker.qml:60
+#: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
 msgid "Done"
 msgstr "Completato"
 
-#: src/controls/EventPage.qml:46
+#: src/controls/EventPage.qml:48
 #, kde-format
 msgid "Info"
 msgstr "Informazioni"
 
-#: src/controls/EventPage.qml:50
+#: src/controls/EventPage.qml:52
 #, kde-format
 msgid "Description"
 msgstr "Descrizione"
 
-#: src/controls/EventPage.qml:66
+#: src/controls/EventPage.qml:68
 #, kde-format
 msgid "Calendar"
 msgstr "Calendario"
