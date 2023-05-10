@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-09 00:46+0000\n"
-"PO-Revision-Date: 2022-11-25 23:36+0100\n"
+"PO-Revision-Date: 2023-05-09 10:23+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: src/code/calendarmanager.cpp:615
 #, kde-format
@@ -27,7 +27,7 @@ msgstr "აღმოჩენების გადაადგილება"
 #, kde-format
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
-msgstr "კალენდარში გამონაკლისის ჩამატების შეცდომა. ცვლილებები არ შეტანილა"
+msgstr "კალენდარში გამონაკლისის ჩამატების შეცდომა. ცვლილებები არ შეტანილა."
 
 #: src/code/calendarmanager.cpp:660
 #, kde-format
@@ -90,14 +90,13 @@ msgstr "დღეს"
 #, kde-format
 msgctxt "Please retain space"
 msgid " at %1"
-msgstr ""
+msgstr " %1"
 
 #: src/code/models/todosortfilterproxymodel.cpp:198
-#, fuzzy, kde-format
-#| msgid "Overdue"
+#, kde-format
 msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
-msgstr "ვადაგადაცილებული"
+msgstr " (გადაცილებული)"
 
 #: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
