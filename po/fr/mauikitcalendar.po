@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-09 00:46+0000\n"
-"PO-Revision-Date: 2023-01-01 15:57+0100\n"
+"PO-Revision-Date: 2023-05-09 13:22+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/code/calendarmanager.cpp:615
 #, kde-format
@@ -88,14 +88,13 @@ msgstr "Aujourd'hui"
 #, kde-format
 msgctxt "Please retain space"
 msgid " at %1"
-msgstr ""
+msgstr " à %1"
 
 #: src/code/models/todosortfilterproxymodel.cpp:198
-#, fuzzy, kde-format
-#| msgid "Overdue"
+#, kde-format
 msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
-msgstr "En retard"
+msgstr "(En retard)"
 
 #: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
