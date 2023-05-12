@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-09 00:46+0000\n"
-"PO-Revision-Date: 2023-05-02 21:27+0200\n"
+"PO-Revision-Date: 2023-05-11 09:50+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -91,14 +91,13 @@ msgstr "Hoxe"
 #, kde-format
 msgctxt "Please retain space"
 msgid " at %1"
-msgstr ""
+msgstr " ás %1"
 
 #: src/code/models/todosortfilterproxymodel.cpp:198
-#, fuzzy, kde-format
-#| msgid "Overdue"
+#, kde-format
 msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
-msgstr "Vencida"
+msgstr " (vencida)"
 
 #: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
