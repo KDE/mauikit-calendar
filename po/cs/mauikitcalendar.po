@@ -89,14 +89,13 @@ msgstr "Dnes"
 #, kde-format
 msgctxt "Please retain space"
 msgid " at %1"
-msgstr ""
+msgstr " v %1"
 
 #: src/code/models/todosortfilterproxymodel.cpp:198
-#, fuzzy, kde-format
-#| msgid "Overdue"
+#, kde-format
 msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
-msgstr "Ve zpoždění"
+msgstr " (zpoždění)"
 
 #: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
