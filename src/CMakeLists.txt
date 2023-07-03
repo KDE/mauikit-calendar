@@ -1,23 +1,22 @@
-# SPDX-FileCopyrightText: 2020 Carl Schwan <carl@carlschwan.eu>
+# SPDX-FileCopyrightText: 2020 Camilo Higuita <milo.h@aol.com>
 #
-# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 add_subdirectory(code/lib)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/code
-    ${CMAKE_CURRENT_SOURCE_DIR}/code/models
-    )
+    ${CMAKE_CURRENT_SOURCE_DIR}/code/models)
 
+ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" VERSION 3.0 CLASSNAME MauiCalendarPlugin)
 
-set(lib_SRCS
-
+set(lib_SRCS    
     code/plugin.cpp
-   code/calendarmanager.cpp
-   code/incidencewrapper.cpp
-   code/filter.cpp
-#    code/agentconfiguration.cpp
-# code/models/todosortfilterproxymodel.cpp
+    code/calendarmanager.cpp
+    code/incidencewrapper.cpp
+    code/filter.cpp
+    #    code/agentconfiguration.cpp
+    # code/models/todosortfilterproxymodel.cpp
     code/models/infinitecalendarviewmodel.cpp
     code/models/hourlyincidencemodel.cpp
     code/models/multidayincidencemodel.cpp
@@ -26,54 +25,66 @@ set(lib_SRCS
     code/models/timezonelistmodel.cpp
     code/collection.cpp
     code/collectioncomboboxmodel.cpp
-    code/mimetypes.cpp
-#    assets/assets.qrc
-    )
+    code/mimetypes.cpp)
 
-set(lib_HDRS
-    #code/plugin.h
-#    assets/assets.qrc
-    )
+if (QT_MAJOR_VERSION STREQUAL "5")
+    qtquick_compiler_add_resources(lib_QML_QRC controls.5/qml.qrc)
+endif()
 
-qtquick_compiler_add_resources(lib_QML_QRC controls/qml.qrc)
+ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
 
-add_library(
-    MauiKitCalendar
-    SHARED
+    controls.${QT_MAJOR_VERSION}/CollectionComboBox.qml
+    controls.${QT_MAJOR_VERSION}/DateComboBox.qml
+    controls.${QT_MAJOR_VERSION}/DatePicker.qml
+    controls.${QT_MAJOR_VERSION}/DayGridView.qml
+    controls.${QT_MAJOR_VERSION}/DayLabelsBar.qml
+    controls.${QT_MAJOR_VERSION}/DaysGrid.qml
+    controls.${QT_MAJOR_VERSION}/EventPage.qml
+    controls.${QT_MAJOR_VERSION}/HourlyView.qml
+    controls.${QT_MAJOR_VERSION}/MonthsGrid.qml
+    controls.${QT_MAJOR_VERSION}/MonthView.qml
+    controls.${QT_MAJOR_VERSION}/TimeComboBox.qml
+    controls.${QT_MAJOR_VERSION}/YearsGrid.qml
+    controls.${QT_MAJOR_VERSION}/YearView.qml
+    controls.${QT_MAJOR_VERSION}/KalendarUiUtils.qml
+    controls.${QT_MAJOR_VERSION}/TimePicker.qml)
+
+target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}
+    PRIVATE
     ${lib_SRCS}
     ${model_SRCS}
-    ${lib_QML_QRC}
-    )
-    
-    add_library(MauiKit::Calendar ALIAS MauiKitCalendar)
+    ${lib_QML_QRC})
 
-    generate_export_header(MauiKitCalendar BASE_NAME Calendar)
-    
-set_target_properties(MauiKitCalendar PROPERTIES
+add_library(MauiKit${MAUI_MAJOR_VERSION}::Calendar ALIAS MauiKitCalendar${MAUI_MAJOR_VERSION})
+
+if (QT_MAJOR_VERSION STREQUAL "5")
+    target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE ${lib_QML_QRC})
+endif()
+
+generate_export_header(MauiKitCalendar${MAUI_MAJOR_VERSION} BASE_NAME Calendar)
+set_target_properties(MauiKitCalendar${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION ${PROJECT_VERSION}
-    SOVERSION ${Calendar_SOVERSION}
-    EXPORT_NAME Calendar
-    )    
-    
-target_include_directories(MauiKitCalendar
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar>")
-    
-    target_include_directories(MauiKitCalendar PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    EXPORT_NAME "Calendar")
 
-    
+target_include_directories(MauiKitCalendar${MAUI_MAJOR_VERSION}
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Calendar>")
+
+target_include_directories(MauiKitCalendar${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
+
 target_link_libraries(
-MauiKitCalendar
+    MauiKitCalendar${MAUI_MAJOR_VERSION}
     PRIVATE
     
-    MauiKit
-kalendar_lib
-    Qt5::Core
-    Qt5::Quick
-    Qt5::Qml
+    MauiKit${MAUI_MAJOR_VERSION}
+    kalendar_lib
+    Qt${QT_MAJOR_VERSION}::Core
+    Qt${QT_MAJOR_VERSION}::Quick
+    Qt${QT_MAJOR_VERSION}::Qml
 
-    KF5::I18n
-    KF5::CoreAddons
-    KF5::ConfigCore
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::ConfigCore
 
     # KF5::CalendarCore
     # KF5::AkonadiCore
@@ -83,36 +94,23 @@ kalendar_lib
     # KF5::AkonadiXml
     # KF5::CalendarSupport
     # KF5::Contacts
-    
-    
- KF5::CalendarCore 
-    KPim5::AkonadiCore
-    KPim5::AkonadiCalendar
-    KPim5::AkonadiContact
-    KF5::Contacts
-    )
+        
+    KF${KF_MAJOR_VERSION}::CalendarCore
+    KF${KF_MAJOR_VERSION}::Contacts
 
-install(TARGETS MauiKitCalendar EXPORT MauiKitCalendarTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+    KPim${KF_MAJOR_VERSION}::AkonadiCore
+    KPim${KF_MAJOR_VERSION}::AkonadiCalendar
+    KPim${KF_MAJOR_VERSION}::AkonadiContact)
+
+ecm_finalize_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_generate_qmltypes(org.mauikit.calendar 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar)
+
+install(TARGETS MauiKitCalendar${MAUI_MAJOR_VERSION} EXPORT MauiKitCalendar${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
-    ${lib_HDRS}
+#    ${lib_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/calendar_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Calendar
     COMPONENT Devel)
 
-  
 
-if (BUILD_SHARED_LIBS)
-    add_custom_target(copy_calendar_to_bin ALL
-       COMMAND ${CMAKE_COMMAND} -E
-        make_directory ${CMAKE_BINARY_DIR}/bin/org/mauikit/calendar/
-        COMMAND ${CMAKE_COMMAND} -E
-        copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/controls ${CMAKE_BINARY_DIR}/bin/org/mauikit/calendar/
-        COMMAND ${CMAKE_COMMAND} -E
-        copy $<TARGET_FILE:MauiKitCalendar> ${CMAKE_BINARY_DIR}/bin/org/mauikit/calendar/
-        )
-
-        install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar)
-endif()
-
-install(TARGETS MauiKitCalendar DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar )

@@ -5,110 +5,145 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+option(BUILD_WITH_QT5 "Use Qt 5" OFF)
+option(BUILD_WITH_QT6 "Use Qt 6" OFF)
+
+if(BUILD_WITH_QT5)
+    set(QT_MAJOR_VERSION 5)
+elseif(BUILD_WITH_QT6)
+    set(QT_MAJOR_VERSION 6)
+else()
+    set(QT_MAJOR_VERSION 5)
+endif()
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(REQUIRED_QT_VERSION 6.4)
+    set(REQUIRED_KF_VERSION 5.240.0)
+    set(KF_MAJOR_VERSION 6)
+    set(MAUI_MAJOR_VERSION 4)
+
+    set(MAUIKIT_VERSION 4.0.0)
+
+else()
+    set(REQUIRED_QT_VERSION 5.15.2)
+    set(REQUIRED_KF_VERSION 5.96.0)
+
+    set(KF_MAJOR_VERSION 5)
+    set(MAUI_MAJOR_VERSION 3)
+
+    set(MAUIKIT_VERSION 3.0.1)
+
+    set(AKONADI_VERSION 5.20.1)
+    set(AKONADI_CONTACT_VERSION 5.20.0)
+
+    set(CALENDARSUPPORT_LIB_VERSION 5.19)
+    set(EVENTVIEW_LIB_VERSION 5.19.0)
+    set(CALENDARUTILS_LIB_VERSION 5.23.0)
+    set(AKONADICALENDAR_LIB_VERSION 5.23.0)
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(QT_MIN_VERSION "5.15.2")
-set(KF5_MIN_VERSION "5.92.0")
-set(KF5_VERSION "5.70.0")
-
-set(AKONADI_VERSION "5.20.1")
-set(AKONADI_CONTACT_VERSION "5.20.0")
-
-set(CALENDARSUPPORT_LIB_VERSION "5.19")
-set(EVENTVIEW_LIB_VERSION "5.19.0")
-set(CALENDARUTILS_LIB_VERSION "5.23.0")
-
-set(AKONADICALENDAR_LIB_VERSION "5.23.0")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.calendar)
 
-project(Calendar LANGUAGES CXX VERSION 1.1.0)
+project(Calendar LANGUAGES CXX VERSION ${MAUIKIT_VERSION})
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${REQUIRED_KF_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(GenerateExportHeader)
 include(GNUInstallDirs)
+include(FeatureSummary)
+include(CMakePackageConfigHelpers)
+
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings)
-include(FeatureSummary)
-include(ECMPoQmTools)
-include(ECMSetupVersion)
-include(ECMGenerateQmlTypes)
-include(CMakePackageConfigHelpers)
 include(KDEClangFormat)
 include(KDEPackageAppTemplates)
 
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/MauiKitCalendar")
+include(ECMSetupVersion)
+include(ECMGenerateQmlTypes)
+include(ECMGenerateHeaders)
+include(ECMFindQmlModule)
+include(ECMQmlModule)
 
-configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/MauiKitCalendarConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfig.cmake"
-    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
-    PATH_VARS KF5_INCLUDE_INSTALL_DIR CMAKE_INSTALL_PREFIX
-    )
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
+    Core
+    Quick
+    Qml
+    QuickControls2
+    Svg)
 
-    install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfigVersion.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfig.cmake"
-    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-    COMPONENT Devel
-    )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat REQUIRED)
+endif()
 
-install(EXPORT MauiKitCalendarTargets
-    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-    FILE MauiKitCalendarTargets.cmake
-    NAMESPACE MauiKit::)
+find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS
+    I18n
+    CoreAddons
+    Config)
 
-    ecm_setup_version(${PROJECT_VERSION}
+if (QT_MAJOR_VERSION STREQUAL "5")
+    find_package(Qt5QuickCompiler)
+    set_package_properties(Qt5QuickCompiler PROPERTIES
+        DESCRIPTION "Compile QML at build time"
+        TYPE OPTIONAL)
+endif()
+
+find_package(MauiKit${MAUI_MAJOR_VERSION} ${MAUIKIT_VERSION} REQUIRED)
+
+# find_package(KF${KF_MAJOR_VERSION}Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
+# find_package(KF${KF_MAJOR_VERSION}AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
+# find_package(KF${KF_MAJOR_VERSION}CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
+# find_package(KF${KF_MAJOR_VERSION}EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
+
+find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiContact ${AKONADICONTACT_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
+
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}")
+
+ecm_setup_version(${PROJECT_VERSION}
     VARIABLE_PREFIX Calendar
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendarConfigVersion.cmake"
-    SOVERSION ${PROJECT_VERSION_MAJOR}
-    )
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}ConfigVersion.cmake"
+    SOVERSION ${PROJECT_VERSION_MAJOR})
 
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/MauiKitCalendarConfig.cmake.in.${QT_MAJOR_VERSION}"
+    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}Config.cmake"
+    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+    PATH_VARS CMAKE_INSTALL_PREFIX)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Calendar
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}ConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}Config.cmake"
+    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     COMPONENT Devel)
 
+install(EXPORT MauiKitCalendar${MAUI_MAJOR_VERSION}Targets
+    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+    FILE MauiKitCalendar${MAUI_MAJOR_VERSION}Targets.cmake
+    NAMESPACE MauiKit${MAUI_MAJOR_VERSION}::)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Quick Qml QuickControls2 Svg)
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n CoreAddons Config)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Calendar
+    COMPONENT Devel)
 
-find_package(Qt5QuickCompiler)
-set_package_properties(Qt5QuickCompiler PROPERTIES
-    DESCRIPTION "Compile QML at build time"
-    TYPE OPTIONAL
-    )
+add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
+ki18n_install(po)
 
-find_package(MauiKit)
+add_subdirectory(src)
 
-# find_package(KF5Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
-# find_package(KF5AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
-# find_package(KF5CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
-# find_package(KF5EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
-
-
-find_package(KPim5Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim5AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
-find_package(KPim5AkonadiContact ${AKONADICONTACT_LIB_VERSION} REQUIRED)
-find_package(KPim5AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
-find_package(KPim5CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
-
-    add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
-    ki18n_install(po)
-
-    add_subdirectory(src)
-
-    file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
