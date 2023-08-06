@@ -1,0 +1,181 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit-calendar package.
+#
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit-calendar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-05-09 00:46+0000\n"
+"PO-Revision-Date: 2023-08-05 07:45+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.08.1\n"
+
+#: src/code/calendarmanager.cpp:615
+#, kde-format
+msgid "Move occurrence(s)"
+msgstr "Flytta förekomst(er)"
+
+#: src/code/calendarmanager.cpp:620
+#, kde-format
+msgid ""
+"Unable to add the exception item to the calendar. No change will be done."
+msgstr ""
+"Kan inte lägga till undantagsposten i kalendern. Ingen ändring kommer att "
+"göras."
+
+#: src/code/calendarmanager.cpp:660
+#, kde-format
+msgid "Delete task and its sub-tasks"
+msgstr "Ta bort aktivitet och dess delaktivitet"
+
+#: src/code/calendarmanager.cpp:663
+#, kde-format
+msgid "Delete task and make sub-tasks independent"
+msgstr "Ta bort aktivitet och gör delaktiviteter oberoende"
+
+#: src/code/calendarmanager.cpp:824
+#, kde-format
+msgctxt "@title:window"
+msgid "Properties of Calendar %1"
+msgstr "Egenskaper för kalender %1"
+
+#: src/code/incidencewrapper.cpp:135
+#: src/code/models/incidenceoccurrencemodel.cpp:410
+#: src/code/models/todosortfilterproxymodel.cpp:134
+#, kde-format
+msgid "Task"
+msgstr "Aktivitet"
+
+#: src/code/lib/colorproxymodel.cpp:82
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Offline)"
+msgstr "%1 (nerkopplad)"
+
+#: src/code/lib/colorproxymodel.cpp:85
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Default)"
+msgstr "%1 (förval)"
+
+#: src/code/models/todosortfilterproxymodel.cpp:146
+#, kde-format
+msgctxt "List separator"
+msgid ", "
+msgstr ", "
+
+#: src/code/models/todosortfilterproxymodel.cpp:164
+#, kde-format
+msgid "No set date"
+msgstr "Inget inställt datum"
+
+#: src/code/models/todosortfilterproxymodel.cpp:168
+#, kde-format
+msgid "Overdue"
+msgstr "Försenad"
+
+#: src/code/models/todosortfilterproxymodel.cpp:174
+#: src/controls/DayGridView.qml:181
+#, kde-format
+msgid "Today"
+msgstr "Idag"
+
+#: src/code/models/todosortfilterproxymodel.cpp:197
+#, kde-format
+msgctxt "Please retain space"
+msgid " at %1"
+msgstr " %1"
+
+#: src/code/models/todosortfilterproxymodel.cpp:198
+#, kde-format
+msgctxt "Please retain parenthesis and space"
+msgid " (overdue)"
+msgstr " (försenad)"
+
+#: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
+#, kde-format
+msgid "Done"
+msgstr "Klar"
+
+#: src/controls/EventPage.qml:48
+#, kde-format
+msgid "Info"
+msgstr "Information"
+
+#: src/controls/EventPage.qml:52
+#, kde-format
+msgid "Description"
+msgstr "Beskrivning"
+
+#: src/controls/EventPage.qml:68
+#, kde-format
+msgid "Calendar"
+msgstr "Kalender"
+
+#: src/controls/EventPage.qml:108
+#, kde-format
+msgid "Time"
+msgstr "Tid"
+
+#: src/controls/EventPage.qml:112
+#, kde-format
+msgid "All day"
+msgstr "Hela dagen"
+
+#: src/controls/EventPage.qml:131
+#, kde-format
+msgid "Start"
+msgstr "Start"
+
+#: src/controls/EventPage.qml:173
+#, kde-format
+msgid "End"
+msgstr "Slut"
+
+#: src/controls/EventPage.qml:212
+#, kde-format
+msgid "TimeZone"
+msgstr "Tidszon"
+
+#: src/controls/HourlyView.qml:99
+#, kde-format
+msgid "Previous Week"
+msgstr "Föregående vecka"
+
+#: src/controls/HourlyView.qml:106
+#, kde-format
+msgid "Next Week"
+msgstr "Nästa vecka"
+
+#: src/controls/HourlyView.qml:113
+#, kde-format
+msgid "Now"
+msgstr "Nu"
+
+#: src/controls/HourlyView.qml:371
+#, kde-format
+msgctxt "@action:button"
+msgid "Reset"
+msgstr "Återställ"
+
+#: src/controls/HourlyView.qml:384
+#, kde-format
+msgid "All day or Multi day"
+msgstr "Alla dagar eller flera dagar"
+
+#: src/controls/TimePicker.qml:42
+#, kde-format
+msgid "AM"
+msgstr "FM"
+
+#: src/controls/TimePicker.qml:49
+#, kde-format
+msgid "PM"
+msgstr "EM"
