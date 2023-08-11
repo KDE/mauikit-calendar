@@ -32,7 +32,6 @@ if (QT_MAJOR_VERSION STREQUAL "5")
 endif()
 
 ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
-
     controls.${QT_MAJOR_VERSION}/CollectionComboBox.qml
     controls.${QT_MAJOR_VERSION}/DateComboBox.qml
     controls.${QT_MAJOR_VERSION}/DatePicker.qml
@@ -112,5 +111,3 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/calendar_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Calendar
     COMPONENT Devel)
-
-
