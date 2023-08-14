@@ -8,9 +8,9 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/code
     ${CMAKE_CURRENT_SOURCE_DIR}/code/models)
 
-ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" VERSION 3.0 CLASSNAME MauiCalendarPlugin)
+ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" CLASSNAME MauiCalendarPlugin)
 
-set(lib_SRCS    
+set(lib_SRCS
     code/plugin.cpp
     code/calendarmanager.cpp
     code/incidencewrapper.cpp
@@ -74,7 +74,7 @@ target_include_directories(MauiKitCalendar${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_
 target_link_libraries(
     MauiKitCalendar${MAUI_MAJOR_VERSION}
     PRIVATE
-    
+
     MauiKit${MAUI_MAJOR_VERSION}
     kalendar_lib
     Qt${QT_MAJOR_VERSION}::Core
@@ -93,7 +93,7 @@ target_link_libraries(
     # KF5::AkonadiXml
     # KF5::CalendarSupport
     # KF5::Contacts
-        
+
     KF${KF_MAJOR_VERSION}::CalendarCore
     KF${KF_MAJOR_VERSION}::Contacts
 
