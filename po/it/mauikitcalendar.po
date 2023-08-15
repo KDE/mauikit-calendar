@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-09 00:46+0000\n"
+"POT-Creation-Date: 2023-08-15 00:44+0000\n"
 "PO-Revision-Date: 2023-05-08 17:49+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -82,7 +82,7 @@ msgid "Overdue"
 msgstr "Scaduta"
 
 #: src/code/models/todosortfilterproxymodel.cpp:174
-#: src/controls/DayGridView.qml:181
+#: src/controls.5/DayGridView.qml:181 src/controls/DayGridView.qml:181
 #, kde-format
 msgid "Today"
 msgstr "Oggi"
@@ -99,83 +99,84 @@ msgctxt "Please retain parenthesis and space"
 msgid " (overdue)"
 msgstr " (scaduta)"
 
+#: src/controls.5/DatePicker.qml:62 src/controls.5/TimePicker.qml:60
 #: src/controls/DatePicker.qml:62 src/controls/TimePicker.qml:60
 #, kde-format
 msgid "Done"
 msgstr "Completato"
 
-#: src/controls/EventPage.qml:48
+#: src/controls.5/EventPage.qml:48 src/controls/EventPage.qml:48
 #, kde-format
 msgid "Info"
 msgstr "Informazioni"
 
-#: src/controls/EventPage.qml:52
+#: src/controls.5/EventPage.qml:52 src/controls/EventPage.qml:52
 #, kde-format
 msgid "Description"
 msgstr "Descrizione"
 
-#: src/controls/EventPage.qml:68
+#: src/controls.5/EventPage.qml:68 src/controls/EventPage.qml:68
 #, kde-format
 msgid "Calendar"
 msgstr "Calendario"
 
-#: src/controls/EventPage.qml:108
+#: src/controls.5/EventPage.qml:108 src/controls/EventPage.qml:108
 #, kde-format
 msgid "Time"
 msgstr "Orario"
 
-#: src/controls/EventPage.qml:112
+#: src/controls.5/EventPage.qml:112 src/controls/EventPage.qml:112
 #, kde-format
 msgid "All day"
 msgstr "Tutto il giorno"
 
-#: src/controls/EventPage.qml:131
+#: src/controls.5/EventPage.qml:131 src/controls/EventPage.qml:131
 #, kde-format
 msgid "Start"
 msgstr "Inizio"
 
-#: src/controls/EventPage.qml:173
+#: src/controls.5/EventPage.qml:173 src/controls/EventPage.qml:173
 #, kde-format
 msgid "End"
 msgstr "Fine"
 
-#: src/controls/EventPage.qml:212
+#: src/controls.5/EventPage.qml:212 src/controls/EventPage.qml:212
 #, kde-format
 msgid "TimeZone"
 msgstr "Fuso orario"
 
-#: src/controls/HourlyView.qml:99
+#: src/controls.5/HourlyView.qml:99 src/controls/HourlyView.qml:99
 #, kde-format
 msgid "Previous Week"
 msgstr "Settimana precedente"
 
-#: src/controls/HourlyView.qml:106
+#: src/controls.5/HourlyView.qml:106 src/controls/HourlyView.qml:106
 #, kde-format
 msgid "Next Week"
 msgstr "Settimana successiva"
 
-#: src/controls/HourlyView.qml:113
+#: src/controls.5/HourlyView.qml:113 src/controls/HourlyView.qml:113
 #, kde-format
 msgid "Now"
 msgstr "Adesso"
 
-#: src/controls/HourlyView.qml:371
+#: src/controls.5/HourlyView.qml:371 src/controls/HourlyView.qml:371
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset"
 msgstr "Ripristina"
 
-#: src/controls/HourlyView.qml:384
+#: src/controls.5/HourlyView.qml:384 src/controls/HourlyView.qml:384
 #, kde-format
 msgid "All day or Multi day"
 msgstr "Tutto il giorno o più giorni"
 
-#: src/controls/TimePicker.qml:42
+#: src/controls.5/TimePicker.qml:42 src/controls/TimePicker.qml:42
 #, kde-format
 msgid "AM"
 msgstr "AM"
 
-#: src/controls/TimePicker.qml:49
+#: src/controls.5/TimePicker.qml:49 src/controls/TimePicker.qml:49
 #, kde-format
 msgid "PM"
 msgstr "PM"
