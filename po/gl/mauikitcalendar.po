@@ -27,7 +27,7 @@ msgstr "Mover as aparicións"
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
 msgstr ""
-"Non se pode engadir o elemento de excepción ao calendario. Non se aplicará "
+"Non é posíbel engadir o elemento de excepción ao calendario. Non se aplicará "
 "ningún cambio."
 
 #: src/code/calendarmanager.cpp:660
