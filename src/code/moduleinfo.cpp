@@ -1,6 +1,7 @@
 #include "moduleinfo.h"
 #include <QString>
 #include "../calendar_version.h"
+#include <akonadi_version.h>
 
 QString MauiKitCalendar::versionString()
 {
@@ -9,7 +10,7 @@ QString MauiKitCalendar::versionString()
 
 QString MauiKitCalendar::buildVersion()
 {
-    return GIT_BRANCH+QStringLiteral("/")+GIT_COMMIT_HASH;
+    return QStringLiteral(GIT_BRANCH)+QStringLiteral("/")+QStringLiteral(GIT_COMMIT_HASH);
 }
 
 KAboutComponent MauiKitCalendar::aboutData()
@@ -18,5 +19,14 @@ KAboutComponent MauiKitCalendar::aboutData()
                          QStringLiteral("Calendar and events viewer controls."),
                          QStringLiteral(Calendar_VERSION_STRING),
                          QStringLiteral("http://mauikit.org"),
+                         KAboutLicense::LicenseKey::LGPL_V3);
+}
+
+KAboutComponent MauiKitCalendar::aboutAkonadi()
+{
+    return KAboutComponent(QStringLiteral("Akonadi"),
+                         QStringLiteral("The PIM Storage Service."),
+                         QStringLiteral(AKONADI_VERSION_STRING),
+                         QStringLiteral("https://community.kde.org/KDE_PIM/Akonadi"),
                          KAboutLicense::LicenseKey::LGPL_V3);
 }
