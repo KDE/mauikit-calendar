@@ -72,6 +72,7 @@ include(ECMGenerateQmlTypes)
 include(ECMGenerateHeaders)
 include(ECMFindQmlModule)
 include(ECMQmlModule)
+include(ECMSourceVersionControl)
 
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Core
@@ -108,6 +109,28 @@ find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADICALENDAR_LIB_VERSIO
 find_package(KPim${KF_MAJOR_VERSION}AkonadiContact ${AKONADICONTACT_LIB_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
+
+if(${ECM_SOURCE_UNDER_VERSION_CONTROL})
+    execute_process(
+        COMMAND git rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+    # Get the latest abbreviated commit hash of the working branch
+    execute_process(
+        COMMAND git log -1 --format=%h
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_HASH
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+    add_definitions(-DGIT_COMMIT_HASH="${GIT_COMMIT_HASH}")
+    add_definitions(-DGIT_BRANCH="${GIT_BRANCH}")
+
+else()
+    add_definitions(-DGIT_COMMIT_HASH="${PROJECT_VERSION}")
+    add_definitions(-DGIT_BRANCH="Stable")
+endif()
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/MauiKitCalendar${MAUI_MAJOR_VERSION}")
 

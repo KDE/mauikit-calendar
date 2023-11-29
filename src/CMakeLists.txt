@@ -12,6 +12,7 @@ ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calenda
 
 set(lib_SRCS
     code/plugin.cpp
+    code/moduleinfo.cpp
     code/calendarmanager.cpp
     code/incidencewrapper.cpp
     code/filter.cpp
@@ -26,6 +27,9 @@ set(lib_SRCS
     code/collection.cpp
     code/collectioncomboboxmodel.cpp
     code/mimetypes.cpp)
+
+set(lib_HDRS
+    code/moduleinfo.h)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     qtquick_compiler_add_resources(lib_QML_QRC controls.5/qml.qrc)
@@ -107,7 +111,7 @@ ecm_generate_qmltypes(org.mauikit.calendar 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}
 install(TARGETS MauiKitCalendar${MAUI_MAJOR_VERSION} EXPORT MauiKitCalendar${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
-#    ${lib_HDRS}
+    ${lib_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/calendar_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Calendar
     COMPONENT Devel)
