@@ -21,10 +21,10 @@
 #include <Akonadi/CollectionDeleteJob>
 #include <Akonadi/CollectionIdentificationAttribute>
 #include <Akonadi/CollectionModifyJob>
-#include <Akonadi/CollectionPropertiesDialog>
+// #include <Akonadi/CollectionPropertiesDialog>
 #include <Akonadi/CollectionUtils>
 #include <Akonadi/Control>
-#include <Akonadi/ETMViewStateSaver>
+// #include <Akonadi/ETMViewStateSaver>
 #include <Akonadi/EntityDisplayAttribute>
 #include <Akonadi/EntityRightsFilterModel>
 #include <Akonadi/EntityTreeModel>
@@ -99,7 +99,7 @@ private Q_SLOTS:
         for (int i = start; i <= end; ++i) {
             // qCDebug(KORGANIZER_LOG) << "checking " << i << parent << mCheckableProxy->index(i, 0, parent).data().toString();
             const QModelIndex index = mCheckableProxy->index(i, 0, parent);
-            QMetaObject::invokeMethod(this, "setCheckState", Qt::QueuedConnection, QGenericReturnArgument(), Q_ARG(QPersistentModelIndex, index));
+            QMetaObject::invokeMethod(this, "setCheckState", Qt::QueuedConnection, Q_ARG(QPersistentModelIndex, index));
         }
     }
 
@@ -203,11 +203,11 @@ CalendarManager::CalendarManager(QObject *parent)
     connect(m_changer->history(), &Akonadi::History::changed, this, &CalendarManager::undoRedoDataChanged);
 
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
-    mCollectionSelectionModelStateSaver = new Akonadi::ETMViewStateSaver(); // not a leak
-    KConfigGroup selectionGroup = config->group("GlobalCollectionSelection");
-    mCollectionSelectionModelStateSaver->setView(nullptr);
-    mCollectionSelectionModelStateSaver->setSelectionModel(m_calendar->checkableProxyModel()->selectionModel());
-    mCollectionSelectionModelStateSaver->restoreState(selectionGroup);
+    // mCollectionSelectionModelStateSaver = new Akonadi::ETMViewStateSaver(); // not a leak
+    // KConfigGroup selectionGroup = config->group("GlobalCollectionSelection");
+    // mCollectionSelectionModelStateSaver->setView(nullptr);
+    // mCollectionSelectionModelStateSaver->setSelectionModel(m_calendar->checkableProxyModel()->selectionModel());
+    // mCollectionSelectionModelStateSaver->restoreState(selectionGroup);
 
     m_allCalendars = new Akonadi::CollectionFilterProxyModel(this);
     m_allCalendars->setSourceModel(collectionFilter);
@@ -306,14 +306,14 @@ CalendarManager::~CalendarManager()
 
 void CalendarManager::save()
 {
-    Akonadi::ETMViewStateSaver treeStateSaver;
-    KSharedConfig::Ptr config = KSharedConfig::openConfig();
-    KConfigGroup group = config->group("GlobalCollectionSelection");
-    treeStateSaver.setView(nullptr);
-    treeStateSaver.setSelectionModel(m_calendar->checkableProxyModel()->selectionModel());
-    treeStateSaver.saveState(group);
-
-    config->sync();
+    // Akonadi::ETMViewStateSaver treeStateSaver;
+    // KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    // KConfigGroup group = config->group("GlobalCollectionSelection");
+    // treeStateSaver.setView(nullptr);
+    // treeStateSaver.setSelectionModel(m_calendar->checkableProxyModel()->selectionModel());
+    // treeStateSaver.saveState(group);
+    // 
+    // config->sync();
 }
 
 void CalendarManager::delayedInit()
@@ -819,10 +819,10 @@ void CalendarManager::deleteCollection(qint64 collectionId)
 
 void CalendarManager::editCollection(qint64 collectionId)
 { // TODO: Reimplement this dialog in QML
-    auto collection = m_calendar->collection(collectionId);
-    QPointer<Akonadi::CollectionPropertiesDialog> dlg = new Akonadi::CollectionPropertiesDialog(collection);
-    dlg->setWindowTitle(i18nc("@title:window", "Properties of Calendar %1", collection.name()));
-    dlg->show();
+    // auto collection = m_calendar->collection(collectionId);
+    // QPointer<Akonadi::CollectionPropertiesDialog> dlg = new Akonadi::CollectionPropertiesDialog(collection);
+    // dlg->setWindowTitle(i18nc("@title:window", "Properties of Calendar %1", collection.name()));
+    // dlg->show();
 }
 
 void CalendarManager::toggleCollection(qint64 collectionId)

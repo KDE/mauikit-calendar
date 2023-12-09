@@ -26,6 +26,6 @@ target_link_libraries(kalendar_lib PUBLIC
 
     KPim${KF_MAJOR_VERSION}::AkonadiCore
     KPim${KF_MAJOR_VERSION}::AkonadiCalendar
-    KPim${KF_MAJOR_VERSION}::AkonadiContact
+    KPim${KF_MAJOR_VERSION}::AkonadiContactCore
     KPim${KF_MAJOR_VERSION}::CalendarUtils
 )
