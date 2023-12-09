@@ -36,6 +36,8 @@ if (QT_MAJOR_VERSION STREQUAL "5")
 endif()
 
 ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
+    controls.${QT_MAJOR_VERSION}/labelutils.js
+    controls.${QT_MAJOR_VERSION}/dateutils.js
     controls.${QT_MAJOR_VERSION}/CollectionComboBox.qml
     controls.${QT_MAJOR_VERSION}/DateComboBox.qml
     controls.${QT_MAJOR_VERSION}/DatePicker.qml
@@ -103,7 +105,7 @@ target_link_libraries(
 
     KPim${KF_MAJOR_VERSION}::AkonadiCore
     KPim${KF_MAJOR_VERSION}::AkonadiCalendar
-    KPim${KF_MAJOR_VERSION}::AkonadiContact)
+    KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
 
 ecm_finalize_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
 ecm_generate_qmltypes(org.mauikit.calendar 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar)
