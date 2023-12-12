@@ -11,4 +11,4 @@ namespace MauiKitCalendar
    CALENDAR_EXPORT KAboutComponent aboutData();
 
    CALENDAR_EXPORT KAboutComponent aboutAkonadi();
-};
+}
