@@ -32,7 +32,11 @@ set(lib_HDRS
     code/moduleinfo.h)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
-    qtquick_compiler_add_resources(lib_QML_QRC controls.5/qml.qrc)
+ if(QUICK_COMPILER)
+        qtquick_compiler_add_resources(lib_QML_QRC controls.5/qml.qrc)
+    else()
+        qt5_add_resources(lib_QML_QRC controls.5/qml.qrc)
+    endif()
 endif()
 
 ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
@@ -63,7 +67,12 @@ target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}
 add_library(MauiKit${MAUI_MAJOR_VERSION}::Calendar ALIAS MauiKitCalendar${MAUI_MAJOR_VERSION})
 
 if (QT_MAJOR_VERSION STREQUAL "5")
-    target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE ${lib_QML_QRC})
+    if(QUICK_COMPILER)
+        target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE ${lib_QML_QRC})
+
+        add_definitions(-DQUICK_COMPILER)
+        target_compile_definitions(MauiKitCalendar${MAUI_MAJOR_VERSION} PUBLIC QUICK_COMPILER)
+    endif()
 endif()
 
 generate_export_header(MauiKitCalendar${MAUI_MAJOR_VERSION} BASE_NAME Calendar)

@@ -3,9 +3,9 @@
 // SPDX-FileCopyrightText: 2021 Claudio Cambra <claudio.cambra@gmail.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-import QtQuick 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls 
 
 import org.mauikit.controls 1.3 as Maui
 import org.mauikit.calendar 1.0 as Kalendar
@@ -217,8 +217,8 @@ Pane
                 {
                     padding: Maui.Style.units.smallSpacing
                     //                                        verticalAlignment: Qt.AlignTop
-                    labelTxt.horizontalAlignment: Qt.AlignHCenter
-                    label: DateUtils.getWeek(startDate, Qt.locale().firstDayOfWeek)
+                    label.horizontalAlignment: Qt.AlignHCenter
+                    text: DateUtils.getWeek(startDate, Qt.locale().firstDayOfWeek)
                     //                    background: Rectangle {
                     //                        Kirigami.Theme.inherit: false
                     //                        Kirigami.Theme.colorSet: Kirigami.Theme.View

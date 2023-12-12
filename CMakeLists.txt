@@ -23,6 +23,12 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     set(MAUI_MAJOR_VERSION 4)
 
     set(MAUIKIT_VERSION 4.0.0)
+    
+    set(AKONADI_LIB_VERSION "5.240.85")    
+set(AKONADICALENDAR_LIB_VERSION "5.240.85")
+set(AKONADI_CONTACT_VERSION "5.240.85")
+set(AKONADIMIME_LIB_VERSION "5.240.85")
+set(CALENDARUTILS_LIB_VERSION "5.240.85")
 
 else()
     set(REQUIRED_QT_VERSION 5.15.2)
@@ -32,20 +38,13 @@ else()
     set(MAUI_MAJOR_VERSION 3)
 
     set(MAUIKIT_VERSION 3.1.0)
-
-    # set(AKONADI_VERSION 5.20.1)
-    # set(AKONADI_CONTACT_VERSION 5.20.0)
     
-set(AKONADI_LIB_VERSION "5.240.85")
-set(AKONADICALENDAR_LIB_VERSION "5.240.85")
-set(AKONADI_CONTACT_VERSION "5.240.85")
-set(AKONADIMIME_LIB_VERSION "5.240.85")
-set(CALENDARUTILS_LIB_VERSION "5.240.85")
+set(AKONADI_LIB_VERSION "5.24.40")
+set(AKONADICALENDAR_LIB_VERSION "5.24.40")
+set(AKONADI_CONTACT_VERSION "5.24.40")
+set(AKONADIMIME_LIB_VERSION "5.24.40")
+set(CALENDARUTILS_LIB_VERSION "5.24.40")
 
-    # set(CALENDARSUPPORT_LIB_VERSION 5.19)
-    # set(EVENTVIEW_LIB_VERSION 5.19.0)
-    # set(CALENDARUTILS_LIB_VERSION 5.23.0)
-    # set(AKONADICALENDAR_LIB_VERSION 5.23.0)
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
@@ -80,6 +79,17 @@ include(ECMFindQmlModule)
 include(ECMQmlModule)
 include(ECMSourceVersionControl)
 
+option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
+##option to be removed in qt6 migration
+if (QT_MAJOR_VERSION STREQUAL "5")
+    option(QUICK_COMPILER ON)
+    if(ANDROID OR WIN32 OR APPLE)
+        set(QUICK_COMPILER ON)
+    endif()
+else()
+    option(QUICK_COMPILER OFF)
+endif()
+
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Core
     Quick
@@ -96,25 +106,31 @@ find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS
     CoreAddons
     Config)
 
-if (QT_MAJOR_VERSION STREQUAL "5")
-    find_package(Qt5QuickCompiler)
-    set_package_properties(Qt5QuickCompiler PROPERTIES
-        DESCRIPTION "Compile QML at build time"
-        TYPE OPTIONAL)
-endif()
-
 find_package(MauiKit${MAUI_MAJOR_VERSION} ${MAUIKIT_VERSION} REQUIRED)
 
-# find_package(KF${KF_MAJOR_VERSION}Akonadi ${AKONADI_VERSION} CONFIG REQUIRED)
-# find_package(KF${KF_MAJOR_VERSION}AkonadiContact ${AKONADI_CONTACT_VERSION} CONFIG REQUIRED)
-# find_package(KF${KF_MAJOR_VERSION}CalendarSupport ${CALENDARSUPPORT_LIB_VERSION} CONFIG REQUIRED)
-# find_package(KF${KF_MAJOR_VERSION}EventViews ${EVENTVIEW_LIB_VERSION} CONFIG REQUIRED)
+if (QT_MAJOR_VERSION STREQUAL "6")
 
 find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}AkonadiContactCore ${AKONADI_CONTACT_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
 find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
+else()
+find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiContact ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_LIB_VERSION} REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${AKONADI_LIB_VERSION} REQUIRED)
+endif()
+
+if (QT_MAJOR_VERSION STREQUAL "5")
+    if(QUICK_COMPILER)
+        find_package(Qt5QuickCompiler)
+        set_package_properties(Qt5QuickCompiler PROPERTIES
+            DESCRIPTION "Compile QML at build time"
+            TYPE OPTIONAL)
+    endif()
+endif()
 
 if(${ECM_SOURCE_UNDER_VERSION_CONTROL})
     execute_process(
@@ -168,7 +184,9 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
     COMPONENT Devel)
 
 add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
+if(${QT_MAJOR_VERSION} STREQUAL 5) ##for now skip installing translations for mauikit4 to avoid packaging conflicts with translation files
 ki18n_install(po)
+endif()
 
 add_subdirectory(src)
 
