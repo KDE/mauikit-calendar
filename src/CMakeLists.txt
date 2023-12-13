@@ -100,22 +100,17 @@ target_link_libraries(
     KF${KF_MAJOR_VERSION}::CoreAddons
     KF${KF_MAJOR_VERSION}::ConfigCore
 
-    # KF5::CalendarCore
-    # KF5::AkonadiCore
-    # KF5::AkonadiCalendar
-    # KF5::AkonadiContact
-    # KF5::AkonadiAgentBase
-    # KF5::AkonadiXml
-    # KF5::CalendarSupport
-    # KF5::Contacts
-
     KF${KF_MAJOR_VERSION}::CalendarCore
     KF${KF_MAJOR_VERSION}::Contacts
 
     KPim${KF_MAJOR_VERSION}::AkonadiCore
-    KPim${KF_MAJOR_VERSION}::AkonadiCalendar
-    KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
+    KPim${KF_MAJOR_VERSION}::AkonadiCalendar)
 
+    if (QT_MAJOR_VERSION STREQUAL "5")
+    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContact)
+else()
+    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
+endif()
 ecm_finalize_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
 ecm_generate_qmltypes(org.mauikit.calendar 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar)
 

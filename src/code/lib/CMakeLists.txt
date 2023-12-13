@@ -23,9 +23,12 @@ target_link_libraries(kalendar_lib PUBLIC
     KF${KF_MAJOR_VERSION}::ConfigWidgets
     KF${KF_MAJOR_VERSION}::Contacts
     KF${KF_MAJOR_VERSION}::ItemModels
-
     KPim${KF_MAJOR_VERSION}::AkonadiCore
     KPim${KF_MAJOR_VERSION}::AkonadiCalendar
-    KPim${KF_MAJOR_VERSION}::AkonadiContactCore
-    KPim${KF_MAJOR_VERSION}::CalendarUtils
-)
+    KPim${KF_MAJOR_VERSION}::CalendarUtils)
+
+     if (QT_MAJOR_VERSION STREQUAL "5")
+    target_link_libraries(kalendar_lib PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContact)
+else()
+    target_link_libraries(kalendar_lib PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
+endif()
