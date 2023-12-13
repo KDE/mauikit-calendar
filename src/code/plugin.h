@@ -14,7 +14,7 @@ public:
     QUrl resolveFileUrl(const QString &filePath) const
     {
         #ifdef QUICK_COMPILER
-        return QStringLiteral("qrc:/maui/calendar/") + filePath;
+        return QUrl(QStringLiteral("qrc:/maui/calendar/") + filePath);
 #else
         return QUrl(baseUrl().toString() + QStringLiteral("/") + filePath);
 #endif
