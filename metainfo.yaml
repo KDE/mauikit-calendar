@@ -1,16 +1,9 @@
 maintainer: milohr
-fancyname: MauiKit Accounts
-description: QtQuick plugin for online accounts management
+fancyname: MauiKit Calendar
+description: QtQuick plugin for calendar and events management
 platforms:
     - name: Linux
     - name: FreeBSD
-    - name: Android
-    - name: iOS
-      note: maintainer needed
-    - name: Windows
-      note: maintainer needed
-    - name: macOS
-      note: maintainer needed
 public_lib: true
 deprecated: false
 type: functional
@@ -27,21 +20,8 @@ public_source_dirs:  # optional, default to src, must be a list
   - src/controls.6
 public_example_dirs: examples
 libraries:
-    - cmake: MauiKit4::Accounts
-cmakename: MauiKitAccounts4
+    - cmake: MauiKit4::Calendar
+cmakename: MauiKitCalendar4
 
 group_info:
     name: mauikit
-    fancyname: MauiKit Frameworks
-    maintainer: milohr
-    mailinglist: '' # doesn't exist?
-    platforms:
-      - Linux
-      - FreeBSD (partial)
-      - Windows (unmantained)
-      - macOS (unmantained)
-      - Android
-    description: Provides utilities to build applications according to the Maui style
-    long_description:
-        - The MauiKit Framework is build on top of the KDE frameworks and provides tools for building
-          convergent applications according to the Maui guidelines.
