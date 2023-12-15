@@ -8,7 +8,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/code
     ${CMAKE_CURRENT_SOURCE_DIR}/code/models)
 
-ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" CLASSNAME MauiCalendarPlugin)
+ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" CLASS_NAME MauiCalendarPlugin)
 
 set(lib_SRCS
     code/plugin.cpp

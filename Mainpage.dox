@@ -1,6 +1,5 @@
 /*
  *  This file is part of MauiKit
- *  SPDX-FileCopyrightText: 2016 Marco Martin <mart@kde.org>
  *  SPDX-FileCopyrightText: 2023 Camilo Higuita <milo.h@aol.com>
  *
  *  SPDX-License-Identifier: LGPL-2.0-or-later
@@ -14,7 +13,7 @@ MauiKit Calendar is a set of <a href="https://doc.qt.io/qt-6/qtquick-index.html"
 
 You can think of this - and other - MauiKit Frameworks as KDE's KParts, where each module accomplishes a specific function and when plug together you can quickly assemble a more powerful app. Components like this one are usually used and shared among multiple Maui Applications.
 
-@image html vvave_accounts.png "Vvave app using the Calendar controls"
+@image html agenda.png "Agenda app using the Calendar controls"
 
 @section component Components
 MauiKit Calendar has a set of visual controls and helper classes. Some of the visual controls are a graphical representation of the classes or wrappers that consume the API models.
