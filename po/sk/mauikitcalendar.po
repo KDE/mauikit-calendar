@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikitcalendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:29+0000\n"
+"POT-Creation-Date: 2023-12-18 00:41+0000\n"
 "PO-Revision-Date: 2023-03-12 11:26+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -35,12 +35,6 @@ msgstr ""
 #: src/code/calendarmanager.cpp:663
 #, kde-format
 msgid "Delete task and make sub-tasks independent"
-msgstr ""
-
-#: src/code/calendarmanager.cpp:824
-#, kde-format
-msgctxt "@title:window"
-msgid "Properties of Calendar %1"
 msgstr ""
 
 #: src/code/incidencewrapper.cpp:135
@@ -79,7 +73,7 @@ msgid "Overdue"
 msgstr "Po termíne"
 
 #: src/code/models/todosortfilterproxymodel.cpp:174
-#: src/controls.5/DayGridView.qml:181
+#: src/controls.5/DayGridView.qml:181 src/controls.6/DayGridView.qml:181
 #, kde-format
 msgid "Today"
 msgstr "Dnes"
@@ -98,82 +92,83 @@ msgid " (overdue)"
 msgstr "Po termíne"
 
 #: src/controls.5/DatePicker.qml:62 src/controls.5/TimePicker.qml:60
+#: src/controls.6/DatePicker.qml:62 src/controls.6/TimePicker.qml:60
 #, kde-format
 msgid "Done"
 msgstr "Hotovo"
 
-#: src/controls.5/EventPage.qml:48
+#: src/controls.5/EventPage.qml:48 src/controls.6/EventPage.qml:48
 #, kde-format
 msgid "Info"
 msgstr "Info"
 
-#: src/controls.5/EventPage.qml:52
+#: src/controls.5/EventPage.qml:52 src/controls.6/EventPage.qml:52
 #, kde-format
 msgid "Description"
 msgstr "Popis"
 
-#: src/controls.5/EventPage.qml:68
+#: src/controls.5/EventPage.qml:68 src/controls.6/EventPage.qml:68
 #, kde-format
 msgid "Calendar"
 msgstr "Kalendár"
 
-#: src/controls.5/EventPage.qml:108
+#: src/controls.5/EventPage.qml:108 src/controls.6/EventPage.qml:108
 #, kde-format
 msgid "Time"
 msgstr "Čas"
 
-#: src/controls.5/EventPage.qml:112
+#: src/controls.5/EventPage.qml:112 src/controls.6/EventPage.qml:112
 #, kde-format
 msgid "All day"
 msgstr "Celý deň"
 
-#: src/controls.5/EventPage.qml:131
+#: src/controls.5/EventPage.qml:131 src/controls.6/EventPage.qml:131
 #, kde-format
 msgid "Start"
 msgstr "Spustiť"
 
-#: src/controls.5/EventPage.qml:173
+#: src/controls.5/EventPage.qml:173 src/controls.6/EventPage.qml:173
 #, kde-format
 msgid "End"
 msgstr "Koniec"
 
-#: src/controls.5/EventPage.qml:212
+#: src/controls.5/EventPage.qml:212 src/controls.6/EventPage.qml:212
 #, kde-format
 msgid "TimeZone"
 msgstr "Časové pásmo"
 
-#: src/controls.5/HourlyView.qml:99
+#: src/controls.5/HourlyView.qml:99 src/controls.6/HourlyView.qml:99
 #, kde-format
 msgid "Previous Week"
 msgstr "Predchádzajúci týždeň"
 
-#: src/controls.5/HourlyView.qml:106
+#: src/controls.5/HourlyView.qml:106 src/controls.6/HourlyView.qml:106
 #, kde-format
 msgid "Next Week"
 msgstr "Nasledujúci týždeň"
 
-#: src/controls.5/HourlyView.qml:113
+#: src/controls.5/HourlyView.qml:113 src/controls.6/HourlyView.qml:113
 #, kde-format
 msgid "Now"
 msgstr "Teraz"
 
-#: src/controls.5/HourlyView.qml:371
+#: src/controls.5/HourlyView.qml:371 src/controls.6/HourlyView.qml:371
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset"
 msgstr "Obnoviť"
 
-#: src/controls.5/HourlyView.qml:384
+#: src/controls.5/HourlyView.qml:384 src/controls.6/HourlyView.qml:384
 #, kde-format
 msgid "All day or Multi day"
 msgstr ""
 
-#: src/controls.5/TimePicker.qml:42
+#: src/controls.5/TimePicker.qml:42 src/controls.6/TimePicker.qml:42
 #, kde-format
 msgid "AM"
 msgstr "dop."
 
-#: src/controls.5/TimePicker.qml:49
+#: src/controls.5/TimePicker.qml:49 src/controls.6/TimePicker.qml:49
 #, kde-format
 msgid "PM"
 msgstr "odp."
