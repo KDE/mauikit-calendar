@@ -1,13 +1,13 @@
-import QtQuick 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.15 as QQC2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls 
 
 import org.mauikit.controls 1.3 as Maui
 import org.mauikit.calendar 1.0 as Kalendar
 
 import "dateutils.js" as DateUtils
 
-QQC2.Page
+Page
 {
     id: control
 
@@ -42,7 +42,7 @@ QQC2.Page
         columnSpacing: control.compact ? 0 : Maui.Style.space.small
         rowSpacing:  control.compact ? 0 : Maui.Style.space.small
 
-        QQC2.ButtonGroup 
+        ButtonGroup 
         {
             buttons: _daysGrid.children
         }
@@ -51,7 +51,7 @@ QQC2.Page
         {
             model: _monthModel
 
-            delegate: QQC2.Button
+            delegate: Button
             {
                 Maui.Theme.colorSet: Maui.Theme.View
                 Maui.Theme.inherit: false

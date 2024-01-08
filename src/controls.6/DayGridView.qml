@@ -191,8 +191,7 @@ onDoubleClicked: root.dateDoubleClicked(gridItem.date)
                                             {
                                                 Layout.alignment: gridItem.width > Maui.Style.units.gridUnit * 5 ? Qt.AlignRight | Qt.AlignTop : Qt.AlignCenter
 
-                                                text: gridItem.date.toLocaleDateString(Qt.locale(), gridItem.day == 1 ?
-                                                                                           "d MMM" : "d")
+                                                text: gridItem.date.toLocaleDateString(Qt.locale(), gridItem.day == 1 && root.isWide ? "d MMM" : "d")
                                                 renderType: Text.QtRendering
                                                 horizontalAlignment: Qt.AlignHCenter
 

@@ -23,7 +23,7 @@ IncidenceOccurrenceModel::IncidenceOccurrenceModel(QObject *parent)
     QObject::connect(&m_resetThrottlingTimer, &QTimer::timeout, this, &IncidenceOccurrenceModel::resetFromSource);
 
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
-    KConfigGroup rColorsConfig(config, "Resources Colors");
+    KConfigGroup rColorsConfig(config, QStringLiteral("Resources Colors"));
     m_colorWatcher = KConfigWatcher::create(config);
 
     // This is quite slow; would be nice to find a quicker way
@@ -448,7 +448,7 @@ Akonadi::ETMCalendar::Ptr IncidenceOccurrenceModel::calendar() const
 void IncidenceOccurrenceModel::loadColors()
 {
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
-    KConfigGroup rColorsConfig(config, "Resources Colors");
+    KConfigGroup rColorsConfig(config, QStringLiteral("Resources Colors"));
     const QStringList colorKeyList = rColorsConfig.keyList();
 
     for (const QString &key : colorKeyList) {

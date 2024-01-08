@@ -5,6 +5,7 @@
 #pragma once
 
 #include <QObject>
+#include <QQmlEngine>
 
 #include <akonadi-calendar_version.h>
 #if AKONADICALENDAR_VERSION > QT_VERSION_CHECK(5, 19, 41)
@@ -37,6 +38,9 @@ class ColorProxyModel;
 class CalendarManager : public QObject
 {
     Q_OBJECT
+// QML_ELEMENT
+//     QML_SINGLETON   
+        
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(QAbstractProxyModel *collections READ collections CONSTANT)
     Q_PROPERTY(QAbstractItemModel *todoCollections READ todoCollections CONSTANT)

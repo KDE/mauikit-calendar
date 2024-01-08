@@ -24,7 +24,9 @@
 
 void MauiCalendarPlugin::registerTypes(const char *uri)
 {
+        Q_ASSERT(uri == QByteArray("org.mauikit.calendar"));
     //C++ STUFF
+        
        qmlRegisterType<IncidenceWrapper>(uri, 1, 0, "IncidenceWrapper");
     //        qmlRegisterType<AttendeesModel>(uri, 1, 0, "AttendeesModel");
     qmlRegisterType<MultiDayIncidenceModel>(uri, 1, 0, "MultiDayIncidenceModel");
@@ -96,3 +98,6 @@ void MauiCalendarPlugin::registerTypes(const char *uri)
     
 
 }
+
+#include "plugin.moc"
+#include "moc_plugin.cpp"

@@ -1,3 +1,4 @@
+// Copyright (C) 2023 Camilo Higuita, <milo.h@kaol.com>
 // Copyright (C) 2018 Michael Bohlender, <bohlender@kolabsys.com>
 // Copyright (C) 2018 Christian Mollekopf, <mollekopf@kolabsys.com>
 // SPDX-FileCopyrightText: 2021 Claudio Cambra <claudio.cambra@gmail.com>
@@ -12,38 +13,112 @@ import org.mauikit.calendar 1.0 as Kalendar
 
 import "dateutils.js" as DateUtils
 
+/**
+* @inherit QtQuick.Controls.Pane
+* @brief A calendar view of the days of a month.
+* 
+* @image html monthview_sizes.png "MonthView control with different sizes"
+* 
+* 
+* @code
+* 
+* @endcode
+*/
 Pane
 {
     id: control
 
     padding : 0
 
+    /**
+    * @brief
+    */
     readonly property date currentDate: new Date()
+    
+    /**
+    * @brief
+    */
     readonly property string title: Qt.formatDate(pathView.currentItem.firstDayOfMonth, "MMM yyyy")
 
+    /**
+    * @brief
+    */
     property var openOccurrence: ({})
+    
+    /**
+    * @brief
+    */
     property var filter: {
         "collectionId": -1,
         "tags": [],
         "name": ""
     }
 
-    property alias model :  _monthViewModel
+    /**
+    * @brief
+    */
+    readonly property alias model :  _monthViewModel
+    
+    /**
+    * @brief
+    */
     property date startDate
+    
+    /**
+    * @brief
+    */
     property date firstDayOfMonth
+    
+    /**
+    * @brief
+    */
     property int month
+    
+    /**
+    * @brief
+    */
     property int year
+    
+    /**
+    * @brief
+    */
     property bool initialMonth: true
 
+    /**
+    * @brief
+    */
     readonly property bool isLarge: width > Maui.Style.units.gridUnit * 40
+    
+    /**
+    * @brief
+    */
     readonly property bool isTiny: width < Maui.Style.units.gridUnit * 18
 
+    /**
+    * @brief
+    */
     property date selectedDate : currentDate
 
+    /**
+    * @brief
+    */
     property bool dragDropEnabled: true
     
+    property alias interactive : pathView.interactive
+    
+    /**
+    * @brief
+    */
     signal dateClicked(var date)
+    
+    /**
+    * @brief
+    */
     signal dateRightClicked(var date)
+    
+    /**
+    * @brief
+    */
     signal dateDoubleClicked(var date)
 
     background: Rectangle
@@ -57,45 +132,18 @@ Pane
         scale: Kalendar.InfiniteCalendarViewModel.MonthScale
     }
 
-    function setToDate(date, isInitialMonth = true)
-    {
-        control.initialMonth = isInitialMonth;
-        let monthDiff = date.getMonth() - pathView.currentItem.firstDayOfMonth.getMonth() + (12 * (date.getFullYear() - pathView.currentItem.firstDayOfMonth.getFullYear()))
-        let newIndex = pathView.currentIndex + monthDiff;
-
-        let firstItemDate = pathView.model.data(pathView.model.index(1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
-        let lastItemDate = pathView.model.data(pathView.model.index(pathView.model.rowCount() - 1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
-
-        while(firstItemDate >= date) {
-            pathView.model.addDates(false)
-            firstItemDate = pathView.model.data(pathView.model.index(1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
-            newIndex = 0;
-        }
-        if(firstItemDate < date && newIndex === 0) {
-            newIndex = date.getMonth() - firstItemDate.getMonth() + (12 * (date.getFullYear() - firstItemDate.getFullYear())) + 1;
-        }
-
-        while(lastItemDate <= date) {
-            pathView.model.addDates(true)
-            lastItemDate = pathView.model.data(pathView.model.index(pathView.model.rowCount() - 1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
-        }
-        pathView.currentIndex = newIndex;
-    }
-
-
-
-   contentItem:  PathView
+contentItem:  PathView
     {
         id: pathView
 
         flickDeceleration: Maui.Style.units.longDuration
-
+interactive: Maui.Handy.isMobile
 
         preferredHighlightBegin: 0.5
-                   preferredHighlightEnd: 0.5
+                preferredHighlightEnd: 0.5
 
 //                   highlightRangeMode: ListView.StrictlyEnforceRange
-                   highlightMoveDuration: 0
+                highlightMoveDuration: 0
 
 
         //        spacing: 10
@@ -231,24 +279,64 @@ Pane
         }
     }
 
+    /**
+    * @brief
+    */
     function resetDate()
     {
         setToDate(new Date())
     }
 
+    /**
+    * @brief
+    */
     function nextDate()
     {
         setToDate(DateUtils.addMonthsToDate(pathView.currentItem.firstDayOfMonth, 1))
     }
-
+    
+    /**
+    * @brief
+    */
     function previousDate()
     {
         setToDate(DateUtils.addMonthsToDate(pathView.currentItem.firstDayOfMonth, -1))
     }
 
+    /**
+    * @brief
+    */
     function addMonthsToDate(date, days)
     {
         return DateUtils.addMonthsToDate(date, days)
+    }
+        
+    /**
+    * @brief
+    */
+    function setToDate(date, isInitialMonth = true)
+    {
+        control.initialMonth = isInitialMonth;
+        let monthDiff = date.getMonth() - pathView.currentItem.firstDayOfMonth.getMonth() + (12 * (date.getFullYear() - pathView.currentItem.firstDayOfMonth.getFullYear()))
+        let newIndex = pathView.currentIndex + monthDiff;
+
+        let firstItemDate = pathView.model.data(pathView.model.index(1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
+        let lastItemDate = pathView.model.data(pathView.model.index(pathView.model.rowCount() - 1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
+
+        while(firstItemDate >= date) {
+            pathView.model.addDates(false)
+            firstItemDate = pathView.model.data(pathView.model.index(1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
+            newIndex = 0;
+        }
+        if(firstItemDate < date && newIndex === 0) {
+            newIndex = date.getMonth() - firstItemDate.getMonth() + (12 * (date.getFullYear() - firstItemDate.getFullYear())) + 1;
+        }
+
+        while(lastItemDate <= date) {
+            pathView.model.addDates(true)
+            lastItemDate = pathView.model.data(pathView.model.index(pathView.model.rowCount() - 1,0), Kalendar.InfiniteCalendarViewModel.FirstDayOfMonthRole);
+        }
+        pathView.currentIndex = newIndex;
     }
 }
 

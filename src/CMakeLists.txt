@@ -8,25 +8,11 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/code
     ${CMAKE_CURRENT_SOURCE_DIR}/code/models)
 
-ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} URI "org.mauikit.calendar" CLASS_NAME MauiCalendarPlugin)
-
-set(lib_SRCS
-    code/plugin.cpp
-    code/moduleinfo.cpp
-    code/calendarmanager.cpp
-    code/incidencewrapper.cpp
-    code/filter.cpp
-    #    code/agentconfiguration.cpp
-    # code/models/todosortfilterproxymodel.cpp
-    code/models/infinitecalendarviewmodel.cpp
-    code/models/hourlyincidencemodel.cpp
-    code/models/multidayincidencemodel.cpp
-    code/models/incidenceoccurrencemodel.cpp
-    code/models/monthmodel.cpp
-    code/models/timezonelistmodel.cpp
-    code/collection.cpp
-    code/collectioncomboboxmodel.cpp
-    code/mimetypes.cpp)
+    # add_library(MauiKitCalendar${MAUI_MAJOR_VERSION} )
+ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} 
+VERSION 1.0 
+URI "org.mauikit.calendar"
+CLASS_NAME MauiCalendarPlugin)
 
 set(lib_HDRS
     code/moduleinfo.h)
@@ -39,6 +25,52 @@ if (QT_MAJOR_VERSION STREQUAL "5")
     endif()
 endif()
 
+target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}
+    PRIVATE
+     code/plugin.cpp
+    code/plugin.h
+    
+    code/moduleinfo.cpp
+    code/moduleinfo.h
+    
+    code/calendarmanager.cpp
+    code/calendarmanager.h
+    
+    code/incidencewrapper.cpp
+        code/incidencewrapper.h
+
+    code/filter.cpp
+        code/filter.h
+
+    #    code/agentconfiguration.cpp
+    # code/models/todosortfilterproxymodel.cpp
+    code/models/infinitecalendarviewmodel.cpp
+    code/models/infinitecalendarviewmodel.h
+
+    code/models/hourlyincidencemodel.cpp
+    code/models/hourlyincidencemodel.h
+    
+    code/models/multidayincidencemodel.cpp
+    code/models/multidayincidencemodel.h
+    
+    code/models/incidenceoccurrencemodel.cpp
+    code/models/incidenceoccurrencemodel.h
+    
+    code/models/monthmodel.cpp
+    code/models/monthmodel.h
+    
+    code/models/timezonelistmodel.cpp
+    code/models/timezonelistmodel.h
+    
+    code/collection.cpp
+    code/collection.h
+    
+    code/collectioncomboboxmodel.cpp
+    code/collectioncomboboxmodel.h
+    
+    code/mimetypes.cpp
+     code/mimetypes.h)
+     
 ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/labelutils.js
     controls.${QT_MAJOR_VERSION}/dateutils.js
@@ -58,11 +90,11 @@ ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/KalendarUiUtils.qml
     controls.${QT_MAJOR_VERSION}/TimePicker.qml)
 
-target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}
-    PRIVATE
-    ${lib_SRCS}
-    ${model_SRCS}
-    ${lib_QML_QRC})
+    
+    # target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}plugin
+    # PRIVATE
+    # code/plugin.cpp
+    # code/plugin.h)
 
 add_library(MauiKit${MAUI_MAJOR_VERSION}::Calendar ALIAS MauiKitCalendar${MAUI_MAJOR_VERSION})
 
@@ -86,8 +118,7 @@ target_include_directories(MauiKitCalendar${MAUI_MAJOR_VERSION}
 
 target_include_directories(MauiKitCalendar${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
 
-target_link_libraries(
-    MauiKitCalendar${MAUI_MAJOR_VERSION}
+target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION}
     PRIVATE
 
     MauiKit${MAUI_MAJOR_VERSION}
@@ -105,14 +136,24 @@ target_link_libraries(
 
     KPim${KF_MAJOR_VERSION}::AkonadiCore
     KPim${KF_MAJOR_VERSION}::AkonadiCalendar)
-
+    
+    # target_link_libraries(
+    # MauiKitCalendar${MAUI_MAJOR_VERSION}plugin
+    # PRIVATE
+    #     KF${KF_MAJOR_VERSION}::CalendarCore
+    # KF${KF_MAJOR_VERSION}::Contacts
+    # KPim${KF_MAJOR_VERSION}::AkonadiCore
+    # KPim${KF_MAJOR_VERSION}::AkonadiCalendar)
+    
     if (QT_MAJOR_VERSION STREQUAL "5")
-    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContact)
+    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE
+    KPim${KF_MAJOR_VERSION}::AkonadiContact)
 else()
-    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE  KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
+    target_link_libraries(MauiKitCalendar${MAUI_MAJOR_VERSION} PRIVATE
+    KPim${KF_MAJOR_VERSION}::AkonadiContactCore)
 endif()
+
 ecm_finalize_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
-ecm_generate_qmltypes(org.mauikit.calendar 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/calendar)
 
 install(TARGETS MauiKitCalendar${MAUI_MAJOR_VERSION} EXPORT MauiKitCalendar${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 

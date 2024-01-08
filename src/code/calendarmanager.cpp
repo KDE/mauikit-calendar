@@ -291,7 +291,7 @@ CalendarManager::CalendarManager(QObject *parent)
     };
     connect(m_flatCollectionTreeModel, &QSortFilterProxyModel::rowsInserted, this, refreshColors);
 
-    KConfigGroup rColorsConfig(config, "Resources Colors");
+    KConfigGroup rColorsConfig(config, QStringLiteral("Resources Colors"));
     m_colorWatcher = KConfigWatcher::create(config);
     connect(m_colorWatcher.data(), &KConfigWatcher::configChanged, this, &CalendarManager::collectionColorsChanged);
 
@@ -845,3 +845,5 @@ Q_DECLARE_METATYPE(KCalendarCore::Incidence::Ptr)
 #endif
 
 #include "calendarmanager.moc"
+#include "moc_calendarmanager.cpp"
+
