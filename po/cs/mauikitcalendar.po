@@ -172,7 +172,3 @@ msgstr "dop."
 #, kde-format
 msgid "PM"
 msgstr "odp."
-
-#~ msgctxt "@title:window"
-#~ msgid "Properties of Calendar %1"
-#~ msgstr "Vlastnosti kalendáře %1"
