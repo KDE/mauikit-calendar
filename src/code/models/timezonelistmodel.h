@@ -5,11 +5,12 @@
 
 #include <QAbstractListModel>
 #include <QVector>
+#include <QQmlEngine>
 
 class TimeZoneListModel : public QAbstractListModel
 {
     Q_OBJECT
-
+    QML_ELEMENT
 public:
     enum Roles { IdRole = Qt::UserRole + 1 };
     Q_ENUM(Roles);

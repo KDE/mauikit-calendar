@@ -1,19 +1,45 @@
-import QtQuick 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.15
+import QtQuick 
+import QtQuick.Layouts 
+import QtQuick.Controls 
 
 import org.mauikit.controls 1.3 as Maui
 import org.mauikit.calendar 1.0 as Kalendar
 
-
+/**
+ * @inherit QtQuick.Controls.Page
+ * @brief A control for visualizing the months of the year.
+ * 
+ * @image html monthsgrid.png
+ * 
+ * @code 
+ * MC.MonthsGrid
+ * {
+ *    id: _view
+ *    anchors.centerIn: parent
+ *    selectedMonth: 5
+ * }
+ * @endcode
+ */
 Page
 {
     id:  control
     background: null
     padding: Maui.Style.defaultPadding
     
+    /**
+     * @brief
+     */
     property int selectedMonth
     
+    /**
+     * @brief
+     */
+    property alias columns : monthsGrid.columns
+    
+    /**
+     * @brief
+     * @param month
+     */
     signal monthSelected(var month)
     
     contentItem: GridLayout

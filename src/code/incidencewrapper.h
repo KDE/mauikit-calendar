@@ -17,7 +17,7 @@
 #include <KFormat>
 #include <QByteArray>
 #include <QObject>
-
+#include <QQmlEngine>
 /**
  * This class is a wrapper for a KCalendarCore::Incidence::Ptr object.
  * We can use it to create new incidences, or create incidence pointers from
@@ -29,6 +29,7 @@
 class IncidenceWrapper : public QObject, public Akonadi::ItemMonitor
 {
     Q_OBJECT
+    QML_ELEMENT
     
     // Akonadi properties
     Q_PROPERTY(Akonadi::Item incidenceItem READ incidenceItem WRITE setIncidenceItem NOTIFY incidenceItemChanged)

@@ -177,6 +177,9 @@ CalendarManager::CalendarManager(QObject *parent)
     : QObject(parent)
     , m_calendar(nullptr)
 {
+        qRegisterMetaType<Akonadi::CollectionFilterProxyModel *>(); 
+
+    
     if (!Akonadi::Control::start()) {
         qApp->exit(-1);
         return;

@@ -7,7 +7,8 @@
 class MauiCalendarPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+    Q_PLUGIN_METADATA(IID QQmlEngineExtensionInterface_iid)
+
 public:
     void registerTypes(const char *uri) override;
 

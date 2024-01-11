@@ -109,17 +109,17 @@ find_package(MauiKit${MAUI_MAJOR_VERSION} ${MAUIKIT_VERSION} REQUIRED)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
 
-find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiContactCore ${AKONADI_CONTACT_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADICALENDAR_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiContactCore ${AKONADI_CONTACT_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADIMIME_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${CALENDARUTILS_LIB_VERSION} REQUIRED)
 else()
-find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiContact ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_LIB_VERSION} REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}Akonadi ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiCalendar ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiContact ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_LIB_VERSION} REQUIRED)
+    find_package(KPim${KF_MAJOR_VERSION}CalendarUtils ${AKONADI_LIB_VERSION} REQUIRED)
 endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -184,7 +184,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calendar_version.h"
 
 add_definitions(-DTRANSLATION_DOMAIN="mauikitcalendar")
 if(${QT_MAJOR_VERSION} STREQUAL 5) ##for now skip installing translations for mauikit4 to avoid packaging conflicts with translation files
-ki18n_install(po)
+    ki18n_install(po)
 endif()
 
 add_subdirectory(src)

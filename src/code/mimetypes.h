@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <QObject>
+#include <QQmlEngine>
 namespace Akonadi
 {
 namespace Quick
@@ -10,6 +11,8 @@ namespace Quick
 class MimeTypes : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_PROPERTY(QString calendar READ calendar CONSTANT)
     Q_PROPERTY(QString todo READ todo CONSTANT)
     Q_PROPERTY(QString address READ address CONSTANT)

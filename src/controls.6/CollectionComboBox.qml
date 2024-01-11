@@ -1,17 +1,17 @@
 // SPDX-FileCopyrightText: 2022 Carl Schwan <carl@carlschwan.eu>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15 as QQC2
+import QtQuick
+import QtQuick.Controls 
 import org.mauikit.calendar 1.0 as Cal
 import org.mauikit.controls 1.3 as Maui
 
 /**
  * Special combobox control that allows to choose a collection.
  * The collection displayed can be filtered using the \p mimeTypeFilter
- * and \p accessRightsFilter properties.
+ * and @p accessRightsFilter properties.
  */
-QQC2.ComboBox
+ComboBox
 {
     id: comboBox
 

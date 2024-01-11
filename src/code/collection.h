@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <QObject>
+#include <QQmlEngine>
 #include <Akonadi/EntityTreeModel>
 
 namespace Akonadi
@@ -12,6 +13,8 @@ namespace Quick
 class Collection : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("")
 public:
     enum Right {
         ReadOnly = 0x0, ///< Can only read items or subcollection of this collection

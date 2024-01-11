@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <QObject>
-
+#include <QQmlEngine>
 /**
  * This class is used to enable cross-compatible filtering of data in models.
  */

@@ -6,12 +6,15 @@
 #include <QAbstractListModel>
 #include <QDate>
 #include <QLocale>
+#include <QQmlEngine>
 #include <memory>
 
 /// Month model exposing month days and events to a QML view.
 class MonthModel : public QAbstractListModel
 {
     Q_OBJECT
+    QML_ELEMENT
+    
     /// The year number of the month.
     Q_PROPERTY(int year READ year WRITE setYear NOTIFY yearChanged)
     /// The month number of the month.

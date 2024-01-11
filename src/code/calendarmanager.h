@@ -25,8 +25,8 @@ class IncidenceWrapper;
 
 namespace Akonadi
 {
-class ETMViewStateSaver;
-class EntityRightsFilterModel;
+    class ETMViewStateSaver;
+    class EntityRightsFilterModel;
 }
 
 class KDescendantsProxyModel;
@@ -38,9 +38,9 @@ class ColorProxyModel;
 class CalendarManager : public QObject
 {
     Q_OBJECT
-// QML_ELEMENT
-//     QML_SINGLETON   
-        
+    QML_ELEMENT
+    QML_SINGLETON   
+    
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(QAbstractProxyModel *collections READ collections CONSTANT)
     Q_PROPERTY(QAbstractItemModel *todoCollections READ todoCollections CONSTANT)
@@ -53,22 +53,22 @@ class CalendarManager : public QObject
     Q_PROPERTY(Akonadi::ETMCalendar::Ptr calendar READ calendar CONSTANT)
     Q_PROPERTY(Akonadi::IncidenceChanger *incidenceChanger READ incidenceChanger CONSTANT)
     Q_PROPERTY(QVariantMap undoRedoData READ undoRedoData NOTIFY undoRedoDataChanged)
-
+    
 public:
     static CalendarManager *instance();
     explicit CalendarManager(QObject *parent = nullptr);
     ~CalendarManager() override;
-
+    
     KCheckableProxyModel *collectionSelectionProxyModel() const;
     void setCollectionSelectionProxyModel(KCheckableProxyModel *);
-
+    
     bool loading() const;
     QAbstractProxyModel *collections();
     QAbstractItemModel *todoCollections();
     QAbstractItemModel *viewCollections();
     QVector<qint64> enabledTodoCollections();
     void refreshEnabledTodoCollections();
-
+    
     Q_INVOKABLE void save();
     Akonadi::ETMCalendar::Ptr calendar() const;
     Akonadi::IncidenceChanger *incidenceChanger() const;
@@ -79,11 +79,11 @@ public:
     Q_INVOKABLE qint64 defaultCalendarId(IncidenceWrapper *incidenceWrapper);
     Q_INVOKABLE int getCalendarSelectableIndex(IncidenceWrapper *incidenceWrapper);
     QVariantMap undoRedoData();
-
+    
     Q_INVOKABLE Akonadi::Item incidenceItem(KCalendarCore::Incidence::Ptr incidence) const;
     Akonadi::Item incidenceItem(const QString &uid) const;
     KCalendarCore::Incidence::List childIncidences(const QString &uid) const;
-
+    
     Q_INVOKABLE void addIncidence(IncidenceWrapper *incidenceWrapper);
     Q_INVOKABLE void editIncidence(IncidenceWrapper *incidenceWrapper);
     Q_INVOKABLE void updateIncidenceDates(IncidenceWrapper *incidenceWrapper,
@@ -101,16 +101,16 @@ public:
     Q_INVOKABLE QVariant getIncidenceSubclassed(KCalendarCore::Incidence::Ptr incidencePtr);
     Q_INVOKABLE void undoAction();
     Q_INVOKABLE void redoAction();
-
+    
     Q_INVOKABLE void updateAllCollections();
     Q_INVOKABLE void updateCollection(qint64 collectionId);
     Q_INVOKABLE void deleteCollection(qint64 collectionId);
     Q_INVOKABLE void editCollection(qint64 collectionId);
     Q_INVOKABLE void toggleCollection(qint64 collectionId);
-
+    
 private Q_SLOTS:
     void delayedInit();
-
+    
 Q_SIGNALS:
     void loadingChanged();
     void calendarChanged();
@@ -119,7 +119,7 @@ Q_SIGNALS:
     void updateIncidenceDatesCompleted();
     void collectionColorsChanged();
     void incidenceAdded();
-
+    
 private:
     Akonadi::ETMCalendar::Ptr m_calendar = nullptr;
     Akonadi::IncidenceChanger *m_changer = nullptr;
