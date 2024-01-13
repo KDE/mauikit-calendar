@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-18 00:41+0000\n"
+"POT-Creation-Date: 2024-01-13 01:45+0000\n"
 "PO-Revision-Date: 2023-05-08 17:49+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 23.04.0\n"
 
-#: src/code/calendarmanager.cpp:615
+#: src/code/calendarmanager.cpp:618
 #, kde-format
 msgid "Move occurrence(s)"
 msgstr "Sposta le occorrenze"
 
-#: src/code/calendarmanager.cpp:620
+#: src/code/calendarmanager.cpp:623
 #, kde-format
 msgid ""
 "Unable to add the exception item to the calendar. No change will be done."
@@ -30,12 +30,12 @@ msgstr ""
 "Impossibile aggiungere l'eccezione al calendario. Non è stato apportato "
 "alcun cambiamento."
 
-#: src/code/calendarmanager.cpp:660
+#: src/code/calendarmanager.cpp:663
 #, kde-format
 msgid "Delete task and its sub-tasks"
 msgstr "Elimina attività e le sue sottoattività"
 
-#: src/code/calendarmanager.cpp:663
+#: src/code/calendarmanager.cpp:666
 #, kde-format
 msgid "Delete task and make sub-tasks independent"
 msgstr "Elimina le attività e rendi indipendenti le sottoattività"
@@ -94,42 +94,42 @@ msgid " (overdue)"
 msgstr " (scaduta)"
 
 #: src/controls.5/DatePicker.qml:62 src/controls.5/TimePicker.qml:60
-#: src/controls.6/DatePicker.qml:62 src/controls.6/TimePicker.qml:60
+#: src/controls.6/DatePicker.qml:110 src/controls.6/TimePicker.qml:99
 #, kde-format
 msgid "Done"
 msgstr "Completato"
 
-#: src/controls.5/EventPage.qml:48 src/controls.6/EventPage.qml:48
+#: src/controls.5/EventPage.qml:48 src/controls.6/EventPage.qml:59
 #, kde-format
 msgid "Info"
 msgstr "Informazioni"
 
-#: src/controls.5/EventPage.qml:52 src/controls.6/EventPage.qml:52
+#: src/controls.5/EventPage.qml:52 src/controls.6/EventPage.qml:63
 #, kde-format
 msgid "Description"
 msgstr "Descrizione"
 
-#: src/controls.5/EventPage.qml:68 src/controls.6/EventPage.qml:68
+#: src/controls.5/EventPage.qml:68 src/controls.6/EventPage.qml:79
 #, kde-format
 msgid "Calendar"
 msgstr "Calendario"
 
-#: src/controls.5/EventPage.qml:108 src/controls.6/EventPage.qml:108
+#: src/controls.5/EventPage.qml:108 src/controls.6/EventPage.qml:117
 #, kde-format
 msgid "Time"
 msgstr "Orario"
 
-#: src/controls.5/EventPage.qml:112 src/controls.6/EventPage.qml:112
+#: src/controls.5/EventPage.qml:112 src/controls.6/EventPage.qml:121
 #, kde-format
 msgid "All day"
 msgstr "Tutto il giorno"
 
-#: src/controls.5/EventPage.qml:131 src/controls.6/EventPage.qml:131
+#: src/controls.5/EventPage.qml:131 src/controls.6/EventPage.qml:141
 #, kde-format
 msgid "Start"
 msgstr "Inizio"
 
-#: src/controls.5/EventPage.qml:173 src/controls.6/EventPage.qml:173
+#: src/controls.5/EventPage.qml:173 src/controls.6/EventPage.qml:178
 #, kde-format
 msgid "End"
 msgstr "Fine"
@@ -165,12 +165,12 @@ msgstr "Ripristina"
 msgid "All day or Multi day"
 msgstr "Tutto il giorno o più giorni"
 
-#: src/controls.5/TimePicker.qml:42 src/controls.6/TimePicker.qml:42
+#: src/controls.5/TimePicker.qml:42 src/controls.6/TimePicker.qml:81
 #, kde-format
 msgid "AM"
 msgstr "AM"
 
-#: src/controls.5/TimePicker.qml:49 src/controls.6/TimePicker.qml:49
+#: src/controls.5/TimePicker.qml:49 src/controls.6/TimePicker.qml:88
 #, kde-format
 msgid "PM"
 msgstr "PM"
