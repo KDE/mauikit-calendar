@@ -10,6 +10,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/code
 ##for qt6 split the library from the plugin
 if (QT_MAJOR_VERSION STREQUAL "6")
     add_library(MauiKitCalendar${MAUI_MAJOR_VERSION})
+    set_source_files_properties(controls.${QT_MAJOR_VERSION}/KalendarUiUtils.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 endif()
 
 ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION} 
