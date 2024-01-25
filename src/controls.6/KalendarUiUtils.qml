@@ -4,18 +4,18 @@
 pragma Singleton
 
 import QtQuick 2.15
-import org.kde.kirigami 2.14 as Kirigami
+
+import org.mauikit.controls as Maui
 
 import "dateutils.js" as DateUtils
 import "labelutils.js" as LabelUtils
-import org.mauikit.calendar 1.0
-//import org.kde.kalendar.contact 1.0
+import org.mauikit.calendar 
 
 QtObject {
     id: utilsObject
     property var appMain
 
-    readonly property bool darkMode: LabelUtils.isDarkColor(Kirigami.Theme.backgroundColor)
+    readonly property bool darkMode: LabelUtils.isDarkColor(Maui.Theme.backgroundColor)
 
     function switchView(newViewComponent, viewSettings) {
         if(appMain.pageStack.layers.depth > 1) {
@@ -42,7 +42,7 @@ QtObject {
     }
 
     function editorToUse() {
-        if (!Kirigami.Settings.isMobile) {
+        if (!Maui.Handy.isMobile) {
             appMain.editorWindowedLoaderItem.active = true
             return appMain.editorWindowedLoaderItem.item.incidenceEditorPage
         } else {
@@ -169,8 +169,8 @@ QtObject {
             incidenceWrapper: incidenceWrapper,
             deleteDate: deleteDate
         }, {
-            width: Kirigami.Units.gridUnit * 32,
-            height: Kirigami.Units.gridUnit * 6
+            width: Maui.Style.units.gridUnit * 32,
+            height: Maui.Style.units.gridUnit * 6
         });
 
         openDialogWindow.Keys.escapePressed.connect(function() { openDialogWindow.closeDialog() });
@@ -210,8 +210,8 @@ QtObject {
                 caughtDelegate: caughtDelegate,
                 allDay: allDay
             }, {
-                width: Kirigami.Units.gridUnit * 34,
-                height: Kirigami.Units.gridUnit * 6,
+                width: Maui.Style.units.gridUnit * 34,
+                height:  Maui.Style.units.gridUnit * 6,
                 onClosing: onClosingHandler()
             });
 
