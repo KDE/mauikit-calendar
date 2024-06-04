@@ -3,7 +3,7 @@
 
 pragma Singleton
 
-import QtQuick 2.15
+import QtQuick
 
 import org.mauikit.controls as Maui
 
@@ -55,7 +55,7 @@ QtObject {
         let editorToUse = utilsObject.editorToUse();
         if (editorToUse.editMode || !editorToUse.incidenceWrapper) {
             editorToUse.incidenceWrapper = Qt.createQmlObject('import org.kde.kalendar 1.0; IncidenceWrapper {id: incidence}',
-                editorToUse, "incidence");
+                                                              editorToUse, "incidence");
         }
         editorToUse.editMode = false;
 
@@ -100,7 +100,7 @@ QtObject {
         let editorToUse = utilsObject.editorToUse();
         if (editorToUse.editMode || !editorToUse.incidenceWrapper) {
             editorToUse.incidenceWrapper = Qt.createQmlObject('import org.kde.kalendar 1.0; IncidenceWrapper {id: incidence}',
-                editorToUse, "incidence");
+                                                              editorToUse, "incidence");
         }
         editorToUse.editMode = false;
         editorToUse.incidenceWrapper.setNewTodo();
@@ -155,7 +155,7 @@ QtObject {
     function setUpEdit(incidencePtr) {
         let editorToUse = utilsObject.editorToUse();
         editorToUse.incidenceWrapper = Qt.createQmlObject('import org.kde.kalendar 1.0; IncidenceWrapper {id: incidence}',
-            editorToUse, "incidence");
+                                                          editorToUse, "incidence");
         editorToUse.incidenceWrapper.incidenceItem = CalendarManager.incidenceItem(incidencePtr);
         editorToUse.incidenceWrapper.triggerEditMode();
         editorToUse.editMode = true;
@@ -166,19 +166,19 @@ QtObject {
         incidenceWrapper.incidenceItem = CalendarManager.incidenceItem(incidencePtr);
 
         const openDialogWindow = appMain.pageStack.pushDialogLayer(appMain.deleteIncidencePageComponent, {
-            incidenceWrapper: incidenceWrapper,
-            deleteDate: deleteDate
-        }, {
-            width: Maui.Style.units.gridUnit * 32,
-            height: Maui.Style.units.gridUnit * 6
-        });
+                                                                       incidenceWrapper: incidenceWrapper,
+                                                                       deleteDate: deleteDate
+                                                                   }, {
+                                                                       width: Maui.Style.units.gridUnit * 32,
+                                                                       height: Maui.Style.units.gridUnit * 6
+                                                                   });
 
         openDialogWindow.Keys.escapePressed.connect(function() { openDialogWindow.closeDialog() });
     }
 
     function completeTodo(incidencePtr) {
         let todo = Qt.createQmlObject('import org.kde.kalendar 1.0; IncidenceWrapper {id: incidence}',
-            utilsObject, "incidence");
+                                      utilsObject, "incidence");
 
         todo.incidenceItem = CalendarManager.incidenceItem(incidencePtr);
 
@@ -203,17 +203,17 @@ QtObject {
         } else {
             const onClosingHandler = () => { caughtDelegate.caught = false; utilsObject.reenableDragOnCurrentView(); };
             const openDialogWindow = appMain.pageStack.pushDialogLayer(appMain.recurringIncidenceChangePageComponent, {
-                incidenceWrapper: incidenceWrapper,
-                startOffset: startOffset,
-                endOffset: endOffset,
-                occurrenceDate: occurrenceDate,
-                caughtDelegate: caughtDelegate,
-                allDay: allDay
-            }, {
-                width: Maui.Style.units.gridUnit * 34,
-                height:  Maui.Style.units.gridUnit * 6,
-                onClosing: onClosingHandler()
-            });
+                                                                           incidenceWrapper: incidenceWrapper,
+                                                                           startOffset: startOffset,
+                                                                           endOffset: endOffset,
+                                                                           occurrenceDate: occurrenceDate,
+                                                                           caughtDelegate: caughtDelegate,
+                                                                           allDay: allDay
+                                                                       }, {
+                                                                           width: Maui.Style.units.gridUnit * 34,
+                                                                           height:  Maui.Style.units.gridUnit * 6,
+                                                                           onClosing: onClosingHandler()
+                                                                       });
 
             openDialogWindow.Keys.escapePressed.connect(function() { openDialogWindow.closeDialog() });
         }

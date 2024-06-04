@@ -9,6 +9,9 @@
 class Filter : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
+
     Q_PROPERTY(qint64 collectionId READ collectionId WRITE setCollectionId NOTIFY collectionIdChanged)
     Q_PROPERTY(QStringList tags READ tags WRITE setTags NOTIFY tagsChanged)
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)

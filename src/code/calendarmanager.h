@@ -25,8 +25,8 @@ class IncidenceWrapper;
 
 namespace Akonadi
 {
-    class ETMViewStateSaver;
-    class EntityRightsFilterModel;
+class ETMViewStateSaver;
+class EntityRightsFilterModel;
 }
 
 class KDescendantsProxyModel;

@@ -7,36 +7,36 @@ import QtQuick
 import QtQuick.Layouts 
 import QtQuick.Controls 
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 import "dateutils.js" as DateUtils
 
 /**
  * @inherit QtQuick.Controls.Pane
  * @brief A browsing view of the calendar organized by years.
- * 
+ *
  * @image html yearview.png
- * 
- * @code 
+ *
+ * @code
  * Maui.ApplicationWindow
  * {
  *    id: root
  *    title: _view.title
- * 
+ *
  *    Maui.Page
  *    {
  *        anchors.fill: parent
  *        Maui.Controls.showCSD: true
  *        title: root.title
- * 
+ *
  *        MC.YearView
  *        {
  *            id: _view
  *            anchors.fill: parent
- * 
+ *
  *            onSelectedDateChanged: root.title = selectedDate.toString()
- * 
+ *
  *            onMonthClicked: (month) => console.log("Month Clicked, ", month)
  *        }
  *    }
@@ -56,7 +56,7 @@ Pane
      * @brief
      */
     readonly property date currentDate: new Date()
-        
+
     /**
      * @brief
      */
@@ -131,7 +131,7 @@ Pane
             {
                 //                 Maui.Theme.colorSet: Maui.Theme.Button
                 //                 Maui.Theme.inherit: false
-                //                 
+                //
                 id: _monthDelegate
                 year: control.year
                 month: modelData+1
@@ -147,7 +147,7 @@ Pane
                 
                 background: Rectangle
                 {
-                    color:  _monthDelegate.month === control.currentDate.getUTCMonth()+1 ? Maui.Theme.alternateBackgroundColor : (_monthDelegate.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) 
+                    color:  _monthDelegate.month === control.currentDate.getUTCMonth()+1 ? Maui.Theme.alternateBackgroundColor : (_monthDelegate.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
                     radius: Maui.Style.radiusV
                     
                     MouseArea

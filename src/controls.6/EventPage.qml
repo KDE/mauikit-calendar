@@ -2,17 +2,17 @@ import QtQuick
 import QtQml
 import QtQuick.Controls 
 import QtQuick.Layouts 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Cal
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Cal
 
 /**
  * @inherit QtQuick.Controls.Pane
  * @brief A view field for creating a new calendar event.
- * 
+ *
  * @image html eventpage.png
- * 
- * @code 
- * 
+ *
+ * @code
+ *
  * @endcode
  */
 Pane
@@ -48,7 +48,7 @@ Pane
             incidenceEndDateCombo.displayText = incidenceWrapper.incidenceEndDateDisplay;
             incidenceEndTimeCombo.displayText = incidenceWrapper.incidenceEndTimeDisplay;
         }
-    }    
+    }
     
     contentItem: Maui.ScrollColumn
     {
@@ -78,35 +78,35 @@ Pane
             {
                 label1.text: i18n("Calendar")
                 
-                ComboBox 
+                ComboBox
                 {
                     id: calendarCombo
                     Layout.fillWidth: true
                     textRole: "display"
                     valueRole: "collectionColor"
                     
-                    model: Cal.CollectionComboBoxModel 
+                    model: Cal.CollectionComboBoxModel
                     {
                         id: collectionComboBoxModel
                         onCurrentIndexChanged: calendarCombo.currentIndex = currentIndex
                         defaultCollectionId: incidenceWrapper.collectionId;
                         
-                        mimeTypeFilter: if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeEvent) 
-                        {
-                            return [Cal.MimeTypes.calendar]
-                        } else if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeTodo) {
-                            return [Cal.MimeTypes.todo]
-                        }
-                        accessRightsFilter: Cal.Collection.CanCreateItem    
+                        mimeTypeFilter: if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeEvent)
+                                        {
+                                            return [Cal.MimeTypes.calendar]
+                                        } else if (incidenceWrapper.incidenceType === Cal.IncidenceWrapper.TypeTodo) {
+                                            return [Cal.MimeTypes.todo]
+                                        }
+                        accessRightsFilter: Cal.Collection.CanCreateItem
                     }
                     
                     currentIndex: 0
                     onCurrentIndexChanged: if (currentIndex !== -1) {
-                        const collection = model.data(model.index(currentIndex, 0), Cal.Collection.CollectionRole);
-                        if (collection) {
-                            incidenceWrapper.setCollection(collection)
-                        }
-                    }          
+                                               const collection = model.data(model.index(currentIndex, 0), Cal.Collection.CollectionRole);
+                                               if (collection) {
+                                                   incidenceWrapper.setCollection(collection)
+                                               }
+                                           }
                 }
             }
         }
@@ -125,7 +125,7 @@ Pane
                 {
                     id: allDayCheckBox
                     checked: incidenceWrapper.allDay
-                    onToggled: 
+                    onToggled:
                     {
                         if (!checked)
                         {
@@ -142,11 +142,11 @@ Pane
                 
                 Cal.DateComboBox
                 {
-                    id: incidenceStartDateCombo  
+                    id: incidenceStartDateCombo
                     Layout.fillWidth: true
                     displayText: incidenceWrapper.incidenceStartDateDisplay
                     selectedDate: incidenceWrapper.incidenceStart
-                    onDatePicked: 
+                    onDatePicked:
                     {
                         console.log("DATE PCIKED", date.getDate(), date.getMonth(), date.getYear())
                         incidenceWrapper.setIncidenceStartDate(date.getDate(), date.getMonth(), date.getYear())
@@ -179,11 +179,11 @@ Pane
                 
                 Cal.DateComboBox
                 {
-                    id: incidenceEndDateCombo  
+                    id: incidenceEndDateCombo
                     Layout.fillWidth: true
                     displayText: incidenceWrapper.incidenceStartDateDisplay
                     selectedDate: incidenceWrapper.incidenceStart
-                    onDatePicked: 
+                    onDatePicked:
                     {
                         incidenceWrapper.setIncidenceEndDate(date.getDate(), date.getMonth(), date.getYear())
                     }
@@ -198,7 +198,7 @@ Pane
                     timeZoneOffset: incidenceWrapper.endTimeZoneUTCOffsetMins
                     displayText: incidenceWrapper.incidenceEndTimeDisplay
                     selectedTime: incidenceWrapper.incidenceEnd
-                    onTimePicked: 
+                    onTimePicked:
                     {
                         incidenceWrapper.setIncidenceEndTime(hours, minutes)
                     }

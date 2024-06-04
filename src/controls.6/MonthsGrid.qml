@@ -2,16 +2,16 @@ import QtQuick
 import QtQuick.Layouts 
 import QtQuick.Controls 
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 /**
  * @inherit QtQuick.Controls.Page
  * @brief A control for visualizing the months of the year.
- * 
+ *
  * @image html monthsgrid.png
- * 
- * @code 
+ *
+ * @code
  * MC.MonthsGrid
  * {
  *    id: _view
@@ -47,14 +47,14 @@ Page
         id: monthsGrid
         columns: 3
         
-        ButtonGroup 
+        ButtonGroup
         {
             buttons: monthsGrid.children
-        }        
+        }
         
         Repeater
         {
-            model: 12            
+            model: 12
             
             delegate: Button
             {
@@ -62,9 +62,9 @@ Page
                 text: Qt.locale().standaloneMonthName(index)
                 
                 checkable: true
-                checked: control.selectedMonth === index     
+                checked: control.selectedMonth === index
                 
-                onClicked: 
+                onClicked:
                 {
                     control.monthSelected(index)
                 }

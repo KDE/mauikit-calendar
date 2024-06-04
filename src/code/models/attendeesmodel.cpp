@@ -14,16 +14,7 @@
 #include <Akonadi/ItemFetchScope>
 #include <Akonadi/SearchQuery>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <akonadi_version.h>
-#if AKONADI_VERSION >= QT_VERSION_CHECK(5, 19, 40)
 #include <Akonadi/ContactSearchJob>
-#else
-#include <Akonadi/Contact/ContactSearchJob>
-#endif
-#else
-#include <Akonadi/ContactSearchJob>
-#endif
 
 AttendeeStatusModel::AttendeeStatusModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -34,9 +25,9 @@ AttendeeStatusModel::AttendeeStatusModel(QObject *parent)
     for (int i = 0; i < QMetaEnum::fromType<KCalendarCore::Attendee::PartStat>().keyCount(); i++) {
         int value = QMetaEnum::fromType<KCalendarCore::Attendee::PartStat>().value(i);
 
-        // QLatin1String is a workaround for QT_NO_CAST_FROM_ASCII.
-        // Regular expression adds space between every lowercase and Capitalised character then does the same
-        // for capitalised letters together, e.g. ThisIsATest. Not a problem right now, but best to be safe.
+               // QLatin1String is a workaround for QT_NO_CAST_FROM_ASCII.
+               // Regular expression adds space between every lowercase and Capitalised character then does the same
+               // for capitalised letters together, e.g. ThisIsATest. Not a problem right now, but best to be safe.
         const QLatin1String enumName = QLatin1String(QMetaEnum::fromType<KCalendarCore::Attendee::PartStat>().key(i));
         QString displayName = enumName;
         displayName.replace(lowerToCapitalSep, QStringLiteral("\\1 \\2"));
@@ -68,10 +59,9 @@ QVariant AttendeeStatusModel::data(const QModelIndex &idx, int role) const
 
 QHash<int, QByteArray> AttendeeStatusModel::roleNames() const
 {
-    return {
-        {DisplayNameRole, QByteArrayLiteral("display")},
-        {ValueRole, QByteArrayLiteral("value")},
-    };
+    return {{DisplayNameRole, QByteArrayLiteral("display")},
+            {ValueRole, QByteArrayLiteral("value")},
+            };
 }
 
 int AttendeeStatusModel::rowCount(const QModelIndex &) const
@@ -185,7 +175,7 @@ bool AttendeesModel::setData(const QModelIndex &idx, const QVariant &value, int 
         return false;
     }
 
-    // When modifying attendees, remember you cannot change them directly from m_incidence->attendees (is a const).
+           // When modifying attendees, remember you cannot change them directly from m_incidence->attendees (is a const).
     KCalendarCore::Attendee::List currentAttendees(m_incidence->attendees());
 
     switch (role) {
@@ -254,18 +244,18 @@ bool AttendeesModel::setData(const QModelIndex &idx, const QVariant &value, int 
 QHash<int, QByteArray> AttendeesModel::roleNames() const
 {
     return {
-        {CuTypeRole, QByteArrayLiteral("cuType")},
-        {DelegateRole, QByteArrayLiteral("delegate")},
-        {DelegatorRole, QByteArrayLiteral("delegator")},
-        {EmailRole, QByteArrayLiteral("email")},
-        {FullNameRole, QByteArrayLiteral("fullName")},
-        {IsNullRole, QByteArrayLiteral("isNull")},
-        {NameRole, QByteArrayLiteral("name")},
-        {RoleRole, QByteArrayLiteral("role")},
-        {RSVPRole, QByteArrayLiteral("rsvp")},
-        {StatusRole, QByteArrayLiteral("status")},
-        {UidRole, QByteArrayLiteral("uid")},
-    };
+            {CuTypeRole, QByteArrayLiteral("cuType")},
+            {DelegateRole, QByteArrayLiteral("delegate")},
+            {DelegatorRole, QByteArrayLiteral("delegator")},
+            {EmailRole, QByteArrayLiteral("email")},
+            {FullNameRole, QByteArrayLiteral("fullName")},
+            {IsNullRole, QByteArrayLiteral("isNull")},
+            {NameRole, QByteArrayLiteral("name")},
+            {RoleRole, QByteArrayLiteral("role")},
+            {RSVPRole, QByteArrayLiteral("rsvp")},
+            {StatusRole, QByteArrayLiteral("status")},
+            {UidRole, QByteArrayLiteral("uid")},
+            };
 }
 
 int AttendeesModel::rowCount(const QModelIndex &) const
@@ -310,7 +300,7 @@ void AttendeesModel::addAttendee(qint64 itemId, const QString &email)
                                          KCalendarCore::Attendee::NeedsAction,
                                          KCalendarCore::Attendee::ReqParticipant);
 
-        // addAttendee won't actually add any attendees without a set name
+               // addAttendee won't actually add any attendees without a set name
         m_incidence->addAttendee(attendee);
     }
 

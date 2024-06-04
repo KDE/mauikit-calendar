@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: 2018 Christian Mollekopf, <mollekopf@kolabsys.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-import QtQuick 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import "dateutils.js" as DateUtils
 
@@ -15,7 +15,7 @@ Row
     property int daysToShow
     property Component delegate
 
-//    height: childrenRect.height
+    //    height: childrenRect.height
 
     spacing: 0
     Repeater

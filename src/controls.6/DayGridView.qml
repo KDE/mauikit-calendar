@@ -3,12 +3,12 @@
 // SPDX-FileCopyrightText: 2021 Claudio Cambra <claudio.cambra@gmail.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15 as QQC2
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.mauikit.controls as Maui
 
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.calendar as Kalendar
 import "dateutils.js" as DateUtils
 import "labelutils.js" as LabelUtils
 
@@ -27,8 +27,8 @@ QQC2.Pane
     property int currentDay: currentDate ? currentDate.getDate() : null
     property int currentMonth: currentDate ? currentDate.getMonth() : null
     property int currentYear: currentDate ? currentDate.getFullYear() : null
-   
-   property date startDate
+
+    property date startDate
     
     property bool paintGrid: true
     property bool showDayIndicator: true
@@ -147,7 +147,7 @@ QQC2.Pane
                                         visible: root.showDayIndicator
                                         padding: Maui.Style.space.small
                                         onClicked: root.dateClicked(gridItem.date)
-onDoubleClicked: root.dateDoubleClicked(gridItem.date)
+                                        onDoubleClicked: root.dateDoubleClicked(gridItem.date)
 
                                         property date gridSquareDate: date
                                         property date date: DateUtils.addDaysToDate(dayDelegate.startDate, modelData)
@@ -169,54 +169,54 @@ onDoubleClicked: root.dateDoubleClicked(gridItem.date)
                                         {
                                             spacing: Maui.Style.space.medium
                                             RowLayout
-                                        {
-                                            id: dayNumberLayout
-                                            Layout.fillWidth: true
-                                            visible: root.showDayIndicator
-
-                                            
-                                            QQC2.Label
                                             {
-                                                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-                                                text: i18n("Today")
-                                                renderType: Text.QtRendering
-                                                color: Maui.Theme.highlightedTextColor
-                                                visible: gridItem.isToday && root.isWide
-                                                font.bold: root.isWide
-                                                font.weight: root.isWide ? Font.Bold : Font.Normal
-                                                font.pointSize: root.isWide ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.small
+                                                id: dayNumberLayout
+                                                Layout.fillWidth: true
+                                                visible: root.showDayIndicator
+
+
+                                                QQC2.Label
+                                                {
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                                                    text: i18n("Today")
+                                                    renderType: Text.QtRendering
+                                                    color: Maui.Theme.highlightedTextColor
+                                                    visible: gridItem.isToday && root.isWide
+                                                    font.bold: root.isWide
+                                                    font.weight: root.isWide ? Font.Bold : Font.Normal
+                                                    font.pointSize: root.isWide ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.small
+                                                }
+
+                                                QQC2.Label
+                                                {
+                                                    Layout.alignment: gridItem.width > Maui.Style.units.gridUnit * 5 ? Qt.AlignRight | Qt.AlignTop : Qt.AlignCenter
+
+                                                    text: gridItem.date.toLocaleDateString(Qt.locale(), gridItem.day == 1 && root.isWide ? "d MMM" : "d")
+                                                    renderType: Text.QtRendering
+                                                    horizontalAlignment: Qt.AlignHCenter
+
+                                                    color: gridItem.isToday ?
+                                                               Maui.Theme.highlightedTextColor :
+                                                               (!gridItem.isCurrentMonth ? Maui.Theme.disabledTextColor : Maui.Theme.textColor)
+                                                    font.bold: root.isWide
+                                                    font.weight: root.isWide ? Font.Bold : Font.Normal
+                                                    font.pointSize: root.isWide ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.small
+
+                                                }
                                             }
 
-                                            QQC2.Label
+
+                                            Flow
                                             {
-                                                Layout.alignment: gridItem.width > Maui.Style.units.gridUnit * 5 ? Qt.AlignRight | Qt.AlignTop : Qt.AlignCenter
+                                                width: parent.width
+                                                Layout.alignment: Qt.AlignBottom
+                                                Layout.fillWidth: true
+                                                Layout.fillHeight: true
+                                                spacing: Maui.Style.space.tiny
+                                                clip: true
 
-                                                text: gridItem.date.toLocaleDateString(Qt.locale(), gridItem.day == 1 && root.isWide ? "d MMM" : "d")
-                                                renderType: Text.QtRendering
-                                                horizontalAlignment: Qt.AlignHCenter
-
-                                                color: gridItem.isToday ?
-                                                           Maui.Theme.highlightedTextColor :
-                                                           (!gridItem.isCurrentMonth ? Maui.Theme.disabledTextColor : Maui.Theme.textColor)
-                                                font.bold: root.isWide
-                                                font.weight: root.isWide ? Font.Bold : Font.Normal
-                                                font.pointSize: root.isWide ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.small
-
-                                            }
-                                        }
-                                        
-                                        
-                                        Flow
-                                        {
-                                            width: parent.width
-                                            Layout.alignment: Qt.AlignBottom
-                                            Layout.fillWidth: true
-                                            Layout.fillHeight: true
-                                            spacing: Maui.Style.space.tiny
-                                            clip: true
-                                         
-                                            Repeater 
-                                            {
+                                                Repeater
+                                                {
                                                     model: Kalendar.IncidenceOccurrenceModel
                                                     {
                                                         start: gridItem.date
@@ -224,31 +224,31 @@ onDoubleClicked: root.dateDoubleClicked(gridItem.date)
                                                         calendar: Kalendar.CalendarManager.calendar
                                                         filter: Kalendar.Filter
                                                     }
-                                                
-                                                
-                                                
-                                                
-                                                delegate: Rectangle
-                                                {
-                                                    radius: height
-                                                    height: 10
-                                                    width: height
-                                                    color: randomColor(150)
-                                                    
-                                                    function randomColor(brightness){
-                                                        function randomChannel(brightness){
-                                                            var r = 255-brightness;
-                                                            var n = 0|((Math.random() * r) + brightness);
-                                                            var s = n.toString(16);
-                                                            return (s.length==1) ? '0'+s : s;
+
+
+
+
+                                                    delegate: Rectangle
+                                                    {
+                                                        radius: height
+                                                        height: 10
+                                                        width: height
+                                                        color: randomColor(150)
+
+                                                        function randomColor(brightness){
+                                                            function randomChannel(brightness){
+                                                                var r = 255-brightness;
+                                                                var n = 0|((Math.random() * r) + brightness);
+                                                                var s = n.toString(16);
+                                                                return (s.length==1) ? '0'+s : s;
+                                                            }
+                                                            return '#' + randomChannel(brightness) + randomChannel(brightness) + randomChannel(brightness);
                                                         }
-                                                        return '#' + randomChannel(brightness) + randomChannel(brightness) + randomChannel(brightness);
+
                                                     }
-                                                    
                                                 }
                                             }
-                                        }
-                                        
+
                                         }
 
                                     }

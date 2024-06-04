@@ -2,20 +2,20 @@ import QtQuick
 import QtQuick.Layouts 
 import QtQuick.Controls 
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 /**
  * @inherit QtQuick.Controls.Page
  * @brief A view for browsing calendar years.
- *  
+ *
  * @image html yearsgrid.png "Years view control"
- * 
+ *
  * @code
  * YearsGrid
  * {
  *    anchors.fill: parent
- * 
+ *
  *    from: 2010
  *    to: 2029
  * }
@@ -41,7 +41,7 @@ Page
     /**
      * @brief
      */
-    property int selectedYear : 
+    property int selectedYear :
     {
         var date = new Date()
         return date.getFullYear()
@@ -72,7 +72,7 @@ Page
                 anchors.fill: parent
                 columns: Math.max(3, width/80)
                 
-                ButtonGroup 
+                ButtonGroup
                 {
                     buttons: _yearsGrid.children
                 }
@@ -89,7 +89,7 @@ Page
                         
                         checkable: true
                         checked: year === control.selectedYear
-                        onClicked: control.yearSelected(year) 
+                        onClicked: control.yearSelected(year)
                         
                         background: Rectangle
                         {

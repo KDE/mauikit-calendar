@@ -8,26 +8,26 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls 
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 import "dateutils.js" as DateUtils
 
 /**
  * @inherit QtQuick.Controls.Pane
  * @brief A view for browsing the calendar months and its days.
- * 
+ *
  * @image html monthview_sizes.png "MonthView control with different sizes"
- * 
- * 
+ *
+ *
  * @code
  * Maui.Page
  * {
  *    anchors.fill: parent
  *    Maui.Controls.showCSD: true
- * 
+ *
  *    title: _monthsView.title
- * 
+ *
  *    headBar.rightContent: Maui.ToolActions
  *    {
  *        checkable: false
@@ -36,15 +36,15 @@ import "dateutils.js" as DateUtils
  *            icon.name: "go-previous"
  *            onTriggered: _monthsView.previousDate()
  *        }
- * 
+ *
  *        Action
  *        {
  *            icon.name: "go-next"
  *            onTriggered: _monthsView.nextDate()
- * 
+ *
  *        }
  *    }
- * 
+ *
  *    MC.MonthView
  *    {
  *        id: _monthsView
@@ -249,7 +249,7 @@ Pane
                 
                 
                 
-                onDateClicked: 
+                onDateClicked:
                 {
                     
                     control.selectedDate = date
@@ -286,7 +286,7 @@ Pane
                         font.pointSize: Maui.Style.fontSizes.big
                         
                         
-                    }                   
+                    }
                     
                     
                 }

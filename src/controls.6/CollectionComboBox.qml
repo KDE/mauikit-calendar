@@ -3,8 +3,8 @@
 
 import QtQuick
 import QtQuick.Controls 
-import org.mauikit.calendar 1.0 as Cal
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.calendar as Cal
+import org.mauikit.controls as Maui
 
 /**
  * Special combobox control that allows to choose a collection.

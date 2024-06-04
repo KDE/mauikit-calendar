@@ -2,33 +2,33 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls 
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 /**
  * @inherit QtQuick.Controls.Page
  * @brief A control for quickly picking a date in the format of year, month and day number.
- * 
+ *
  * @image html datepicker.png
- * 
- * @code 
+ *
+ * @code
  * Maui.ApplicationWindow
  * {
  *    id: root
- *    
+ *
  *    Maui.Page
  *    {
  *        anchors.fill: parent
  *        Maui.Controls.showCSD: true
  *        title: root.title
- *        
+ *
  *        MC.DatePicker
  *        {
  *            id: _datePicker
  *            height: 300
  *            width: 300
  *            anchors.centerIn: parent
- *            
+ *
  *            onAccepted: (date) => root.title = date.toLocaleString()
  *        }
  *    }
@@ -66,7 +66,7 @@ Page
     
     /**
      * @brief
-     * 
+     *
      */
     signal accepted(var date)
     
@@ -91,7 +91,7 @@ Page
             
             Action
             {
-                text: Qt.locale().standaloneMonthName(control.selectedMonth) 
+                text: Qt.locale().standaloneMonthName(control.selectedMonth)
                 checked: _swipeView.currentIndex === 1
                 onTriggered: _swipeView.currentIndex = 1
                 
@@ -101,7 +101,7 @@ Page
             {
                 text: control.selectedYear
                 checked: _swipeView.currentIndex === 2
-                onTriggered: _swipeView.currentIndex = 2                
+                onTriggered: _swipeView.currentIndex = 2
             }
         }
         
@@ -109,8 +109,8 @@ Page
         {
             text: i18n("Done")
             onClicked: control.accepted(control.selectedDate)
-        }        
-    }    
+        }
+    }
     
     contentItem: SwipeView
     {
@@ -125,22 +125,22 @@ Page
             year: control.selectedYear
             
             onDateClicked: (date) =>
-            {
-                control.updateSelectedDate(date.getDate(), control.selectedMonth, control.selectedYear)               
-            }            
-        }        
+                           {
+                               control.updateSelectedDate(date.getDate(), control.selectedMonth, control.selectedYear)
+                           }
+        }
         
         Kalendar.MonthsGrid
         {
             id: _monthPage
             selectedMonth: control.selectedMonth
-            onMonthSelected: (month) => control.updateSelectedDate(control.selectedDay, month, control.selectedYear)            
+            onMonthSelected: (month) => control.updateSelectedDate(control.selectedDay, month, control.selectedYear)
         }
         
         Kalendar.YearsGrid
         {
             id: _yearPane
-            selectedYear: control.selectedYear           
+            selectedYear: control.selectedYear
             onYearSelected: (year) => control.updateSelectedDate(control.selectedDay, control.selectedMonth, year)
         }
     }
@@ -157,5 +157,5 @@ Page
         console.log("CREATING A NEW DATE WITH", day, month, year)
         control.selectedDate = new Date(year, month, day)
         _swipeView.incrementCurrentIndex()
-    } 
+    }
 }

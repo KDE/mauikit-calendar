@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 /**
  * @inherit QtQuick.Controls.Page
@@ -184,7 +184,7 @@ Page
      * @brief
      * @param hour
      */
-    function formatUTCHour(hour : int)
+    function formatUTCHour(hour : int) : int
     {
         if(hour > 12)
         {
@@ -199,7 +199,7 @@ Page
      * @param hour
      * @param format
      */
-    function formatHourToUTC(hour, format)
+    function formatHourToUTC(hour : int, format : string) : int
     {
         if(format == "AM")
         {
@@ -225,7 +225,7 @@ Page
      * @param count
      * @param modeldata
      */
-    function formatText(count : int, modelData : int)
+    function formatText(count : int, modelData : int) : string
     {
         var data = count === 12 ? modelData + 1 : modelData;
         return data.toString().length < 2 ? "0" + data : data;

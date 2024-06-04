@@ -2,15 +2,15 @@ import QtQuick
 import QtQuick.Layouts 
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import org.mauikit.calendar 1.0 as Kalendar
+import org.mauikit.controls as Maui
+import org.mauikit.calendar as Kalendar
 
 /**
  * @inherit QtQuick.Controls.ComboBox
  * @brief A combobox designed for picking a time using a hour and minute format.
- * 
+ *
  * @image html timecombobox.png
- * 
+ *
  * @code
  * MC.TimeComboBox
  * {
@@ -44,7 +44,7 @@ ComboBox
     /**
      * @brief
      */
-    property alias selectedTime : _picker.selectedTime 
+    property alias selectedTime : _picker.selectedTime
     
     /**
      * @brief
@@ -52,13 +52,13 @@ ComboBox
      */
     signal timePicked(var time)
     
-    displayText: _picker.selectedTime    
+    displayText: _picker.selectedTime
     
     font.bold: true
     font.weight: Font.Bold
     font.family: "Monospace"
     
-    icon.source: "clock"   
+    icon.source: "clock"
     
     popupContent: Kalendar.TimePicker
     {
@@ -69,5 +69,5 @@ ComboBox
             control.accepted()
             control.popup.close()
         }
-    }    
+    }
 }
