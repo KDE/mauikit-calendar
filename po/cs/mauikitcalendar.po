@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-09-10 01:45+0000\n"
 "PO-Revision-Date: 2023-01-30 16:35+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -38,7 +38,7 @@ msgstr "Smazat úkol a jeho podúkoly"
 msgid "Delete task and make sub-tasks independent"
 msgstr "Smazat úkol a učinit podúkoly nezávislými"
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
