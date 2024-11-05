@@ -19,8 +19,6 @@ ecm_add_qml_module(MauiKitCalendar${MAUI_MAJOR_VERSION}
 set(lib_HDRS
     code/moduleinfo.h)
 
-# qt_add_resources(lib_QML_QRC controls.5/qml.qrc)
-
 target_sources(MauiKitCalendar${MAUI_MAJOR_VERSION}
     PRIVATE
     
@@ -75,7 +73,6 @@ ecm_target_qml_sources(MauiKitCalendar${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/DayLabelsBar.qml
     controls.${QT_MAJOR_VERSION}/DaysGrid.qml
     controls.${QT_MAJOR_VERSION}/EventPage.qml
-    controls.${QT_MAJOR_VERSION}/HourlyView.qml
     controls.${QT_MAJOR_VERSION}/MonthsGrid.qml
     controls.${QT_MAJOR_VERSION}/MonthView.qml
     controls.${QT_MAJOR_VERSION}/TimeComboBox.qml

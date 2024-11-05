@@ -136,7 +136,7 @@ Pane
                 year: control.year
                 month: modelData+1
                 compact: control.isTiny
-                onDateClicked: control.selectedDate = date
+                onDateClicked: (date) => control.selectedDate = date
                 header: Maui.LabelDelegate
                 {
                     width: parent.width
