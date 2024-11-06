@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikitcalendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-10 01:45+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-08 23:40+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -135,36 +135,10 @@ msgstr "Start"
 msgid "End"
 msgstr "Ende"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Zeitzone"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Vorherige Woche"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Nächste Woche"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Jetzt"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Zurücksetzen"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "Ganz- oder mehrtägig"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -175,6 +149,22 @@ msgstr "AM"
 #, kde-format
 msgid "PM"
 msgstr "PM"
+
+#~ msgid "Previous Week"
+#~ msgstr "Vorherige Woche"
+
+#~ msgid "Next Week"
+#~ msgstr "Nächste Woche"
+
+#~ msgid "Now"
+#~ msgstr "Jetzt"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Zurücksetzen"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "Ganz- oder mehrtägig"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

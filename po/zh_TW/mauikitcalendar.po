@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-10 01:45+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-06-15 04:34+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -131,36 +131,10 @@ msgstr "開始"
 msgid "End"
 msgstr "結束"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "時區"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "前一週"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "下一週"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "現在"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "重設"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "整天或多日"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -171,6 +145,22 @@ msgstr "上午"
 #, kde-format
 msgid "PM"
 msgstr "下午"
+
+#~ msgid "Previous Week"
+#~ msgstr "前一週"
+
+#~ msgid "Next Week"
+#~ msgstr "下一週"
+
+#~ msgid "Now"
+#~ msgstr "現在"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "重設"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "整天或多日"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

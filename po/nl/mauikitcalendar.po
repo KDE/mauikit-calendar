@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-10 01:45+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-08 10:11+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -132,36 +132,10 @@ msgstr "Begin"
 msgid "End"
 msgstr "Einde"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Tijdzone"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Vorige week"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Volgende week"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Nu"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Reset"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "De gehele dag of meerdere dagen"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -172,6 +146,22 @@ msgstr "AM"
 #, kde-format
 msgid "PM"
 msgstr "PM"
+
+#~ msgid "Previous Week"
+#~ msgstr "Vorige week"
+
+#~ msgid "Next Week"
+#~ msgstr "Volgende week"
+
+#~ msgid "Now"
+#~ msgstr "Nu"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Reset"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "De gehele dag of meerdere dagen"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

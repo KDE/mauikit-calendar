@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-10 01:45+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-08 08:03+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -132,36 +132,10 @@ msgstr "Začetek"
 msgid "End"
 msgstr "Konec"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Časovni pas"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Prejšnji teden"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Naslednji teden"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Sedaj"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Ponastavi"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "Ves dan ali več dni"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -172,6 +146,22 @@ msgstr "Dop."
 #, kde-format
 msgid "PM"
 msgstr "Pop."
+
+#~ msgid "Previous Week"
+#~ msgstr "Prejšnji teden"
+
+#~ msgid "Next Week"
+#~ msgstr "Naslednji teden"
+
+#~ msgid "Now"
+#~ msgstr "Sedaj"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Ponastavi"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "Ves dan ali več dni"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"
