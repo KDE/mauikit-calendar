@@ -246,17 +246,14 @@ Pane
                 startDate: viewLoader.startDate
                 currentDate: control.currentDate
                 month: viewLoader.month
-                
-                
-                
-                onDateClicked:
-                {
-                    
+                                               
+                onDateClicked: (date) =>
+                {                    
                     control.selectedDate = date
                     control.dateClicked(control.selectedDate)
                 }
                 
-                onDateDoubleClicked:
+                onDateDoubleClicked: (date) =>
                 {
                     control.selectedDate = date
                     control.dateDoubleClicked(control.selectedDate)
@@ -283,12 +280,9 @@ Pane
                         horizontalAlignment: Text.AlignLeft
                         font.bold: true
                         font.weight: Font.Bold
-                        font.pointSize: Maui.Style.fontSizes.big
-                        
+                        font.pointSize: Maui.Style.fontSizes.big                        
                         
                     }
-                    
-                    
                 }
                 
                 weekHeaderDelegate: Maui.LabelDelegate

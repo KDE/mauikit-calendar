@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-09 10:23+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -39,7 +39,7 @@ msgstr "ამოცანისა და მისი ქვეამოცა
 msgid "Delete task and make sub-tasks independent"
 msgstr "ამოცანის წაშლა და მისი ქვეამოცანების დამოუკიდებელ ამოცანებად გარდაქმნა"
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
@@ -132,36 +132,10 @@ msgstr "გაშვება"
 msgid "End"
 msgstr "დასასრული"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "დროის სარტყელი"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "წინა კვირა"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "შემდეგი კვირა"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "ახლა"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "საწყის მნიშვნელობებზე დაბრუნება"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "ყველა ან ბევრი დღე"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -172,6 +146,22 @@ msgstr "AM"
 #, kde-format
 msgid "PM"
 msgstr "PM"
+
+#~ msgid "Previous Week"
+#~ msgstr "წინა კვირა"
+
+#~ msgid "Next Week"
+#~ msgstr "შემდეგი კვირა"
+
+#~ msgid "Now"
+#~ msgstr "ახლა"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "საწყის მნიშვნელობებზე დაბრუნება"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "ყველა ან ბევრი დღე"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

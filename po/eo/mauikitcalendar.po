@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2024-01-03 12:02+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -40,7 +40,7 @@ msgstr "Forigi taskon kaj ĝiajn subtaskojn"
 msgid "Delete task and make sub-tasks independent"
 msgstr "Forigi taskon kaj sendependigi subtaskojn"
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
@@ -133,36 +133,10 @@ msgstr "Komenco"
 msgid "End"
 msgstr "Fino"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Horzono"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Antaŭa Semajno"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Venontsemajne"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Nun"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Restarigi"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "La tutan tagon aŭ plurtagon"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -173,6 +147,22 @@ msgstr "ESTAS"
 #, kde-format
 msgid "PM"
 msgstr "PM"
+
+#~ msgid "Previous Week"
+#~ msgstr "Antaŭa Semajno"
+
+#~ msgid "Next Week"
+#~ msgstr "Venontsemajne"
+
+#~ msgid "Now"
+#~ msgstr "Nun"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Restarigi"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "La tutan tagon aŭ plurtagon"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-28 16:49+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -15,7 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
 
 #: src/code/calendarmanager.cpp:618
 #, kde-format
@@ -38,7 +37,7 @@ msgstr "Poista tehtävä alitehtävineen"
 msgid "Delete task and make sub-tasks independent"
 msgstr "Poista tehtävä ja itsenäistä alitehtävät"
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
@@ -131,36 +130,10 @@ msgstr "Käynnistä"
 msgid "End"
 msgstr "Loppu"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Aikavyöhyke"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Edellinen viikko"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Seuraava viikko"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Nyt"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Palauta"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "Koko päivä tai useampi päivä"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -171,6 +144,22 @@ msgstr "ap"
 #, kde-format
 msgid "PM"
 msgstr "ip"
+
+#~ msgid "Previous Week"
+#~ msgstr "Edellinen viikko"
+
+#~ msgid "Next Week"
+#~ msgstr "Seuraava viikko"
+
+#~ msgid "Now"
+#~ msgstr "Nyt"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Palauta"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "Koko päivä tai useampi päivä"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"

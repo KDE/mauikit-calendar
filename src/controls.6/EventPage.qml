@@ -202,9 +202,7 @@ Pane
                     {
                         incidenceWrapper.setIncidenceEndTime(hours, minutes)
                     }
-                }
-                
-                
+                }                
             }
             
             Maui.SectionItem
@@ -227,6 +225,5 @@ Pane
                 }
             }
         }
-    }
-    
+    }    
 }

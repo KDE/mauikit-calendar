@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikitcalendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-03-12 11:26+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Delete task and make sub-tasks independent"
 msgstr ""
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
@@ -131,36 +131,10 @@ msgstr "Spustiť"
 msgid "End"
 msgstr "Koniec"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Časové pásmo"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Predchádzajúci týždeň"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Nasledujúci týždeň"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Teraz"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Obnoviť"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr ""
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -171,3 +145,16 @@ msgstr "dop."
 #, kde-format
 msgid "PM"
 msgstr "odp."
+
+#~ msgid "Previous Week"
+#~ msgstr "Predchádzajúci týždeň"
+
+#~ msgid "Next Week"
+#~ msgstr "Nasledujúci týždeň"
+
+#~ msgid "Now"
+#~ msgstr "Teraz"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Obnoviť"

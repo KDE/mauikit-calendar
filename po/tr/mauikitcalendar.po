@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-05 02:05+0000\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
 "PO-Revision-Date: 2023-05-08 10:40+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -38,7 +38,7 @@ msgstr "Görevi ve tüm alt görevlerini sil"
 msgid "Delete task and make sub-tasks independent"
 msgstr "Görevi sil ve alt görevlerini bağımsız yap"
 
-#: src/code/incidencewrapper.cpp:135
+#: src/code/incidencewrapper.cpp:134
 #: src/code/models/incidenceoccurrencemodel.cpp:410
 #: src/code/models/todosortfilterproxymodel.cpp:134
 #, kde-format
@@ -131,36 +131,10 @@ msgstr "Başlangıç"
 msgid "End"
 msgstr "Bitiş"
 
-#: src/controls.6/EventPage.qml:212
+#: src/controls.6/EventPage.qml:210
 #, kde-format
 msgid "TimeZone"
 msgstr "Zaman Dilimi"
-
-#: src/controls.6/HourlyView.qml:99
-#, kde-format
-msgid "Previous Week"
-msgstr "Önceki Hafta"
-
-#: src/controls.6/HourlyView.qml:106
-#, kde-format
-msgid "Next Week"
-msgstr "Sonraki Hafta"
-
-#: src/controls.6/HourlyView.qml:113
-#, kde-format
-msgid "Now"
-msgstr "Şimdi"
-
-#: src/controls.6/HourlyView.qml:371
-#, kde-format
-msgctxt "@action:button"
-msgid "Reset"
-msgstr "Sıfırla"
-
-#: src/controls.6/HourlyView.qml:384
-#, kde-format
-msgid "All day or Multi day"
-msgstr "Tüm gün veya çoklu gün"
 
 #: src/controls.6/TimePicker.qml:81
 #, kde-format
@@ -171,6 +145,22 @@ msgstr "ÖÖ"
 #, kde-format
 msgid "PM"
 msgstr "ÖS"
+
+#~ msgid "Previous Week"
+#~ msgstr "Önceki Hafta"
+
+#~ msgid "Next Week"
+#~ msgstr "Sonraki Hafta"
+
+#~ msgid "Now"
+#~ msgstr "Şimdi"
+
+#~ msgctxt "@action:button"
+#~ msgid "Reset"
+#~ msgstr "Sıfırla"
+
+#~ msgid "All day or Multi day"
+#~ msgstr "Tüm gün veya çoklu gün"
 
 #~ msgctxt "@title:window"
 #~ msgid "Properties of Calendar %1"
