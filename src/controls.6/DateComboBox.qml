@@ -17,20 +17,20 @@ ComboBox
     property alias selectedDate : _picker.selectedDate
 
     displayText: selectedDate.toLocaleDateString()
-    
+
     font.bold: true
     font.weight: Font.Bold
     font.family: "Monospace"
-    icon.source: "view-calendar"
-    
+    Maui.Controls.iconName: "view-calendar"
+
     signal datePicked(var date)
-    
+
     popupContent: Kalendar.DatePicker
     {
         id: _picker
         implicitHeight: 300
         background: null
-        
+
         onAccepted:
         {
             control.datePicked(date)
