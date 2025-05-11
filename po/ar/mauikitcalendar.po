@@ -1,0 +1,148 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the mauikit-calendar package.
+# SPDX-FileCopyrightText: 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit-calendar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-06 01:50+0000\n"
+"PO-Revision-Date: 2025-05-10 18:10+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 23.08.5\n"
+
+#: src/code/calendarmanager.cpp:618
+#, kde-format
+msgid "Move occurrence(s)"
+msgstr "انقل التكرار(ات)"
+
+#: src/code/calendarmanager.cpp:623
+#, kde-format
+msgid ""
+"Unable to add the exception item to the calendar. No change will be done."
+msgstr "تعذّرت إضافة عنصر الاستثناء إلى التقويم. لن يجري أيّ تغيير."
+
+#: src/code/calendarmanager.cpp:663
+#, kde-format
+msgid "Delete task and its sub-tasks"
+msgstr "احذف المهمة وتفريعاتها"
+
+#: src/code/calendarmanager.cpp:666
+#, kde-format
+msgid "Delete task and make sub-tasks independent"
+msgstr "احذف المهمة واجعل تفريعاتها مستقلة"
+
+#: src/code/incidencewrapper.cpp:134
+#: src/code/models/incidenceoccurrencemodel.cpp:410
+#: src/code/models/todosortfilterproxymodel.cpp:134
+#, kde-format
+msgid "Task"
+msgstr "المهمّة"
+
+#: src/code/lib/colorproxymodel.cpp:82
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Offline)"
+msgstr "‏%1 (غير متّصل)"
+
+#: src/code/lib/colorproxymodel.cpp:85
+#, kde-format
+msgctxt "@item this is the default calendar"
+msgid "%1 (Default)"
+msgstr "%1 (المبدئيّ)"
+
+#: src/code/models/todosortfilterproxymodel.cpp:146
+#, kde-format
+msgctxt "List separator"
+msgid ", "
+msgstr "، "
+
+#: src/code/models/todosortfilterproxymodel.cpp:164
+#, kde-format
+msgid "No set date"
+msgstr "لم يعين تاريخ"
+
+#: src/code/models/todosortfilterproxymodel.cpp:168
+#, kde-format
+msgid "Overdue"
+msgstr "تأخّرت"
+
+#: src/code/models/todosortfilterproxymodel.cpp:174
+#: src/controls.6/DayGridView.qml:181
+#, kde-format
+msgid "Today"
+msgstr "اليوم"
+
+#: src/code/models/todosortfilterproxymodel.cpp:197
+#, kde-format
+msgctxt "Please retain space"
+msgid " at %1"
+msgstr " عند %1"
+
+#: src/code/models/todosortfilterproxymodel.cpp:198
+#, kde-format
+msgctxt "Please retain parenthesis and space"
+msgid " (overdue)"
+msgstr " (تأخّرت)"
+
+#: src/controls.6/DatePicker.qml:110 src/controls.6/TimePicker.qml:99
+#, kde-format
+msgid "Done"
+msgstr "تمّ"
+
+#: src/controls.6/EventPage.qml:59
+#, kde-format
+msgid "Info"
+msgstr "معلومات"
+
+#: src/controls.6/EventPage.qml:63
+#, kde-format
+msgid "Description"
+msgstr "الوصف"
+
+#: src/controls.6/EventPage.qml:79
+#, kde-format
+msgid "Calendar"
+msgstr "التقويم"
+
+#: src/controls.6/EventPage.qml:117
+#, kde-format
+msgid "Time"
+msgstr "الوقت"
+
+#: src/controls.6/EventPage.qml:121
+#, kde-format
+msgid "All day"
+msgstr "طول اليوم"
+
+#: src/controls.6/EventPage.qml:141
+#, kde-format
+msgid "Start"
+msgstr "البداية"
+
+#: src/controls.6/EventPage.qml:178
+#, kde-format
+msgid "End"
+msgstr "النهاية"
+
+#: src/controls.6/EventPage.qml:210
+#, kde-format
+msgid "TimeZone"
+msgstr "المنطقة الزمنية"
+
+#: src/controls.6/TimePicker.qml:81
+#, kde-format
+msgid "AM"
+msgstr "ق‌ظ"
+
+#: src/controls.6/TimePicker.qml:88
+#, kde-format
+msgid "PM"
+msgstr "ب‌ظ"
