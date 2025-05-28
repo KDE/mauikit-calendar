@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Layouts 
+import QtQuick.Layouts
 import QtQuick.Controls
 
 import org.mauikit.controls as Maui
@@ -23,43 +23,43 @@ import org.mauikit.calendar as Kalendar
 ComboBox
 {
     id:  control
-    
+
     enabled: true
-    
+
     /**
      * @brief
      */
     property alias selectedHour : _picker.selectedHour
-    
+
     /**
      * @brief
      */
     property alias selectedMinute: _picker.selectedMinute
-    
+
     /**
      * @brief
      */
     property alias timeZoneOffset : _picker.timeZoneOffset
-    
+
     /**
      * @brief
      */
     property alias selectedTime : _picker.selectedTime
-    
+
     /**
      * @brief
      * @param time
      */
     signal timePicked(var time)
-    
+
     displayText: _picker.selectedTime
-    
+
     font.bold: true
     font.weight: Font.Bold
     font.family: "Monospace"
-    
-    icon.source: "clock"
-    
+
+    Maui.Controls.iconName: "clock"
+
     popupContent: Kalendar.TimePicker
     {
         id: _picker

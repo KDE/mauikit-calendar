@@ -145,16 +145,3 @@ msgstr "dop."
 #, kde-format
 msgid "PM"
 msgstr "odp."
-
-#~ msgid "Previous Week"
-#~ msgstr "Předchozí týden"
-
-#~ msgid "Next Week"
-#~ msgstr "Příští týden"
-
-#~ msgid "Now"
-#~ msgstr "Nyní"
-
-#~ msgctxt "@action:button"
-#~ msgid "Reset"
-#~ msgstr "Obnovit"
