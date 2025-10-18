@@ -3,7 +3,7 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
@@ -148,23 +148,3 @@ msgstr "AM"
 #, kde-format
 msgid "PM"
 msgstr "PM"
-
-#~ msgid "Previous Week"
-#~ msgstr "Setmana anterior"
-
-#~ msgid "Next Week"
-#~ msgstr "Setmana següent"
-
-#~ msgid "Now"
-#~ msgstr "Ara"
-
-#~ msgctxt "@action:button"
-#~ msgid "Reset"
-#~ msgstr "Restablix"
-
-#~ msgid "All day or Multi day"
-#~ msgstr "Tot el dia o diversos dies"
-
-#~ msgctxt "@title:window"
-#~ msgid "Properties of Calendar %1"
-#~ msgstr "Propietats del calendari %1"
