@@ -1,13 +1,13 @@
 # Copyright (C) 2026 This file is copyright:
 # This file is distributed under the same license as the mauikit-calendar package.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2026 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2023, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit-calendar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2026-03-09 22:05+0300\n"
+"PO-Revision-Date: 2026-11-23 17:59+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #: src/code/calendarmanager.cpp:618
 #, kde-format
@@ -55,7 +55,7 @@ msgstr "%1 (Çevrim Dışı)"
 #, kde-format
 msgctxt "@item this is the default calendar"
 msgid "%1 (Default)"
-msgstr "%1 (Öntanımlı)"
+msgstr "%1 (Varsayılan)"
 
 #: src/code/models/todosortfilterproxymodel.cpp:146
 #, kde-format
